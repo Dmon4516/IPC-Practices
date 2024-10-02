@@ -8,108 +8,142 @@
     tools:context=".CrearPerfume">
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/boxTitle1"
         android:layout_width="409dp"
         android:layout_height="40dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="28dp"
         android:background="#F0C7DC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/title1"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/boxTitle1" />
+
     <View
-        android:id="@+id/view2"
+        android:id="@+id/boxTitle2"
         android:layout_width="409dp"
         android:layout_height="40dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="56dp"
         android:background="#F0C7DC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/groupSizes" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/title2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="sans-serif-black"
-        android:text="Seleccione los aromas"
+        android:text="@string/title2"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view2" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Seleccione un tamaño"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toTopOf="@+id/boxTitle2" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="346dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="66dp"
+        android:id="@+id/groupSizes"
+        android:layout_width="300dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view">
+        app:layout_constraintTop_toBottomOf="@+id/boxTitle1">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/sizes1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="8sp"
-            android:text="50 ml"
+            android:text="@string/sizes1"
             android:textSize="20sp" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/sizes2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="75 ml"
+            android:text="@string/sizes2"
             android:textSize="20sp" />
     </RadioGroup>
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/aromas1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="66dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="251dp"
-        android:text="Canela"
+        android:text="@string/aromas1"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintTop_toBottomOf="@+id/boxTitle2" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/aromas2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="66dp"
-        android:layout_marginEnd="236dp"
-        android:text="Lavanda"
+        android:layout_marginStart="56dp"
+        android:text="@string/aromas2"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/aromas1" />
+
+    <CheckBox
+        android:id="@+id/aromas3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:text="@string/aromas3"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aromas2" />
+
+    <CheckBox
+        android:id="@+id/aromas4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:text="@string/aromas4"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aromas3" />
+
+    <CheckBox
+        android:id="@+id/aromas5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:text="@string/aromas5"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aromas4" />
+
+    <CheckBox
+        android:id="@+id/aromas6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:text="@string/aromas6"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aromas5" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/endButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="28dp"
         android:backgroundTint="#1E97D6"
-        android:text="Añadir a la cesta"
+        android:text="@string/endButton"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
