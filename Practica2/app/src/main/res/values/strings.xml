@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Pract2</string>
+    <string name="app_name">Perfume Store</string>
+    <string name="title1">Seleccione un tamaño</string>
+    <string name="sizes1">50 ml</string>
+    <string name="sizes2">75 ml</string>
+    <string name="title2">Seleccione los aromas</string>
+    <string name="aromas1">Canela</string>
+    <string name="aromas2">Lavanda</string>
+    <string name="aromas3">Naranja</string>
+    <string name="aromas4">Mirra</string>
+    <string name="aromas5">Salvia</string>
+    <string name="aromas6">Sándalo</string>
+    <string name="endButton">Añadir a la cesta</string>
 </resources>
