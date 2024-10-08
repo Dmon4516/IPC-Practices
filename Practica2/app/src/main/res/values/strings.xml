@@ -11,4 +11,18 @@
     <string name="aromas5">Salvia</string>
     <string name="aromas6">Sándalo</string>
     <string name="endButton">Añadir a la cesta</string>
+    <string name="title_activity_actualizar_datos">ActualizarDatos</string>
+    <string name="juan">Juan</string>
+    <string name="nombre">Nombre</string>
+    <string name="juanente">Juan</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="ejemplo_apellidos">de la Peña Garcia</string>
+    <string name="domicilio">Domicilio</string>
+    <string name="dni">DNI</string>
+    <string name="email">Email</string>
+    <string name="jpeg_unican_es">jpeg@unican.es</string>
+    <string name="password">Password</string>
+    <string name="ejemplo_password">********</string>
+    <string name="iban">IBAN</string>
+    <string name="modificar">Modificar</string>
 </resources>
