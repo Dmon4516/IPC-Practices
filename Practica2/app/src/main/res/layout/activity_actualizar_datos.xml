@@ -11,15 +11,16 @@
 
     <TextView
         android:id="@+id/texto_actualizar_datos"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="100dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="#E8BFD4"
         tools:fontFamily="sans-serif-black"
-        tools:text="@string/actualizar_datos"
+        tools:text="@string/datos"
         tools:textSize="22sp" />
 
     <TextView

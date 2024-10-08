@@ -31,5 +31,6 @@
     <string name="ejemplo_dni">05158902S</string>
     <string name="ejemplo_domicilio">Calle Peña Hermosa 2, 39012, Santander</string>
     <string name="actualizar_datos">Actualizar datos</string>
+    <string name="datos">Actualizar datos</string>
 
 </resources>
