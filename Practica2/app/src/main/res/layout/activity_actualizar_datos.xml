@@ -5,30 +5,21 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="modificarDatos"
     tools:background="#EFEFEFEF"
     tools:context=".ActualizarDatos">
-
-    <View
-        android:id="@+id/boxTitle"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_marginTop="12dp"
-        android:background="#F0C7DC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/texto_actualizar_datos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="100dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/boxTitle"
         app:layout_constraintTop_toTopOf="parent"
+        tools:background="#E8BFD4"
         tools:fontFamily="sans-serif-black"
-        tools:text="Actualizar datos"
+        tools:text="@string/actualizar_datos"
         tools:textSize="22sp" />
 
     <TextView
@@ -54,9 +45,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nombre"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
             android:hint="@string/juanente"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColorHint="#757575"
@@ -87,9 +79,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/apellidos"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
             android:hint="@string/ejemplo_apellidos"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColorHint="#757575"
@@ -121,12 +114,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/domicilio"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/ejemplo_domicilio"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColorHint="#757575"
-            tools:hint="Calle Peña Hermosa 2, 39012, Santander"
             tools:ignore="TouchTargetSizeCheck,TextContrastCheck"
             tools:inputType="text"
             tools:layout_editor_absoluteX="6dp"
@@ -158,12 +152,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dni"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColorHint="#757575"
-            tools:hint="05158902S"
+            tools:hint="@string/ejemplo_dni"
             tools:ignore="TouchTargetSizeCheck,TextContrastCheck"
             tools:inputType="text"
             tools:layout_editor_absoluteX="6dp"
@@ -194,9 +189,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
             android:hint="@string/jpeg_unican_es"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColorHint="#757575"
@@ -230,9 +226,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
             android:hint="@string/ejemplo_password"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColorHint="#757575"
@@ -266,9 +263,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/iban"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/ejemplo_iban"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColorHint="#757575"
             tools:hint="ES6000491500051234567892"
@@ -285,6 +284,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:backgroundTint="#03A9F4"
+        android:onClick="modificarDatos"
         android:text="@string/modificar"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

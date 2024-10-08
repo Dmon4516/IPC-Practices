@@ -25,4 +25,11 @@
     <string name="ejemplo_password">********</string>
     <string name="iban">IBAN</string>
     <string name="modificar">Modificar</string>
+    <string name="datos_modificados">Datos modificados</string>
+    <string name="continuar">Continuar</string>
+    <string name="ejemplo_iban">ES6000491500051234567892</string>
+    <string name="ejemplo_dni">05158902S</string>
+    <string name="ejemplo_domicilio">Calle Peña Hermosa 2, 39012, Santander</string>
+    <string name="actualizar_datos">Actualizar datos</string>
+
 </resources>
