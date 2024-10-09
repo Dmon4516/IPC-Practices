@@ -31,5 +31,14 @@
     <string name="ejemplo_dni">05158902S</string>
     <string name="ejemplo_domicilio">Calle Peña Hermosa 2, 39012, Santander</string>
     <string name="actualizar_datos">Actualizar datos</string>
-
+    <string name="datos">Actualizar datos</string>
+    <string name="seleccionar">Seleccione una opción</string>
+    <string name="comprar_perfume">Comprar perfume</string>
+    <string name="crear_perfume">Crear perfume</string>
+    <string name="cambiar_mis_datos">Cambiar mis datos</string>
+    <string name="ver_pedidos">Ver el estado de mis pedidos</string>
+    <string name="cerrar_sesion">Cerrar la sesión</string>
+    <string name="title_activity_crear_perfume">CrearPerfume</string>
+    <string name="titulo">Registrarse</string>
+    <string name="alta">Dar de alta</string>
 </resources>
