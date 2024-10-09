@@ -1,6 +1,8 @@
 package com.example.pract2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +22,10 @@ public class Registro extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public void lanzarActividad (View view) {
+        Intent lanzadorActividad = new Intent(this, Menu.class);
+        startActivity(lanzadorActividad);
     }
 }

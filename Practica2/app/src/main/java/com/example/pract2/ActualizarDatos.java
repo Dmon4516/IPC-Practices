@@ -29,7 +29,7 @@ public class ActualizarDatos extends AppCompatActivity {
     }
 
     public void modificarDatos (View view) {
-        Intent lanzadorAviso = new Intent(this, VisualizarAviso.class);
+        Intent lanzadorAviso = new Intent(this, VisualizarDatos.class);
         lanzadorAviso.setAction(Intent.ACTION_SEND);
         lanzadorAviso.putExtra("CNombre",((TextInputEditText) (findViewById(R.id.nombre))).getText().toString());
         lanzadorAviso.putExtra("CApellidos", ((TextInputEditText) (findViewById(R.id.apellidos))).getText().toString());

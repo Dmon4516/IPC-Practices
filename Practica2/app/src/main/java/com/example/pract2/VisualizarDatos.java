@@ -2,25 +2,31 @@ package com.example.pract2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+public class VisualizarDatos extends AppCompatActivity {
 
-
-public class VisualizarAviso extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visualizar_aviso);
+        setContentView(R.layout.activity_visualizar_datos);
 
         Intent intent = getIntent();
-        String mensajeNombre = intent.getStringExtra("Cnombre");
-        String mensajeApellidos = intent.getStringExtra("Capellidos");
-        String mensajeDomicilio = intent.getStringExtra("Cdomicilio");
-        String mensajeDNI = intent.getStringExtra("Cdni");
-        String mensajeEmail = intent.getStringExtra("Cemail");
-        String mensajePassword = intent.getStringExtra("Cpassword");
-        String mensajeIBAN = intent.getStringExtra("Ciban");
+
+        String mensajeNombre = intent.getStringExtra("CNombre");
+        String mensajeApellidos = intent.getStringExtra("CApellidos");
+        String mensajeDomicilio = intent.getStringExtra("CDomicilio");
+        String mensajeDNI = intent.getStringExtra("CDNI");
+        String mensajeEmail = intent.getStringExtra("CEmail");
+        String mensajePassword = intent.getStringExtra("CPassword");
+        String mensajeIBAN = intent.getStringExtra("CIban");
 
         ((TextView)findViewById(R.id.vi_nombre)).setText(String.format("Nombre: %s", mensajeNombre));
         ((TextView)findViewById(R.id.vi_apellidos)).setText(String.format("Apellidos: %s", mensajeApellidos));
@@ -29,6 +35,10 @@ public class VisualizarAviso extends AppCompatActivity {
         ((TextView)findViewById(R.id.vi_email)).setText(String.format("Email: %s", mensajeEmail));
         ((TextView)findViewById(R.id.vi_password)).setText(String.format("Password: %s", mensajePassword));
         ((TextView)findViewById(R.id.vi_iban)).setText(String.format("IBAN: %s", mensajeIBAN));
+    }
 
+    public void lanzarActividad (View view) {
+        Intent lanzadorActividad = new Intent(this, Menu.class);
+        startActivity(lanzadorActividad);
     }
 }

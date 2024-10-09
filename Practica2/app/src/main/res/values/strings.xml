@@ -14,7 +14,6 @@
     <string name="title_activity_actualizar_datos">ActualizarDatos</string>
     <string name="juan">Juan</string>
     <string name="title_activity_crear_perfume">CrearPerfume</string>
-    <string name="password">Password</string>
     <string name="nombre">Nombre</string>
     <string name="juanente">Juan</string>
     <string name="apellidos">Apellidos</string>
@@ -33,7 +32,6 @@
     <string name="ejemplo_dni">05158902S</string>
     <string name="ejemplo_domicilio">Calle Peña Hermosa 2, 39012, Santander</string>
     <string name="actualizar_datos">Actualizar datos</string>
-
     <string name="titulo">Registrarse</string>
     <string name="alta">Dar de alta</string>
 </resources>
