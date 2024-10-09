@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VisualizarAviso">
+    tools:context=".VisualizarDatos">
 
     <TextView
         android:id="@+id/vi_iban"
@@ -100,17 +100,11 @@
         android:layout_marginTop="340dp"
         android:background="#00BCD4"
         android:backgroundTint="#03A9F4"
-        android:onClick="ActualizarDatos"
+        android:onClick="lanzarActividad"
         android:text="@string/continuar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

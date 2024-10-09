@@ -5,22 +5,21 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="modificarDatos"
     tools:background="#EFEFEFEF"
     tools:context=".ActualizarDatos">
 
     <TextView
         android:id="@+id/texto_actualizar_datos"
-        android:layout_width="fill_parent"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="#E8BFD4"
         tools:fontFamily="sans-serif-black"
-        tools:text="@string/datos"
+        tools:text="@string/actualizar_datos"
         tools:textSize="22sp" />
 
     <TextView

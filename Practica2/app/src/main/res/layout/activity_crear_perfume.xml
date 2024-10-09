@@ -143,6 +143,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:backgroundTint="#1E97D6"
+        android:onClick="lanzarActividad"
         android:text="@string/endButton"
         android:textAllCaps="false"
         android:textSize="15sp"
