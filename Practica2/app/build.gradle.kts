@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.practica2"
+    namespace = "com.example.pract2"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.practica2"
+        applicationId = "com.example.pract2"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

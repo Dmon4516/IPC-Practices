@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu">
+
+    <ImageView
+        android:id="@+id/carrito"
+        android:layout_width="72dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="12dp"
+        android:scaleType="centerInside"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/shopping_cart"
+        tools:srcCompat="@drawable/shopping_cart"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="#49E91E63"
+        android:text="Seleccione una opción"
+        android:textAlignment="center"
+        android:textColor="#373737"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="#F0F0F0"
+        android:text="Comprar perfume"
+        android:textColor="#373737"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#F0F0F0"
+        android:onClick="lanzarActividad"
+        android:text="Crear perfume"
+        android:textColor="#373737"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#F0F0F0"
+        android:onClick="lanzarActividad2"
+        android:text="Cambiar mis datos"
+        android:textColor="#373737"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#F0F0F0"
+        android:text="Ver el estado de mis pedidos"
+        android:textColor="#373737"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#F0F0F0"
+        android:text="Cerrar la sesión"
+        android:textColor="#373737"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
