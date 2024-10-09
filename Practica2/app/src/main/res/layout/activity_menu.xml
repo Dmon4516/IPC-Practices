@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_dynamic_neutral95"
+    tools:context=".Menu">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="#3F51B5"
+        android:fontFamily="serif"
+        android:text="PERFUME STORE"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="#49E91E63"
+        android:text="Seleccione una opción"
+        android:textAlignment="center"
+        android:textColor="@android:color/system_accent2_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="64dp"
+        android:background="@color/material_dynamic_neutral90"
+        android:text="Comprar perfume"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@android:color/system_neutral2_600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/material_dynamic_neutral90"
+        android:text="Crear perfume"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@android:color/system_neutral2_600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/material_dynamic_neutral90"
+        android:text="Cambiar mis datos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@android:color/system_neutral2_600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button4"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/material_dynamic_neutral90"
+        android:text="Ver el estado de mis pedidos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@android:color/system_neutral2_600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/button5"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/material_dynamic_neutral90"
+        android:text="Cerrar la sesión"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@android:color/system_neutral2_600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+</androidx.constraintlayout.widget.ConstraintLayout>
