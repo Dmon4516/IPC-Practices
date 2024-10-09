@@ -32,4 +32,6 @@
     <string name="ejemplo_domicilio">Calle Peña Hermosa 2, 39012, Santander</string>
     <string name="actualizar_datos">Actualizar datos</string>
 
+    <string name="titulo">Registrarse</string>
+    <string name="alta">Dar de alta</string>
 </resources>
