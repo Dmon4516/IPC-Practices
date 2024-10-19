@@ -137,9 +137,9 @@ public class VentanaRegistroPaso3 {
 		
 		// creamos el panel principal del formulario junto a los
 		// elementos y campos correspondientes a esta pagina
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		frmAltaDeProveedor.getContentPane().add(panel, BorderLayout.CENTER);
+		JPanel pnlFormulario = new JPanel();
+		pnlFormulario.setBackground(Color.WHITE);
+		frmAltaDeProveedor.getContentPane().add(pnlFormulario, BorderLayout.CENTER);
 		
 	}
 
