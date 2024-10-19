@@ -4,12 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -20,7 +23,9 @@ import java.awt.Toolkit;
 public class VentanaPrincipal {
 
 	private JFrame frmPrincipal;
-	public Registro registro;
+	
+	public static Registro datosRegistro;
+	public static Map<Integer, Object> ventanasRegistro = new HashMap<>();
 
 	/**
 	 * metodo principal de la clase
@@ -57,7 +62,7 @@ public class VentanaPrincipal {
 		frmPrincipal.setResizable(false);
 		frmPrincipal.setBounds(100, 100, 400, 300);
 		frmPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		// TODO: listener para no cerrar la ventana teniendo formularios abiertos
 		
 		// creamos el panel principal, estableciendo margenes y espaciado
 		JPanel gridPanel = new JPanel(new GridLayout(5, 3, 10, 10));
@@ -111,8 +116,17 @@ public class VentanaPrincipal {
 	 * metodo que se encarga de la accion realizada al pulsar el boton de alta de proveedor
 	 */
 	private void btnAltaProveedorMouseClicked() {
-		Registro registro = new Registro();
+		// si el usuario ya tiene este formulario abierto, le avisamos
+		if (!ventanasRegistro.isEmpty()) {
+			String errorMessage = "Este formulario ya se encuentra abierto";
+	        JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+	        return;
+		}
+		
+		// invocamos la ventana y la agregamos a un listado para su manejo
 		VentanaRegistroPaso1 ventana = new VentanaRegistroPaso1();
+		ventanasRegistro.put(1, ventana);
+		datosRegistro = new Registro();
 		ventana.setVisible(true);
 	}
 	
