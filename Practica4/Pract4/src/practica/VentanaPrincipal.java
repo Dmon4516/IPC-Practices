@@ -29,6 +29,7 @@ public class VentanaPrincipal {
 	// atributos globales para el alta de proveedor
 	public static Registro datosRegistro;
 	public static Map<Integer, Object> ventanasRegistro = new HashMap<>();
+	public static boolean ventanaInforme = false;
 	
 	
 	/**
@@ -158,18 +159,20 @@ public class VentanaPrincipal {
 	 */
 	private void btnInformeMouseClicked() {
 		VentanaInforme ventana = new VentanaInforme();
-		ventana.setVisible();
+		ventana.setVisible(true);
 	}
 	
 	/**
 	 * metodo que se encarga de realizar un cierre seguro del programa
 	 */
 	private void cierraPrograma() {
-		if (ventanasRegistro.isEmpty() == false) {
+		
+		if ((ventanasRegistro.isEmpty() == false) || ventanaInforme) {
         	String mensajeError = "Cierre todas las ventanas antes de salir del programa";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-        	System.exit(0);
+			return;
         }
+		
+        System.exit(0);
 	}
 }
