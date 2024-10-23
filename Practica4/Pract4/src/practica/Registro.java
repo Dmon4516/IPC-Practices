@@ -7,6 +7,7 @@ public class Registro {
 	private int telefono;
 	private String correo;
 	private String nombreContacto;
+	//TODO: Ir añadiendo atributos (para los datos de la consulta de la ventana final)
 	
 	public Registro(String nombre, String nif, String direccion,
 			int telefono, String correo, String nombreContacto) {
