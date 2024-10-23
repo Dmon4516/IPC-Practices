@@ -22,7 +22,7 @@ import java.awt.event.WindowEvent;
 /**
  * Interfaz tipo formulario que permite introducir los datos necesarios para darse de alta
  *     esta clase en concreto representa la primera pagina, en la que se introducen los datos generales
- * @authors Luis Setién, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
+ * @authors Luis Setiï¿½n, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
  * @version Octubre 2024
  */
 public class VentanaRegistroPaso3 {
@@ -115,8 +115,8 @@ public class VentanaRegistroPaso3 {
             @Override
             public void windowClosing(WindowEvent e) {
                 int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
-                    "¿Seguro que quieres cerrar el formulario? Los datos se perderán",
-                    "Confirmar acción",
+                    "ï¿½Seguro que quieres cerrar el formulario? Los datos se perderï¿½n",
+                    "Confirmar acciï¿½n",
                     JOptionPane.YES_NO_OPTION);
                 
                 if (confirmar == JOptionPane.YES_OPTION) {
@@ -133,7 +133,7 @@ public class VentanaRegistroPaso3 {
 		// ---------------------------------------------
 		
 		// configuramos las propiedades especificas de esta pagina
-		lblTitulo.setText("Paso 3 de 4: Introduce consulta de compraventas:");
+		lblTitulo.setText("Paso 3 de 4: Introduce documentaciÃ³n complementaria:");
 		
 		// creamos el panel principal del formulario junto a los
 		// elementos y campos correspondientes a esta pagina
