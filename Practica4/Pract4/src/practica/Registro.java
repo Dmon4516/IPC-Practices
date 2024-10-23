@@ -4,13 +4,12 @@ public class Registro {
 	private String nombre;
 	private String nif;
 	private String direccion;
-	private String telefono;
+	private int telefono;
 	private String correo;
 	private String nombreContacto;
 	
 	public Registro(String nombre, String nif, String direccion,
-			String telefono, String correo, String nombreContacto) {
-		super();
+			int telefono, String correo, String nombreContacto) {
 		this.nombre = nombre;
 		this.nif = nif;
 		this.direccion = direccion;
@@ -20,7 +19,7 @@ public class Registro {
 	}
 
 	public Registro() {
-		// TODO Auto-generated constructor stub
+		// 
 	}
 
 	public String getNombre() {
@@ -47,11 +46,11 @@ public class Registro {
 		this.direccion = direccion;
 	}
 
-	public String getTelefono() {
+	public int getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
 
