@@ -26,7 +26,7 @@ import java.awt.event.FocusEvent;
 /**
  * Interfaz tipo formulario que permite introducir los datos necesarios para darse de alta
  *     esta clase en concreto representa la primera pagina, en la que se introducen los datos generales
- * @authors Luis Setién, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
+ * @authors Luis Setiï¿½n, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
  * @version Octubre 2024
  */
 public class VentanaRegistroPaso1 {
@@ -136,8 +136,8 @@ public class VentanaRegistroPaso1 {
             	
             	semaforo = true;
                 int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
-                    "¿Seguro que quieres cerrar el formulario? Los datos se perderán",
-                    "Confirmar acción",
+                    "ï¿½Seguro que quieres cerrar el formulario? Los datos se perderï¿½n",
+                    "Confirmar acciï¿½n",
                     JOptionPane.YES_NO_OPTION);
                 
                 if (confirmar == JOptionPane.YES_OPTION) {
@@ -315,7 +315,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene numeros
 		if (nombre.matches(".*[0-9].*")) {
 			txtNombre.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre o raz\u00F3n social del proveedor\" no debe contener números";
+			String mensajeError = "El campo \"Nombre o raz\u00F3n social del proveedor\" no debe contener nï¿½meros";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -389,7 +389,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene letras minusculas
 		if (nif.matches(".*[a-z].*")) {
 			txtNIF.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" no debe contener letras minúsculas";
+			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" no debe contener letras minï¿½sculas";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -409,7 +409,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo no contiene numeros
 		if (!nif.matches(".*[0-9].*")) {
 			txtNIF.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" debe contener números";
+			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" debe contener nï¿½meros";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -527,7 +527,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene letras
 		if (!telefono.matches("^[0-9]+$")) {
 			txtTelefono.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de tel\u00E9fono\" solo debe contener números";
+			String mensajeError = "El campo \"N\u00FAmero de tel\u00E9fono\" solo debe contener nï¿½meros";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[3] = true;
 			semaforo = false;
@@ -625,7 +625,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene numeros
 		if (nombreContacto.matches(".*[0-9].*")) {
 			txtNombreContacto.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre de la persona de contacto\" no debe contener números";
+			String mensajeError = "El campo \"Nombre de la persona de contacto\" no debe contener nï¿½meros";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[5] = true;
 			semaforo = false;
@@ -709,8 +709,8 @@ public class VentanaRegistroPaso1 {
 		// mostramos un dialogo de error con informacion relativa al contexto
 		// si alguna de las anteriores comprobaciones no pasaron
 		if (campoErroneo || campoVacio) {
-			String mensajeErroneo = "Uno o más campos contienen valores no válidos.";
-			String mensajeVacio = "Uno o más campos son obligatorios pero están vacíos.";
+			String mensajeErroneo = "Uno o mï¿½s campos contienen valores no vï¿½lidos.";
+			String mensajeVacio = "Uno o mï¿½s campos son obligatorios pero estï¿½n vacï¿½os.";
 			String mensajeAviso = "Compruebe aquellos resaltados en rojo.";
 			
 			if (campoErroneo && campoVacio) {

@@ -13,11 +13,15 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
+import java.awt.GridLayout;
+import javax.swing.JTextField;
+import javax.swing.JRadioButton;
 
 /**
  * Interfaz tipo formulario que permite introducir los datos necesarios para darse de alta
@@ -28,6 +32,16 @@ import java.awt.event.WindowEvent;
 public class VentanaRegistroPaso2 {
 	
 	private JFrame frmAltaDeProveedor;
+	private JTextField txtBancaria;
+	private JTextField txtSucursal;
+	private JTextField txtSWIFT;
+	private JTextField txtFiscalyLegal;
+	private JRadioButton rdbtnObligacionFiscal;
+	private JRadioButton rdbtnAlta;
+	
+	private boolean[] camposErroneos = {false, false, false, false, false, false}; //6 pero puede bajar a 4 (por rdbtns)
+	private static final int MAX_LONGITUD = 256;
+	private boolean semaforo = false;
 	
 	/**
 	 * metodo principal de la clase
@@ -135,11 +149,120 @@ public class VentanaRegistroPaso2 {
 		// configuramos las propiedades especificas de esta pagina
 		lblTitulo.setText("Paso 2 de 4: Introduce datos bancarios:");
 		
-		// creamos el panel principal del formulario junto a los
-		// elementos y campos correspondientes a esta pagina
 		JPanel pnlFormulario = new JPanel();
 		pnlFormulario.setBackground(Color.WHITE);
 		frmAltaDeProveedor.getContentPane().add(pnlFormulario, BorderLayout.CENTER);
+		pnlFormulario.setBorder(new EmptyBorder(60, 60, 60, 60));
+		pnlFormulario.setLayout(new GridLayout(6, 1, 10, 20));
+		
+		JPanel pnlBancaria = new JPanel();
+		pnlBancaria.setBorder(null);
+		pnlBancaria.setBackground(Color.WHITE);
+		pnlFormulario.add(pnlBancaria);
+		pnlBancaria.setLayout(new GridLayout(1, 2, 10, 0));
+		
+		JLabel lblBancaria = new JLabel("Cuenta bancaria (IBAN):");
+		lblBancaria.setBackground(Color.WHITE);
+		lblBancaria.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblBancaria.setForeground(Color.BLACK);
+		pnlBancaria.add(lblBancaria);
+		
+		txtBancaria = new JTextField();
+		txtBancaria.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				txtIBANFocusLost();
+			}
+		});
+		txtBancaria.setForeground(Color.BLACK);
+		pnlBancaria.add(txtBancaria);
+		txtBancaria.setColumns(10);
+		
+		JPanel pnlSucursal = new JPanel();
+		pnlSucursal.setBackground(Color.WHITE);
+		pnlFormulario.add(pnlSucursal);
+		pnlSucursal.setLayout(new GridLayout(1, 2, 10, 0));
+		
+		JLabel lblSucursal = new JLabel("Nombre del banco y sucursal:");
+		lblSucursal.setBackground(Color.WHITE);
+		lblSucursal.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblSucursal.setForeground(Color.BLACK);
+		pnlSucursal.add(lblSucursal);
+		
+		txtSucursal = new JTextField();
+		txtSucursal.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				txtBancoFocusLost();
+			}
+		});
+		txtSucursal.setForeground(Color.BLACK);
+		pnlSucursal.add(txtSucursal);
+		txtSucursal.setColumns(10);
+		
+		JPanel pnlSWIFT = new JPanel();
+		pnlSWIFT.setBackground(Color.WHITE);
+		pnlFormulario.add(pnlSWIFT);
+		pnlSWIFT.setLayout(new GridLayout(1, 2, 10, 0));
+		
+		JLabel lblSWIFT = new JLabel("Código SWIFT/BIC:");
+		lblSWIFT.setBackground(Color.WHITE);
+		lblSWIFT.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblSWIFT.setForeground(new Color(0, 0, 0));
+		pnlSWIFT.add(lblSWIFT);
+		
+		txtSWIFT = new JTextField();
+		txtSWIFT.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				txtSWIFTFocusLost();
+			}
+		});
+		txtSWIFT.setForeground(Color.BLACK);
+		pnlSWIFT.add(txtSWIFT);
+		txtSWIFT.setColumns(10);
+		
+		JPanel pnlFiscalyLegal = new JPanel();
+		pnlFiscalyLegal.setBackground(Color.WHITE);
+		pnlFormulario.add(pnlFiscalyLegal);
+		pnlFiscalyLegal.setLayout(new GridLayout(1, 2, 10, 0));
+		
+		JLabel lblFiscalyLegal = new JLabel("Información fiscal y legal:");
+		lblFiscalyLegal.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblFiscalyLegal.setForeground(Color.BLACK);
+		lblFiscalyLegal.setBackground(Color.WHITE);
+		pnlFiscalyLegal.add(lblFiscalyLegal);
+		
+		txtFiscalyLegal = new JTextField();
+		txtFiscalyLegal.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				txtFiscalyLegalFocusLost();
+			}
+		});
+		txtFiscalyLegal.setForeground(Color.BLACK);
+		pnlFiscalyLegal.add(txtFiscalyLegal);
+		txtFiscalyLegal.setColumns(10);
+		
+		JPanel pnlObligacionFiscal = new JPanel();
+		pnlObligacionFiscal.setBackground(Color.WHITE);
+		pnlFormulario.add(pnlObligacionFiscal);
+		pnlObligacionFiscal.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		rdbtnObligacionFiscal = new JRadioButton("Estoy al corriente con mis obligaciones fiscales");
+		rdbtnObligacionFiscal.setFont(new Font("Dialog", Font.BOLD, 12));
+		rdbtnObligacionFiscal.setForeground(Color.BLACK);
+		pnlObligacionFiscal.add(rdbtnObligacionFiscal);
+		
+		JPanel pnlAlta = new JPanel();
+		pnlAlta.setBackground(Color.WHITE);
+		pnlFormulario.add(pnlAlta);
+		pnlAlta.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		rdbtnAlta = new JRadioButton("Estoy de alta en el Registro de Proveedores");
+		rdbtnAlta.setFont(new Font("Dialog", Font.BOLD, 12));
+		rdbtnAlta.setForeground(Color.BLACK);
+		pnlAlta.add(rdbtnAlta);
 		
 	}
 
@@ -157,6 +280,12 @@ public class VentanaRegistroPaso2 {
 	}
 
 	private void btnSiguienteMouseClicked() {
+		if (comprobarDatos() == false) {
+			return;
+		}
+		
+		guardarDatos();
+		
 		if (VentanaPrincipal.ventanasRegistro.get(3) != null) {
 			this.setVisible(false);
 			((VentanaRegistroPaso3) VentanaPrincipal.ventanasRegistro.get(3)).setVisible(true);
@@ -167,6 +296,364 @@ public class VentanaRegistroPaso2 {
 		VentanaPrincipal.ventanasRegistro.put(3, ventana);
 		this.setVisible(false);
 		ventana.setVisible(true);
+	}
+	
+
+	private void txtIBANFocusLost() {
+		//txtBancaria
+		String IBAN = txtBancaria.getText();
+		
+		if (semaforo) {
+			return;
+		} else {
+			semaforo = true;
+		}
+		
+		// error: el campo esta en blanco
+		if (IBAN.length() == 0) {
+			txtBancaria.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"IBAN\" es obligatorio";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[0] = false;
+			semaforo = false;
+			return;
+		} 
+		
+		// error: el campo no tiene la longitud correcta
+		if (IBAN.length() != 24 && IBAN.length() > 0) { //Para que no choquen los dos errores
+			txtBancaria.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"IBAN\" debe tener 24 caracteres";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[0] = true;
+			semaforo = false;
+			return;
+		} 
+		
+		// error: el campo contiene letras minusculas
+		if (IBAN.matches("[a-z]")) {
+			txtBancaria.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"IBAN\" no debe contener letras minusculas";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[0] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// error: el campo no tiene mayusculas
+		if (!IBAN.matches("([A-Z]{2})(.+?{22})")) {
+			txtBancaria.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"IBAN\" solo puede tener letras mayusculas en los primeros dos caracteres";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[0] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// error: el campo no tiene mayusculas
+		if (!IBAN.matches("(.+?{2})([0-9]{22})")) {
+			txtBancaria.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"IBAN\" solo admite dígitos para los últimos 22 caracteres";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[0] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// error: el campo tiene guiones
+		if (IBAN.contains("-")) {
+			txtBancaria.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"IBAN\" debe ser introducido sin guion";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[0] = true;
+			semaforo = false;
+			return;
+		} 
+		
+		// error: el campo contiene caracteres especiales
+		if (!IBAN.matches("^[a-zA-Z0-9]*$")) {
+			txtBancaria.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"IBAN\" no debe contener caracteres especiales";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[0] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// el campo es valido		
+		// si fue corregido, lo volvemos a pintar de blanco
+		semaforo = false;
+		if (txtBancaria.getBackground().equals(new Color(255, 220, 220))) {
+			txtBancaria.setBackground(new Color(255, 255, 255));
+			camposErroneos[0] = false;
+		}
+	}
+	
+	private void txtBancoFocusLost() {
+		//txtSucursal
+		String banco = txtSucursal.getText();
+		if (semaforo) {
+			return;
+		} else {
+			semaforo = true;
+		}
+		
+		// error: el campo esta en blanco
+		if (banco.length() == 0) {
+			txtSucursal.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"Nombre del banco y sucursal\" es obligatorio";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[1] = false;
+			semaforo = false;
+			return;
+		} 
+		
+		// error: el campo no contiene letras
+		if (!banco.matches("^[a-zA-Z0]*$")) {
+			txtSucursal.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"Nombre del banco y sucursal\" debe contener letras.";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[1] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// error: el campo contiene caracteres especiales
+		if (!banco.matches("^[a-zA-Z0-9äöüÄÖÜ]*$")) {
+			txtSucursal.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"Nombre del banco y sucursal\" no debe contener caracteres especiales";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[1] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// error: el campo es excesivamente largo
+		if (banco.length() > MAX_LONGITUD) {
+			txtSucursal.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"Nombre del banco y sucursal\" es demasiado largo";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[1] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// el campo es valido		
+		// si fue corregido, lo volvemos a pintar de blanco
+		semaforo = false;
+		if (txtSucursal.getBackground().equals(new Color(255, 220, 220))) {
+			txtSucursal.setBackground(new Color(255, 255, 255));
+			camposErroneos[1] = false;
+		}
+	}
+	
+	private void txtSWIFTFocusLost() {
+		//txtSWIFT
+		String swift = txtSWIFT.getText();
+		if (semaforo) {
+			return;
+		} else {
+			semaforo = true;
+		}
+		
+		// error: el campo esta en blanco
+		if (swift.length() == 0) {
+			txtSWIFT.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"codigo SWIFT\" es obligatorio";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[2] = false;
+			semaforo = false;
+			return;
+		} 
+		
+		// error: el campo contiene caracteres especiales
+		if (!swift.matches("^[a-zA-Z0-9äöüÄÖÜ]*$")) {
+			txtSWIFT.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"codigo SWIFT\" no debe contener caracteres especiales";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[2] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// error: el campo no debe contener letras minusculas
+		if (swift.matches("[a-z]")) {
+			txtSWIFT.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"codigo SWIFT\" no puede contener letras minusculas";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[2] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// error: el campo tiene guiones
+		if (swift.contains("-")) {
+			txtSWIFT.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"codigo SWIFT\" debe ser introducido sin guion";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[2] = true;
+			semaforo = false;
+			return;
+		} 
+		
+		// error: el campo tiene mas/menos de 11 caracteres (sin ser vacio)
+		if (swift.length() != 11 && swift.length() > 0) {
+			txtSWIFT.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"codigo SWIFT\" debe tener exactamente 11 caracteres";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[2] = true;
+			semaforo = false;
+			return;
+		} 
+		
+		// error: el campo no tiene mayusculas
+		if (!swift.matches("([A-Z]{6})(.+?{4})")) {
+			txtSWIFT.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"codigo SWIFT\" solo puede tener letras mayusculas en los primeros seis caracteres";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[2] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// error: el campo no tiene mayusculas
+		if (!swift.matches("(.+?{6})([A-Z0-9]{4})")) {
+			txtSWIFT.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"codigo SWIFT\" solo pueden tener mayusculas o numeros en los cuatro ultimos caracteres";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[2] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// el campo es valido		
+		// si fue corregido, lo volvemos a pintar de blanco
+		semaforo = false;
+		if (txtSWIFT.getBackground().equals(new Color(255, 220, 220))) {
+			txtSWIFT.setBackground(new Color(255, 255, 255));
+			camposErroneos[2] = false;
+		}
+	}
+	
+	private void txtFiscalyLegalFocusLost() {
+		//txtFiscalyLegal
+		String fyl = txtFiscalyLegal.getText();
+		
+		// error: el campo esta en blanco
+		if (fyl.length() == 0) {
+			txtFiscalyLegal.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"Información fiscal y legal\" es obligatorio";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[3] = false;
+			semaforo = false;
+			return;
+		}
+		
+		// error: el campo es excesivamente largo
+		if (fyl.length() > MAX_LONGITUD) {
+			txtFiscalyLegal.setBackground(new Color(255, 220, 220));
+			String mensajeError = "El campo \"Información fiscal y legal\" es demasiado largo";
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			camposErroneos[3] = true;
+			semaforo = false;
+			return;
+		}
+		
+		// el campo es valido		
+		// si fue corregido, lo volvemos a pintar de blanco
+		semaforo = false;
+		if (txtSWIFT.getBackground().equals(new Color(255, 220, 220))) {
+			txtSWIFT.setBackground(new Color(255, 255, 255));
+			camposErroneos[3] = false;
+		}
+	}
+	
+	private boolean comprobarDatos() {
+		boolean campoErroneo = false;
+		boolean campoVacio = false;
+		boolean botonesNoPresionados = false;
+		
+		// comprobamos que no haya ningun campo con valor erroneo
+		for (boolean erroneo: camposErroneos) {
+			if (erroneo == true) {
+				campoErroneo = true;
+			}
+		}
+		
+		// comprobamos que no quede ningun campo vacio
+		// en tal caso, lo pintamos de rojo para destacarlo claramente
+		if (txtBancaria.getText().length() == 0) {
+			txtBancaria.setBackground(new Color(255, 220, 220));
+			campoVacio = true;
+		}
+		if (txtSucursal.getText().length() == 0) {
+			txtSucursal.setBackground(new Color(255, 220, 220));
+			campoVacio = true;
+		}
+		if (txtSWIFT.getText().length() == 0) {
+			txtSWIFT.setBackground(new Color(255, 220, 220));
+			campoVacio = true;
+		}
+		if (txtFiscalyLegal.getText().length() == 0) {
+			txtFiscalyLegal.setBackground(new Color(255, 220, 220));
+			campoVacio = true;
+		}
+		
+		if (!rdbtnObligacionFiscal.isSelected() || !rdbtnAlta.isSelected()) {
+			botonesNoPresionados = true;
+		}
+		
+		// mostramos un dialogo de error con informacion relativa al contexto
+		// si alguna de las anteriores comprobaciones no pasaron
+		if (campoErroneo || campoVacio || botonesNoPresionados) {
+			String mensajeErroneo = "Uno o más campos contienen valores no válidos.";
+			String mensajeVacio = "Uno o más campos son obligatorios pero están vacíos.";
+			String mensajeAvisoFin = "Compruebe aquellos resaltados en rojo.";
+			String mensajeBotones = "Es obligatorio la presión de los dos botones";
+			String mensajeAviso = "";
+			
+			if (campoErroneo && campoVacio) {
+				mensajeAviso = mensajeErroneo + "\n" + mensajeVacio;
+			}
+			
+			if (campoErroneo && !campoVacio) {
+				mensajeAviso = mensajeErroneo;
+			}
+			
+			if (!campoErroneo && campoVacio) {
+				mensajeAviso = mensajeVacio;
+			}
+			
+			if (botonesNoPresionados) {
+				if (campoErroneo || campoVacio) {
+					mensajeAviso += "\n";
+				}
+				mensajeAviso += mensajeBotones;
+			}
+			
+			if (campoErroneo || campoVacio) {
+				mensajeAviso += "\n" + mensajeAvisoFin;
+			}
+			
+			
+			JOptionPane.showMessageDialog(null, mensajeAviso, "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * metodo que se encarga de almacenar los datos recogidos en esta pagina del formulario
+	 */
+	private void guardarDatos() {
+		String iban = txtBancaria.getText();
+		String banco = txtSucursal.getText();
+		String swift = txtSWIFT.getText();
+		String fiscalYLegal = txtFiscalyLegal.getText();
+		
+		VentanaPrincipal.datosRegistro.setIBAN(iban);
+		VentanaPrincipal.datosRegistro.setBanco(banco);
+		VentanaPrincipal.datosRegistro.setSWIFT(swift);
+		VentanaPrincipal.datosRegistro.setFiscalYLegal(fiscalYLegal);
 	}
 
 	public void setVisible(boolean visibilidad) {
