@@ -1,48 +1,178 @@
 package practica;
 
-import java.awt.EventQueue;
-
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.border.EmptyBorder;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class VentanaConsultas {
+public class VentanaConsultas extends JFrame {
 
-	private JFrame frame;
+	private JTable tabla;
+	private ModeloTablaTransacciones modeloTabla;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaConsultas window = new VentanaConsultas();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
 	public VentanaConsultas() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// Configuración básica de la ventana
+		setTitle("Consulta de Compraventas");
+		setLocationRelativeTo(null); // Centra la ventana en la pantalla
+		JPanel panelPrincipal = new JPanel(new BorderLayout());
+
+		// Crear el modelo y la tabla
+		modeloTabla = new ModeloTablaTransacciones();
+		tabla = new JTable(modeloTabla);
+
+		// Configurar la tabla
+		tabla.setFillsViewportHeight(true);
+		tabla.setAutoCreateRowSorter(true);
+
+		// Establecer un ancho preferido para cada columna
+		tabla.getColumnModel().getColumn(0).setPreferredWidth(120); // Fecha
+		tabla.getColumnModel().getColumn(1).setPreferredWidth(100); // Tipo
+		tabla.getColumnModel().getColumn(2).setPreferredWidth(150); // Producto
+		tabla.getColumnModel().getColumn(3).setPreferredWidth(70); // Cantidad
+		tabla.getColumnModel().getColumn(4).setPreferredWidth(120); // Total
+		tabla.getColumnModel().getColumn(5).setPreferredWidth(180); // Proveedor/Cliente
+
+		// Desactivar el redimensionamiento automático para permitir scroll horizontal
+		tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tabla.setFillsViewportHeight(false);
+
+		// Crear el ScrollPane
+		JScrollPane scrollPane = new JScrollPane(tabla);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); // Para scrollbar
+																								// horizontal
+
+		// Agregar margen alrededor de la tabla
+		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
+		panelPrincipal.add(scrollPane, BorderLayout.CENTER);
+		// Agregar el panel principal a la ventana
+		setContentPane(panelPrincipal);
+
+		// Ajustar el tamaño de la ventana al contenido
+		pack();
+	}
+}
+
+@SuppressWarnings("serial")
+class ModeloTablaTransacciones extends AbstractTableModel {
+	private String[] columnas = { "Fecha de la transacción", "Tipo de operación", "Nombre del producto", "Cantidad",
+			"Total de la operación", "Nombre del proveedor o cliente" };
+
+	private ArrayList<Transaccion> transacciones;
+
+	public ModeloTablaTransacciones() {
+		transacciones = new ArrayList<>();
+		cargarDatosFicticios();
 	}
 
-	public void setVisible() {
-		// TODO Auto-generated method stub
-		
+	private void cargarDatosFicticios() {
+		// Datos de ejemplo
+		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 15), "Compra", "Chanel N°5", 10, 1500.00,
+				"Perfumes Luxury S.L."));
+
+		transacciones.add(
+				new Transaccion(LocalDate.of(2024, 3, 16), "Venta", "Light Blue D&G", 2, 180.00, "María González"));
+
+		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 17), "Compra", "La Vie Est Belle", 15, 1200.00,
+				"Lancôme Distribuciones"));
+
+		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 18), "Venta", "Chanel N°5", 1, 180.00, "Juan Pérez"));
+
+		transacciones.add(
+				new Transaccion(LocalDate.of(2024, 3, 19), "Venta", "La Vie Est Belle", 3, 300.00, "Ana Martínez"));
+	}
+
+	@Override
+	public int getColumnCount() {
+		return columnas.length;
+	}
+
+	@Override
+	public int getRowCount() {
+		return transacciones.size();
+	}
+
+	@Override
+	public String getColumnName(int columnIndex) {
+		return columnas[columnIndex];
+	}
+
+	@Override
+	public Object getValueAt(int rowIndex, int columnIndex) {
+
+		Transaccion transaccion = transacciones.get(rowIndex);
+		switch (columnIndex) {
+
+		case 0:
+			return transaccion.getFecha();
+		case 1:
+			return transaccion.getTipoOperacion();
+		case 2:
+			return transaccion.getNombreProducto();
+		case 3:
+			return transaccion.getCantidad();
+		case 4:
+			return transaccion.getTotal();
+		case 5:
+			return transaccion.getNombreProveedorCliente();
+		default:
+			return null;
+		}
+	}
+}
+
+class Transaccion {
+
+	private LocalDate fecha;
+	private String tipoOperacion;
+	private String nombreProducto;
+	private int cantidad;
+	private double total;
+	private String nombreProveedorCliente;
+
+	public Transaccion(LocalDate fecha, String tipoOperacion, String nombreProducto, int cantidad, double total,
+			String nombreProveedorCliente) {
+
+		this.fecha = fecha;
+		this.tipoOperacion = tipoOperacion;
+		this.nombreProducto = nombreProducto;
+		this.cantidad = cantidad;
+		this.total = total;
+		this.nombreProveedorCliente = nombreProveedorCliente;
+
+	}
+
+	// Getters
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
+	public String getTipoOperacion() {
+		return tipoOperacion;
+	}
+
+	public String getNombreProducto() {
+		return nombreProducto;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public String getNombreProveedorCliente() {
+		return nombreProveedorCliente;
 	}
 
 }
