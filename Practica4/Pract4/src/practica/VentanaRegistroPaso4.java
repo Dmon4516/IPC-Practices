@@ -18,17 +18,19 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-
 /**
- * Interfaz tipo formulario que permite introducir los datos necesarios para darse de alta
- *     esta clase en concreto representa la primera pagina, en la que se introducen los datos generales
- * @authors Luis Setién, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
+ * Interfaz tipo formulario que permite introducir los datos necesarios para
+ * darse de alta esta clase en concreto representa la primera pagina, en la que
+ * se introducen los datos generales
+ * 
+ * @authors Luis Setiï¿½n, Victor Descalzo, David Edmundo Montenegro, Oscar
+ *          Entrecanales
  * @version Octubre 2024
  */
 public class VentanaRegistroPaso4 {
-	
+
 	private JFrame frmAltaDeProveedor;
-	
+
 	/**
 	 * metodo principal de la clase
 	 */
@@ -44,50 +46,49 @@ public class VentanaRegistroPaso4 {
 			}
 		});
 	}
-	
+
 	/**
-	 * metodo constructor de la clase 
+	 * metodo constructor de la clase
 	 */
 	public VentanaRegistroPaso4() {
 		initialize();
 	}
-	
+
 	/**
 	 * metodo que se encarga de inicializar el contenido de la ventana
 	 */
 	private void initialize() {
-		
+
 		// ----------------------------------------------
 		// parte del formulario comun a todas las paginas
 		// ----------------------------------------------
-		
+
 		// inicializamos y establecemos los atributos basicos de la ventana
 		frmAltaDeProveedor = new JFrame();
 		frmAltaDeProveedor.setResizable(false);
-		frmAltaDeProveedor.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaRegistroPaso4.class.getResource("/imagenes/icono.png")));
+		frmAltaDeProveedor.setIconImage(
+				Toolkit.getDefaultToolkit().getImage(VentanaRegistroPaso4.class.getResource("/imagenes/icono.png")));
 		frmAltaDeProveedor.setTitle("Alta de proveedor");
 		frmAltaDeProveedor.setBounds(100, 100, 600, 550);
 		frmAltaDeProveedor.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		
-		
+
 		// creamos el panel de titulo junto al titular del formulario
 		JPanel pnlTitulo = new JPanel();
 		frmAltaDeProveedor.getContentPane().add(pnlTitulo, BorderLayout.NORTH);
 		pnlTitulo.setLayout(new FlowLayout(FlowLayout.LEFT));
 		pnlTitulo.setBorder(new EmptyBorder(12, 12, 12, 12));
-		
+
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		pnlTitulo.add(lblTitulo);
-		
-		
+
 		// creamos el panel de la botonera y los botones junto a sus manejadores
 		// para lograr que al pulsarlos se produzca la accion relevante
 		JPanel pnlBotonera = new JPanel();
 		frmAltaDeProveedor.getContentPane().add(pnlBotonera, BorderLayout.SOUTH);
 		pnlBotonera.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		pnlBotonera.setBorder(new EmptyBorder(12, 12, 12, 12));
-		
+
 		JButton btnAnterior = new JButton("< Anterior");
 		btnAnterior.addMouseListener(new MouseAdapter() {
 			@Override
@@ -97,7 +98,7 @@ public class VentanaRegistroPaso4 {
 		});
 		btnAnterior.setPreferredSize(new Dimension(100, 30));
 		pnlBotonera.add(btnAnterior);
-		
+
 		JButton btnSiguiente = new JButton("Siguiente >");
 		btnSiguiente.addMouseListener(new MouseAdapter() {
 			@Override
@@ -107,41 +108,38 @@ public class VentanaRegistroPaso4 {
 		});
 		btnSiguiente.setPreferredSize(new Dimension(100, 30));
 		pnlBotonera.add(btnSiguiente);
-		
-		
+
 		// creamos un listener para confirmar el cierre de la ventana
 		// del formulario y consecuentemente el borrado de los datos introducidos
 		frmAltaDeProveedor.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
-                    "¿Seguro que quieres cerrar el formulario? Los datos se perderán",
-                    "Confirmar acción",
-                    JOptionPane.YES_NO_OPTION);
-                
-                if (confirmar == JOptionPane.YES_OPTION) {
-                	VentanaPrincipal.ventanasRegistro.clear();
-                	VentanaPrincipal.datosRegistro = null;
-                	frmAltaDeProveedor.dispose();
-                }
-            }
-        });
-		
-		
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
+						"ï¿½Seguro que quieres cerrar el formulario? Los datos se perderï¿½n", "Confirmar acciï¿½n",
+						JOptionPane.YES_NO_OPTION);
+
+				if (confirmar == JOptionPane.YES_OPTION) {
+					VentanaPrincipal.ventanasRegistro.clear();
+					VentanaPrincipal.datosRegistro = null;
+					frmAltaDeProveedor.dispose();
+				}
+			}
+		});
+
 		// ---------------------------------------------
 		// parte del formulario especifica a esta pagina
 		// ---------------------------------------------
-		
+
 		// configuramos las propiedades especificas de esta pagina
 		btnSiguiente.setText("Finalizar >");
 		lblTitulo.setText("Paso 4 de 4: Comprueba todos tus datos:");
-		
+
 		// creamos el panel principal del formulario junto a los
 		// elementos y campos correspondientes a esta pagina
 		JPanel pnlFormulario = new JPanel();
 		pnlFormulario.setBackground(Color.WHITE);
 		frmAltaDeProveedor.getContentPane().add(pnlFormulario, BorderLayout.CENTER);
-		
+
 	}
 
 	private void btnAnteriorMouseClicked() {
@@ -150,7 +148,7 @@ public class VentanaRegistroPaso4 {
 			((VentanaRegistroPaso3) VentanaPrincipal.ventanasRegistro.get(3)).setVisible(true);
 			return;
 		}
-		
+
 		VentanaRegistroPaso3 ventana = new VentanaRegistroPaso3();
 		VentanaPrincipal.ventanasRegistro.put(3, ventana);
 		this.setVisible(false);
