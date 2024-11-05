@@ -261,6 +261,7 @@ public class VentanaInforme {
 		frmInforme.getContentPane().add(tbBarraHerramientas, BorderLayout.NORTH);
 
 		JButton btnNuevo = new JButton("");
+		btnNuevo.setToolTipText("Nuevo documento");
 		btnNuevo.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoNuevo.gif")));
 		btnNuevo.addMouseListener(new MouseAdapter() {
 			@Override
@@ -271,28 +272,34 @@ public class VentanaInforme {
 		tbBarraHerramientas.add(btnNuevo);
 
 		JButton btnAbrir = new JButton("");
+		btnAbrir.setToolTipText("Abrir documento");
 		btnAbrir.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoAbrir.gif")));
 		tbBarraHerramientas.add(btnAbrir);
 
 		JButton btnGuardar = new JButton("");
+		btnGuardar.setToolTipText("Guardar documento");
 		btnGuardar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoGuardar.gif")));
 		tbBarraHerramientas.add(btnGuardar);
 
 		JButton btnImprimir = new JButton("");
+		btnImprimir.setToolTipText("Imprimir documento");
 		btnImprimir.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoImprimir.gif")));
 		tbBarraHerramientas.addSeparator();
 		tbBarraHerramientas.add(btnImprimir);
 
 		JButton btnBuscar = new JButton("");
+		btnBuscar.setToolTipText("Buscar en documento");
 		btnBuscar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoBuscar.gif")));
 		tbBarraHerramientas.add(btnBuscar);
 
 		JButton btnCortar = new JButton("");
+		btnCortar.setToolTipText("Cortar");
 		btnCortar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoCortar.gif")));
 		tbBarraHerramientas.addSeparator();
 		tbBarraHerramientas.add(btnCortar);
 
 		JButton btnCopiar = new JButton("");
+		btnCopiar.setToolTipText("Copiar");
 		btnCopiar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoCopiar.gif")));
 		btnCopiar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -303,6 +310,7 @@ public class VentanaInforme {
 		tbBarraHerramientas.add(btnCopiar);
 
 		JButton btnPegar = new JButton("");
+		btnPegar.setToolTipText("Pegar");
 		btnPegar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoPegar.gif")));
 		btnPegar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -313,6 +321,7 @@ public class VentanaInforme {
 		tbBarraHerramientas.add(btnPegar);
 
 		JComboBox cbFuente = new JComboBox();
+		cbFuente.setToolTipText("Fuente");
 		cbFuente.setModel(new DefaultComboBoxModel(
 				new String[] { "Arial", "Calibri", "Courier New", "Helvetica", "Tahoma", "Times New Roman" }));
 		cbFuente.setMaximumSize(new Dimension(160, 28));
@@ -320,11 +329,13 @@ public class VentanaInforme {
 		tbBarraHerramientas.add(cbFuente);
 
 		JComboBox cbTamano = new JComboBox();
+		cbTamano.setToolTipText("Tamaño de fuente");
 		cbTamano.setModel(new DefaultComboBoxModel(new String[] { "10", "12", "14", "18", "24", "36" }));
 		cbTamano.setMaximumSize(new Dimension(60, 28));
 		tbBarraHerramientas.add(cbTamano);
 
 		JButton btnNegrita = new JButton("");
+		btnNegrita.setToolTipText("Negrita");
 		btnNegrita.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoNegrita.gif")));
 		btnNegrita.addMouseListener(new MouseAdapter() {
 			@Override
@@ -336,6 +347,7 @@ public class VentanaInforme {
 		tbBarraHerramientas.add(btnNegrita);
 
 		JButton btnCursiva = new JButton("");
+		btnCursiva.setToolTipText("Cursiva");
 		btnCursiva.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoCursiva.gif")));
 		btnCursiva.addMouseListener(new MouseAdapter() {
 			@Override
@@ -346,10 +358,18 @@ public class VentanaInforme {
 		tbBarraHerramientas.add(btnCursiva);
 
 		JButton btnSubrayado = new JButton("");
+		btnSubrayado.setToolTipText("Subrayar");
 		btnSubrayado.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoSubrayado.gif")));
+		btnSubrayado.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				subrayadoBtnClicked();
+			}
+		});
 		tbBarraHerramientas.add(btnSubrayado);
 
 		JButton btnColor = new JButton("");
+		btnColor.setToolTipText("Colores");
 		btnColor.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoColor.gif")));
 		tbBarraHerramientas.add(btnColor);
 
@@ -373,15 +393,18 @@ public class VentanaInforme {
 		mnpopColor.add(rdbtnpopAzul);
 
 		JButton btnTextoIzquierda = new JButton("");
+		btnTextoIzquierda.setToolTipText("Alineación a la izquierda");
 		btnTextoIzquierda.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoTextoIzquierda.gif")));
 		tbBarraHerramientas.addSeparator();
 		tbBarraHerramientas.add(btnTextoIzquierda);
 
 		JButton btnTextoCentrado = new JButton("");
+		btnTextoCentrado.setToolTipText("Alineación al centro");
 		btnTextoCentrado.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoTextoCentrado.gif")));
 		tbBarraHerramientas.add(btnTextoCentrado);
 
 		JButton btnTextoDerecha = new JButton("");
+		btnTextoDerecha.setToolTipText("Alineación a la derecha");
 		btnTextoDerecha.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoTextoDerecha.gif")));
 		tbBarraHerramientas.add(btnTextoDerecha);
 
@@ -471,7 +494,7 @@ public class VentanaInforme {
 		AttributeSet atributosAnteriores = null;
 		for (int i = principio; i < longitud; i++) {
 			atributosAnteriores = docEstilo.getCharacterElement(i).getAttributes();
-			if (atributosAnteriores != null && !estiloAnterior) {
+			if (atributosAnteriores.getAttributeCount() > 0 && !estiloAnterior) {
 				atributos.addAttributes(atributosAnteriores);
 				estiloAnterior = true;
 				estiloAnteriorPrincipio = i;
@@ -496,7 +519,7 @@ public class VentanaInforme {
 		AttributeSet atributosAnteriores = null;
 		for (int i = principio; i < longitud; i++) {
 			atributosAnteriores = docEstilo.getCharacterElement(i).getAttributes();
-			if (atributosAnteriores != null && !estiloAnterior) {
+			if (atributosAnteriores.getAttributeCount() > 0 && !estiloAnterior) {
 				atributos.addAttributes(atributosAnteriores);
 				estiloAnterior = true;
 				estiloAnteriorPrincipio = i;
@@ -511,7 +534,32 @@ public class VentanaInforme {
 		docEstilo.setCharacterAttributes(principio, longitud, atributos, true);
 	}
 	
-	private void colorbtnClicked() {
+	private void subrayadoBtnClicked() {
+		SimpleAttributeSet atributos = new SimpleAttributeSet();
+		StyleConstants.setUnderline(atributos, true);
+		int principio = tpEditor.getSelectionStart();
+		int longitud = tpEditor.getSelectionEnd() - tpEditor.getSelectionStart();
+		int estiloAnteriorPrincipio = -1;
+		boolean estiloAnterior = false;
+		AttributeSet atributosAnteriores = null;
+		for (int i = principio; i < longitud; i++) {
+			atributosAnteriores = docEstilo.getCharacterElement(i).getAttributes();
+			if (atributosAnteriores.getAttributeCount() > 0 && !estiloAnterior) {
+				atributos.addAttributes(atributosAnteriores);
+				estiloAnterior = true;
+				estiloAnteriorPrincipio = i;
+				atributosAnteriores = null;
+			}
+			
+			if (estiloAnterior && (atributosAnteriores == null || i == longitud - 1)) {
+				docEstilo.setCharacterAttributes(estiloAnteriorPrincipio, i - estiloAnteriorPrincipio, atributos, true);
+				principio = i;
+			}
+		}
+		docEstilo.setCharacterAttributes(principio, longitud, atributos, true);
+	}
+	
+	private void colorBtnClicked() {
 		
 	}
 	
