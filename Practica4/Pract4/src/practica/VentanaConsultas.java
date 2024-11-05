@@ -23,16 +23,13 @@ public class VentanaConsultas extends JFrame {
 	private void initialize() {
 		// Configuración básica de la ventana
 		setTitle("Consulta de Compraventas");
-		setLocationRelativeTo(null); // Centra la ventana en la pantalla
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
 
 		// Crear el modelo y la tabla
 		modeloTabla = new ModeloTablaTransacciones();
 		tabla = new JTable(modeloTabla);
 
-		// Configurar la tabla
-		tabla.setFillsViewportHeight(true);
-		tabla.setAutoCreateRowSorter(true);
+		
 
 		// Establecer un ancho preferido para cada columna
 		tabla.getColumnModel().getColumn(0).setPreferredWidth(120); // Fecha
@@ -45,11 +42,14 @@ public class VentanaConsultas extends JFrame {
 		// Desactivar el redimensionamiento automático para permitir scroll horizontal
 		tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		tabla.setFillsViewportHeight(false);
+		
+		// Configurar la tabla
+		tabla.setFillsViewportHeight(true);
+		tabla.setAutoCreateRowSorter(true);
 
 		// Crear el ScrollPane
 		JScrollPane scrollPane = new JScrollPane(tabla);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); // Para scrollbar
-																								// horizontal
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); // Para scrollbar horizontal
 
 		// Agregar margen alrededor de la tabla
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -78,19 +78,17 @@ class ModeloTablaTransacciones extends AbstractTableModel {
 
 	private void cargarDatosFicticios() {
 		// Datos de ejemplo
-		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 15), "Compra", "Chanel N°5", 10, 1500.00,
+		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 15), "Compra", "Chanel N°5", 10, 150.00,
 				"Perfumes Luxury S.L."));
 
-		transacciones.add(
-				new Transaccion(LocalDate.of(2024, 3, 16), "Venta", "Light Blue D&G", 2, 180.00, "María González"));
+		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 16), "Venta", "Light Blue D&G", 2, 180.00, "María González"));
 
-		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 17), "Compra", "La Vie Est Belle", 15, 1200.00,
+		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 17), "Compra", "La Vie Est Belle", 15, 120.00,
 				"Lancôme Distribuciones"));
 
 		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 18), "Venta", "Chanel N°5", 1, 180.00, "Juan Pérez"));
 
-		transacciones.add(
-				new Transaccion(LocalDate.of(2024, 3, 19), "Venta", "La Vie Est Belle", 3, 300.00, "Ana Martínez"));
+		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 19), "Venta", "La Vie Est Belle", 3, 100.00, "Ana Martínez"));
 	}
 
 	@Override
@@ -107,6 +105,19 @@ class ModeloTablaTransacciones extends AbstractTableModel {
 	public String getColumnName(int columnIndex) {
 		return columnas[columnIndex];
 	}
+	
+	@Override
+    public Class<?> getColumnClass(int columnIndex) {
+        switch (columnIndex) {
+            case 0: return LocalDate.class;
+            case 1: return String.class;
+            case 2: return String.class;
+            case 3: return Integer.class;  // Cantidad como Integer
+            case 4: return Double.class;   // Total como Double
+            case 5: return String.class;
+            default: return Object.class;
+        }
+    }
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
@@ -140,17 +151,19 @@ class Transaccion {
 	private String tipoOperacion;
 	private String nombreProducto;
 	private int cantidad;
+	private double precio;
 	private double total;
 	private String nombreProveedorCliente;
 
-	public Transaccion(LocalDate fecha, String tipoOperacion, String nombreProducto, int cantidad, double total,
+	public Transaccion(LocalDate fecha, String tipoOperacion, String nombreProducto, int cantidad, double precio,
 			String nombreProveedorCliente) {
 
 		this.fecha = fecha;
 		this.tipoOperacion = tipoOperacion;
 		this.nombreProducto = nombreProducto;
 		this.cantidad = cantidad;
-		this.total = total;
+		this.precio = precio;
+		this.total = cantidad * precio;
 		this.nombreProveedorCliente = nombreProveedorCliente;
 
 	}
@@ -178,6 +191,10 @@ class Transaccion {
 
 	public String getNombreProveedorCliente() {
 		return nombreProveedorCliente;
+	}
+	
+	public double getPrecio() {
+		return precio;
 	}
 
 }
