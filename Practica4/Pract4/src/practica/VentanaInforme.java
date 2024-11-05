@@ -35,6 +35,8 @@ import java.awt.event.InputEvent;
 public class VentanaInforme {
 
 	private JFrame frmInforme;
+	private String portapapeles = "";
+	private JTextPane tpEditor;
 
 	// variable para detectar si se guardo la ultima version del documento
 	private boolean guardado = true;
@@ -84,6 +86,14 @@ public class VentanaInforme {
 
 		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
 		mntmNuevo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK));
+		mntmNuevo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nuevoActionPerformed();
+			}
+			
+		});
 		mnArchivo.add(mntmNuevo);
 
 		JMenuItem mntmAbrir = new JMenuItem("Abrir...");
@@ -337,7 +347,7 @@ public class VentanaInforme {
 		btnTextoDerecha.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoTextoDerecha.gif")));
 		tbBarraHerramientas.add(btnTextoDerecha);
 
-		JTextPane tpEditor = new JTextPane();
+		tpEditor = new JTextPane();
 		frmInforme.getContentPane().add(tpEditor, BorderLayout.CENTER);
 
 		// hacer que las barras de scroll se muestren por defecto
@@ -388,15 +398,23 @@ public class VentanaInforme {
 	}
 	
 	private void cortarActionPerformed() {
-		
+		portapapeles = tpEditor.getSelectedText();
+		String texto = tpEditor.getText();
+		String principio = texto.substring(0, tpEditor.getSelectionStart()); 
+		String fin = texto.substring(tpEditor.getSelectionEnd());
+		tpEditor.setText(principio + fin);
 	}
 	
 	private void copiarActionPerformed() {
-		
+		portapapeles = tpEditor.getSelectedText();
 	}
 	
 	private void pegarActionPerformed() {
-		
+		tpEditor.setText(tpEditor.getText() + portapapeles);
+	}
+	
+	private void nuevoActionPerformed() {
+		tpEditor.setText("");
 	}
 
 }
