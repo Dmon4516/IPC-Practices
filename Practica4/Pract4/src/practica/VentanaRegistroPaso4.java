@@ -201,7 +201,6 @@ public class VentanaRegistroPaso4 {
 	private void btnSiguienteMouseClicked() {
 		VentanaPrincipal ventana = new VentanaPrincipal();
 		this.setVisible(false);
-		ventana.setVisible(true);
 	}
 
 	public void setVisible(boolean visibilidad) {
