@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -30,6 +31,16 @@ import java.awt.event.WindowEvent;
 public class VentanaRegistroPaso4 {
 
 	private JFrame frmAltaDeProveedor;
+	private JLabel lblNombre;
+	private JLabel lblNIF;
+	private JLabel lblDireccion;
+	private JLabel lblTelefono;
+	private JLabel lblCorreo;
+	private JLabel lblNombreContacto;
+	private JLabel lblBancaria;
+	private JLabel lblSucursal;
+	private JLabel lblSWIFT;
+	private JLabel lblFiscalyLegal;
 
 	/**
 	 * metodo principal de la clase
@@ -139,6 +150,38 @@ public class VentanaRegistroPaso4 {
 		JPanel pnlFormulario = new JPanel();
 		pnlFormulario.setBackground(Color.WHITE);
 		frmAltaDeProveedor.getContentPane().add(pnlFormulario, BorderLayout.CENTER);
+		pnlFormulario.setLayout(new GridLayout(10, 1, 10, 20));
+		pnlFormulario.setBorder(new EmptyBorder(60, 60, 60, 60));
+		
+		lblNombre = new JLabel("");
+		pnlFormulario.add(lblNombre);
+		
+		lblNIF = new JLabel("");
+		pnlFormulario.add(lblNIF);
+		
+		lblDireccion = new JLabel("");
+		pnlFormulario.add(lblDireccion);
+		
+		lblTelefono = new JLabel("");
+		pnlFormulario.add(lblTelefono);
+		
+		lblCorreo = new JLabel("");
+		pnlFormulario.add(lblCorreo);
+		
+		lblNombreContacto = new JLabel("");
+		pnlFormulario.add(lblNombreContacto);
+		
+		lblBancaria = new JLabel("");
+		pnlFormulario.add(lblBancaria);
+		
+		lblSucursal = new JLabel("");
+		pnlFormulario.add(lblSucursal);
+		
+		lblSWIFT = new JLabel("");
+		pnlFormulario.add(lblSWIFT);
+		
+		lblFiscalyLegal = new JLabel("");
+		pnlFormulario.add(lblFiscalyLegal);
 
 	}
 
@@ -156,10 +199,25 @@ public class VentanaRegistroPaso4 {
 	}
 
 	private void btnSiguienteMouseClicked() {
-		// TODO
+		VentanaPrincipal ventana = new VentanaPrincipal();
+		this.setVisible(false);
+		ventana.setVisible(true);
 	}
 
 	public void setVisible(boolean visibilidad) {
 		this.frmAltaDeProveedor.setVisible(visibilidad);
+	}
+	
+	public void setDatos(Registro datos) {
+		lblNombre.setText("Nombre o razón social del proveedor: " + datos.getNombre());
+		lblNIF.setText("Número de identificación fiscal: " + datos.getNif());
+		lblDireccion.setText("Dirección fiscal y comercial: " + datos.getDireccion());
+		lblTelefono.setText("Número de teléfono: " + datos.getTelefono());
+		lblCorreo.setText("Correo electrónico de contacto: " + datos.getCorreo());
+		lblNombreContacto.setText("Nombre de la persona de contacto: " + datos.getNombreContacto());
+		lblBancaria.setText("Cuenta bancaria (IBAN): " + datos.getIBAN());
+		lblSucursal.setText("Nombre del banco y sucursal: " + datos.getBanco());
+		lblSWIFT.setText("Código SWIFT/BIC: " + datos.getSWIFT());
+		lblFiscalyLegal.setText("Información fiscal y legal: " + datos.getFiscalYLegal());
 	}
 }

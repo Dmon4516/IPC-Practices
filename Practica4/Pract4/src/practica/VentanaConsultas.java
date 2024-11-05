@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+@SuppressWarnings("serial")
 public class VentanaConsultas extends JFrame {
 
 	private JTable tabla;
@@ -59,6 +60,8 @@ public class VentanaConsultas extends JFrame {
 		// Ajustar el tamaño de la ventana al contenido
 		pack();
 	}
+	
+
 }
 
 @SuppressWarnings("serial")
@@ -127,6 +130,8 @@ class ModeloTablaTransacciones extends AbstractTableModel {
 			return null;
 		}
 	}
+	
+
 }
 
 class Transaccion {
