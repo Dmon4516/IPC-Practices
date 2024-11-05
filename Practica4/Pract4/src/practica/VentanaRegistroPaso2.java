@@ -164,7 +164,6 @@ public class VentanaRegistroPaso2 {
 		JLabel lblBancaria = new JLabel("Cuenta bancaria (IBAN):");
 		lblBancaria.setBackground(Color.WHITE);
 		lblBancaria.setFont(new Font("Dialog", Font.BOLD, 12));
-		lblBancaria.setForeground(Color.BLACK);
 		pnlBancaria.add(lblBancaria);
 
 		txtBancaria = new JTextField();
@@ -174,7 +173,6 @@ public class VentanaRegistroPaso2 {
 				txtIBANFocusLost();
 			}
 		});
-		txtBancaria.setForeground(Color.BLACK);
 		pnlBancaria.add(txtBancaria);
 		txtBancaria.setColumns(10);
 
@@ -186,7 +184,6 @@ public class VentanaRegistroPaso2 {
 		JLabel lblSucursal = new JLabel("Nombre del banco y sucursal:");
 		lblSucursal.setBackground(Color.WHITE);
 		lblSucursal.setFont(new Font("Dialog", Font.BOLD, 12));
-		lblSucursal.setForeground(Color.BLACK);
 		pnlSucursal.add(lblSucursal);
 
 		txtSucursal = new JTextField();
@@ -196,7 +193,6 @@ public class VentanaRegistroPaso2 {
 				txtBancoFocusLost();
 			}
 		});
-		txtSucursal.setForeground(Color.BLACK);
 		pnlSucursal.add(txtSucursal);
 		txtSucursal.setColumns(10);
 
@@ -208,7 +204,6 @@ public class VentanaRegistroPaso2 {
 		JLabel lblSWIFT = new JLabel("Código SWIFT/BIC:");
 		lblSWIFT.setBackground(Color.WHITE);
 		lblSWIFT.setFont(new Font("Dialog", Font.BOLD, 12));
-		lblSWIFT.setForeground(new Color(0, 0, 0));
 		pnlSWIFT.add(lblSWIFT);
 
 		txtSWIFT = new JTextField();
@@ -218,7 +213,6 @@ public class VentanaRegistroPaso2 {
 				txtSWIFTFocusLost();
 			}
 		});
-		txtSWIFT.setForeground(Color.BLACK);
 		pnlSWIFT.add(txtSWIFT);
 		txtSWIFT.setColumns(10);
 
@@ -229,7 +223,6 @@ public class VentanaRegistroPaso2 {
 
 		JLabel lblFiscalyLegal = new JLabel("Información fiscal y legal:");
 		lblFiscalyLegal.setFont(new Font("Dialog", Font.BOLD, 12));
-		lblFiscalyLegal.setForeground(Color.BLACK);
 		lblFiscalyLegal.setBackground(Color.WHITE);
 		pnlFiscalyLegal.add(lblFiscalyLegal);
 
@@ -240,7 +233,6 @@ public class VentanaRegistroPaso2 {
 				txtFiscalyLegalFocusLost();
 			}
 		});
-		txtFiscalyLegal.setForeground(Color.BLACK);
 		pnlFiscalyLegal.add(txtFiscalyLegal);
 		txtFiscalyLegal.setColumns(10);
 
@@ -250,8 +242,7 @@ public class VentanaRegistroPaso2 {
 		pnlObligacionFiscal.setLayout(new GridLayout(1, 0, 0, 0));
 
 		rdbtnObligacionFiscal = new JRadioButton("Estoy al corriente con mis obligaciones fiscales");
-		rdbtnObligacionFiscal.setFont(new Font("Dialog", Font.BOLD, 12));
-		rdbtnObligacionFiscal.setForeground(Color.BLACK);
+		rdbtnObligacionFiscal.setFont(new Font("Dialog", Font.BOLD, 12));;
 		pnlObligacionFiscal.add(rdbtnObligacionFiscal);
 
 		JPanel pnlAlta = new JPanel();
@@ -261,7 +252,6 @@ public class VentanaRegistroPaso2 {
 
 		rdbtnAlta = new JRadioButton("Estoy de alta en el Registro de Proveedores");
 		rdbtnAlta.setFont(new Font("Dialog", Font.BOLD, 12));
-		rdbtnAlta.setForeground(Color.BLACK);
 		pnlAlta.add(rdbtnAlta);
 
 	}
