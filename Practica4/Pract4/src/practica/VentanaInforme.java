@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -24,12 +25,18 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.InputEvent;
 
 public class VentanaInforme {
@@ -37,6 +44,7 @@ public class VentanaInforme {
 	private JFrame frmInforme;
 	private String portapapeles = "";
 	private JTextPane tpEditor;
+	StyledDocument docEstilo;
 
 	// variable para detectar si se guardo la ultima version del documento
 	private boolean guardado = true;
@@ -254,6 +262,12 @@ public class VentanaInforme {
 
 		JButton btnNuevo = new JButton("");
 		btnNuevo.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoNuevo.gif")));
+		btnNuevo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				nuevoActionPerformed();
+			}
+		});
 		tbBarraHerramientas.add(btnNuevo);
 
 		JButton btnAbrir = new JButton("");
@@ -280,10 +294,22 @@ public class VentanaInforme {
 
 		JButton btnCopiar = new JButton("");
 		btnCopiar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoCopiar.gif")));
+		btnCopiar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				copiarActionPerformed();
+			}
+		});
 		tbBarraHerramientas.add(btnCopiar);
 
 		JButton btnPegar = new JButton("");
 		btnPegar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoPegar.gif")));
+		btnPegar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				pegarActionPerformed();
+			}
+		});
 		tbBarraHerramientas.add(btnPegar);
 
 		JComboBox cbFuente = new JComboBox();
@@ -300,11 +326,23 @@ public class VentanaInforme {
 
 		JButton btnNegrita = new JButton("");
 		btnNegrita.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoNegrita.gif")));
+		btnNegrita.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				negritaBtnClicked();
+			}
+		});
 		tbBarraHerramientas.addSeparator();
 		tbBarraHerramientas.add(btnNegrita);
 
 		JButton btnCursiva = new JButton("");
 		btnCursiva.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoCursiva.gif")));
+		btnCursiva.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cursivaBtnClicked();
+			}
+		});
 		tbBarraHerramientas.add(btnCursiva);
 
 		JButton btnSubrayado = new JButton("");
@@ -349,6 +387,12 @@ public class VentanaInforme {
 
 		tpEditor = new JTextPane();
 		frmInforme.getContentPane().add(tpEditor, BorderLayout.CENTER);
+		
+		docEstilo = tpEditor.getStyledDocument();
+		
+		//TODO
+		//StyleConstants.setBackground(atributos, Color.blue); //Color de fondo azul
+		//StyleConstants.setFontSize(atributos, 24); //Tamaño de fuente
 
 		// hacer que las barras de scroll se muestren por defecto
 		JScrollPane scrollPane = new JScrollPane(tpEditor, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -415,6 +459,64 @@ public class VentanaInforme {
 	
 	private void nuevoActionPerformed() {
 		tpEditor.setText("");
+	}
+	
+	private void negritaBtnClicked() {
+		SimpleAttributeSet atributos = new SimpleAttributeSet();
+		StyleConstants.setBold(atributos, true);
+		int principio = tpEditor.getSelectionStart();
+		int longitud = tpEditor.getSelectionEnd() - tpEditor.getSelectionStart();
+		int estiloAnteriorPrincipio = -1;
+		boolean estiloAnterior = false;
+		AttributeSet atributosAnteriores = null;
+		for (int i = principio; i < longitud; i++) {
+			atributosAnteriores = docEstilo.getCharacterElement(i).getAttributes();
+			if (atributosAnteriores != null && !estiloAnterior) {
+				atributos.addAttributes(atributosAnteriores);
+				estiloAnterior = true;
+				estiloAnteriorPrincipio = i;
+				atributosAnteriores = null;
+			}
+			
+			if (estiloAnterior && (atributosAnteriores == null || i == longitud - 1)) {
+				docEstilo.setCharacterAttributes(estiloAnteriorPrincipio, i - estiloAnteriorPrincipio, atributos, true);
+				principio = i;
+			}
+		}
+		docEstilo.setCharacterAttributes(principio, longitud, atributos, true);
+	}
+	
+	private void cursivaBtnClicked() {
+		SimpleAttributeSet atributos = new SimpleAttributeSet();
+		StyleConstants.setItalic(atributos, true);
+		int principio = tpEditor.getSelectionStart();
+		int longitud = tpEditor.getSelectionEnd() - tpEditor.getSelectionStart();
+		int estiloAnteriorPrincipio = -1;
+		boolean estiloAnterior = false;
+		AttributeSet atributosAnteriores = null;
+		for (int i = principio; i < longitud; i++) {
+			atributosAnteriores = docEstilo.getCharacterElement(i).getAttributes();
+			if (atributosAnteriores != null && !estiloAnterior) {
+				atributos.addAttributes(atributosAnteriores);
+				estiloAnterior = true;
+				estiloAnteriorPrincipio = i;
+				atributosAnteriores = null;
+			}
+			
+			if (estiloAnterior && (atributosAnteriores == null || i == longitud - 1)) {
+				docEstilo.setCharacterAttributes(estiloAnteriorPrincipio, i - estiloAnteriorPrincipio, atributos, true);
+				principio = i;
+			}
+		}
+		docEstilo.setCharacterAttributes(principio, longitud, atributos, true);
+	}
+	
+	private void colorbtnClicked() {
+		
+	}
+	
+	private void tamanhoFuenteCambiado() {
+		
 	}
 
 }
