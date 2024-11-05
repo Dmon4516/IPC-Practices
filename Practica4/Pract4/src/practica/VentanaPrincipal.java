@@ -151,7 +151,7 @@ public class VentanaPrincipal {
 	 */
 	private void btnConsultasMouseClicked() {
 		VentanaConsultas ventana = new VentanaConsultas();
-		ventana.setVisible();
+		ventana.setVisible(true);
 	}
 	
 	/**
