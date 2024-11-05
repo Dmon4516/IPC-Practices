@@ -161,15 +161,6 @@ public class VentanaPrincipal {
 		VentanaInforme ventana = new VentanaInforme();
 		ventana.setVisible(true);
 	}
-	
-	/**
-	 * metodo que permite modificar la visibilidad de esta pagina
-	 * 
-	 * @param visibilidad: true para hacerla visible, false invisible
-	 */
-	public void setVisible(boolean visibilidad) {
-		this.frmPrincipal.setVisible(visibilidad);
-	}
 
 	/**
 	 * metodo que se encarga de realizar un cierre seguro del programa
