@@ -28,6 +28,9 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 
 public class VentanaInforme {
 
@@ -80,6 +83,7 @@ public class VentanaInforme {
 		menuBar.add(mnArchivo);
 
 		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
+		mntmNuevo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK));
 		mnArchivo.add(mntmNuevo);
 
 		JMenuItem mntmAbrir = new JMenuItem("Abrir...");
@@ -103,12 +107,39 @@ public class VentanaInforme {
 		menuBar.add(mnEdicion);
 
 		JMenuItem mntmCortar = new JMenuItem("Cortar");
+		mntmCortar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
+		mntmCortar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cortarActionPerformed();
+			}
+			
+		});
 		mnEdicion.add(mntmCortar);
 
 		JMenuItem mntmCopiar = new JMenuItem("Copiar");
+		mntmCopiar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
+		mntmCopiar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				copiarActionPerformed();
+			}
+			
+		});
 		mnEdicion.add(mntmCopiar);
 
 		JMenuItem mntmPegar = new JMenuItem("Pegar");
+		mntmPegar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK));
+		mntmPegar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				pegarActionPerformed();
+			}
+			
+		});
 		mnEdicion.add(mntmPegar);
 
 		JMenuItem mntmBuscar = new JMenuItem("Buscar...");
@@ -354,6 +385,18 @@ public class VentanaInforme {
 
 	public void setVisible(boolean visibilidad) {
 		this.frmInforme.setVisible(visibilidad);
+	}
+	
+	private void cortarActionPerformed() {
+		
+	}
+	
+	private void copiarActionPerformed() {
+		
+	}
+	
+	private void pegarActionPerformed() {
+		
 	}
 
 }
