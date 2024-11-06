@@ -1,25 +1,31 @@
-package practica;
+ï»¿package practica;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.Toolkit;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 
 /**
  * Interfaz que permite acceder a las distintas secciones del programa
- * @authors Luis Setién, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
+ * @authors Luis SetiÃ©n, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
  * @version Octubre 2024
  */
 public class VentanaPrincipal {
@@ -30,7 +36,8 @@ public class VentanaPrincipal {
 	public static Registro datosRegistro;
 	public static Map<Integer, Object> ventanasRegistro = new HashMap<>();
 	public static boolean ventanaInforme = false;
-	
+	public static Locale localizacion = null;
+	public static ResourceBundle mensajes = null;
 	
 	/**
 	 * metodo principal de la clase
@@ -60,17 +67,23 @@ public class VentanaPrincipal {
 	 */
 	private void initialize() {
 		
+		// si no hay idioma, se pone espanol
+		if (localizacion == null) {
+			localizacion = new Locale.Builder().setLanguage("es").setRegion("ES").build();
+			mensajes = ResourceBundle.getBundle("local/Local", localizacion);
+		}
+		
 		// inicializamos y establecemos los atributos basicos de la ventana
 		frmPrincipal = new JFrame();
 		frmPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/imagenes/icono.png")));
-		frmPrincipal.setTitle("Administración Perfumería");
+		frmPrincipal.setTitle("AdministraciÃ³n PerfumerÃ­a");
 		frmPrincipal.setResizable(false);
-		frmPrincipal.setBounds(100, 100, 400, 300);
+		frmPrincipal.setBounds(100, 100, 400, 340);
 		frmPrincipal.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		
 		// creamos el panel principal, estableciendo margenes y espaciado
-		JPanel gridPanel = new JPanel(new GridLayout(5, 3, 10, 10));
+		JPanel gridPanel = new JPanel(new GridLayout(6, 3, 10, 10));
 		frmPrincipal.getContentPane().add(gridPanel, BorderLayout.CENTER);
 		gridPanel.setBorder(new EmptyBorder(40, 60, 40, 60));
 		
@@ -114,6 +127,15 @@ public class VentanaPrincipal {
 				cierraPrograma();
 			}
 		});
+		
+		JButton btnIdioma = new JButton("Cambiar idioma");
+		btnIdioma.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnIdiomaMouseClicked();
+			}
+		});
+		gridPanel.add(btnIdioma);
 		gridPanel.add(btnSalir);
 		
 		
@@ -128,6 +150,11 @@ public class VentanaPrincipal {
 	}
 	
 	
+	protected void btnIdiomaMouseClicked() {
+		VentanaIdioma ventana = new VentanaIdioma();
+		ventana.setVisible(true);
+	}
+
 	/**
 	 * metodo que se encarga de la accion realizada al pulsar el boton de alta de proveedor
 	 */

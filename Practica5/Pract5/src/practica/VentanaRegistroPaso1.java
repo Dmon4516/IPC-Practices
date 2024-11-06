@@ -1,4 +1,4 @@
-package practica;
+ï»¿package practica;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -26,7 +26,7 @@ import java.awt.event.FocusEvent;
 /**
  * Interfaz tipo formulario que permite introducir los datos necesarios para darse de alta
  *     esta clase en concreto representa la primera pagina, en la que se introducen los datos generales
- * @authors Luis Setién, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
+ * @authors Luis SetiÃ©n, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
  * @version Octubre 2024
  */
 public class VentanaRegistroPaso1 {
@@ -136,8 +136,8 @@ public class VentanaRegistroPaso1 {
             	
             	semaforo = true;
                 int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
-                    "¿Seguro que quieres cerrar el formulario? Los datos se perderán",
-                    "Confirmar acción",
+                    "Â¿Seguro que quieres cerrar el formulario? Los datos se perderÃ¡n",
+                    "Confirmar acciÃ³n",
                     JOptionPane.YES_NO_OPTION);
                 
                 if (confirmar == JOptionPane.YES_OPTION) {
@@ -157,7 +157,7 @@ public class VentanaRegistroPaso1 {
 		
 		// configuramos las propiedades especificas de esta pagina
 		btnAnterior.setVisible(false);
-		lblTitulo.setText("Paso 1 de 4: Introduce datos generales:");
+		lblTitulo.setText(VentanaPrincipal.mensajes.getString("registro1_titulo"));
 		
 		
 		// creamos el panel principal del formulario junto a los
@@ -315,7 +315,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene numeros
 		if (nombre.matches(".*[0-9].*")) {
 			txtNombre.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre o raz\u00F3n social del proveedor\" no debe contener números";
+			String mensajeError = "El campo \"Nombre o raz\u00F3n social del proveedor\" no debe contener nÃºmeros";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -389,7 +389,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene letras minusculas
 		if (nif.matches(".*[a-z].*")) {
 			txtNIF.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" no debe contener letras minúsculas";
+			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" no debe contener letras minÃºsculas";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -409,7 +409,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo no contiene numeros
 		if (!nif.matches(".*[0-9].*")) {
 			txtNIF.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" debe contener números";
+			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" debe contener nÃºmeros";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -527,7 +527,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene letras
 		if (!telefono.matches("^[0-9]+$")) {
 			txtTelefono.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de tel\u00E9fono\" solo debe contener números";
+			String mensajeError = "El campo \"N\u00FAmero de tel\u00E9fono\" solo debe contener nÃºmeros";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[3] = true;
 			semaforo = false;
@@ -625,7 +625,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene numeros
 		if (nombreContacto.matches(".*[0-9].*")) {
 			txtNombreContacto.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre de la persona de contacto\" no debe contener números";
+			String mensajeError = "El campo \"Nombre de la persona de contacto\" no debe contener nÃºmeros";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[5] = true;
 			semaforo = false;
@@ -709,8 +709,8 @@ public class VentanaRegistroPaso1 {
 		// mostramos un dialogo de error con informacion relativa al contexto
 		// si alguna de las anteriores comprobaciones no pasaron
 		if (campoErroneo || campoVacio) {
-			String mensajeErroneo = "Uno o más campos contienen valores no válidos.";
-			String mensajeVacio = "Uno o más campos son obligatorios pero están vacíos.";
+			String mensajeErroneo = "Uno o mÃ¡s campos contienen valores no vÃ¡lidos.";
+			String mensajeVacio = "Uno o mÃ¡s campos son obligatorios pero estÃ¡n vacÃ­os.";
 			String mensajeAviso = "Compruebe aquellos resaltados en rojo.";
 			
 			if (campoErroneo && campoVacio) {
