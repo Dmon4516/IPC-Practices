@@ -1,4 +1,4 @@
-package practica;
+﻿package practica;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -131,7 +131,7 @@ public class VentanaRegistroPaso3 {
 		// ---------------------------------------------
 
 		// configuramos las propiedades especificas de esta pagina
-		lblTitulo.setText("Paso 3 de 4: Introduce documentaci�n complementaria:");
+		lblTitulo.setText("Paso 3 de 4: Introduce documentación complementaria:");
 
 		// creamos el panel principal del formulario junto a los
 		// elementos y campos correspondientes a esta pagina
@@ -162,6 +162,7 @@ public class VentanaRegistroPaso3 {
 		}
 
 		VentanaRegistroPaso4 ventana = new VentanaRegistroPaso4();
+		ventana.setDatos(VentanaPrincipal.datosRegistro);
 		VentanaPrincipal.ventanasRegistro.put(4, ventana);
 		this.setVisible(false);
 		ventana.setVisible(true);
