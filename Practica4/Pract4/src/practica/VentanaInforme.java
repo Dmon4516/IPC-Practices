@@ -11,7 +11,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -25,18 +24,12 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.InputEvent;
 
 public class VentanaInforme {
@@ -44,7 +37,6 @@ public class VentanaInforme {
 	private JFrame frmInforme;
 	private String portapapeles = "";
 	private JTextPane tpEditor;
-	StyledDocument docEstilo;
 
 	// variable para detectar si se guardo la ultima version del documento
 	private boolean guardado = true;
@@ -261,67 +253,40 @@ public class VentanaInforme {
 		frmInforme.getContentPane().add(tbBarraHerramientas, BorderLayout.NORTH);
 
 		JButton btnNuevo = new JButton("");
-		btnNuevo.setToolTipText("Nuevo documento");
 		btnNuevo.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoNuevo.gif")));
-		btnNuevo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				nuevoActionPerformed();
-			}
-		});
 		tbBarraHerramientas.add(btnNuevo);
 
 		JButton btnAbrir = new JButton("");
-		btnAbrir.setToolTipText("Abrir documento");
 		btnAbrir.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoAbrir.gif")));
 		tbBarraHerramientas.add(btnAbrir);
 
 		JButton btnGuardar = new JButton("");
-		btnGuardar.setToolTipText("Guardar documento");
 		btnGuardar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoGuardar.gif")));
 		tbBarraHerramientas.add(btnGuardar);
 
 		JButton btnImprimir = new JButton("");
-		btnImprimir.setToolTipText("Imprimir documento");
 		btnImprimir.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoImprimir.gif")));
 		tbBarraHerramientas.addSeparator();
 		tbBarraHerramientas.add(btnImprimir);
 
 		JButton btnBuscar = new JButton("");
-		btnBuscar.setToolTipText("Buscar en documento");
 		btnBuscar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoBuscar.gif")));
 		tbBarraHerramientas.add(btnBuscar);
 
 		JButton btnCortar = new JButton("");
-		btnCortar.setToolTipText("Cortar");
 		btnCortar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoCortar.gif")));
 		tbBarraHerramientas.addSeparator();
 		tbBarraHerramientas.add(btnCortar);
 
 		JButton btnCopiar = new JButton("");
-		btnCopiar.setToolTipText("Copiar");
 		btnCopiar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoCopiar.gif")));
-		btnCopiar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				copiarActionPerformed();
-			}
-		});
 		tbBarraHerramientas.add(btnCopiar);
 
 		JButton btnPegar = new JButton("");
-		btnPegar.setToolTipText("Pegar");
 		btnPegar.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoPegar.gif")));
-		btnPegar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				pegarActionPerformed();
-			}
-		});
 		tbBarraHerramientas.add(btnPegar);
 
 		JComboBox cbFuente = new JComboBox();
-		cbFuente.setToolTipText("Fuente");
 		cbFuente.setModel(new DefaultComboBoxModel(
 				new String[] { "Arial", "Calibri", "Courier New", "Helvetica", "Tahoma", "Times New Roman" }));
 		cbFuente.setMaximumSize(new Dimension(160, 28));
@@ -329,47 +294,24 @@ public class VentanaInforme {
 		tbBarraHerramientas.add(cbFuente);
 
 		JComboBox cbTamano = new JComboBox();
-		cbTamano.setToolTipText("Tamaño de fuente");
 		cbTamano.setModel(new DefaultComboBoxModel(new String[] { "10", "12", "14", "18", "24", "36" }));
 		cbTamano.setMaximumSize(new Dimension(60, 28));
 		tbBarraHerramientas.add(cbTamano);
 
 		JButton btnNegrita = new JButton("");
-		btnNegrita.setToolTipText("Negrita");
 		btnNegrita.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoNegrita.gif")));
-		btnNegrita.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				negritaBtnClicked();
-			}
-		});
 		tbBarraHerramientas.addSeparator();
 		tbBarraHerramientas.add(btnNegrita);
 
 		JButton btnCursiva = new JButton("");
-		btnCursiva.setToolTipText("Cursiva");
 		btnCursiva.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoCursiva.gif")));
-		btnCursiva.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				cursivaBtnClicked();
-			}
-		});
 		tbBarraHerramientas.add(btnCursiva);
 
 		JButton btnSubrayado = new JButton("");
-		btnSubrayado.setToolTipText("Subrayar");
 		btnSubrayado.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoSubrayado.gif")));
-		btnSubrayado.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				subrayadoBtnClicked();
-			}
-		});
 		tbBarraHerramientas.add(btnSubrayado);
 
 		JButton btnColor = new JButton("");
-		btnColor.setToolTipText("Colores");
 		btnColor.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoColor.gif")));
 		tbBarraHerramientas.add(btnColor);
 
@@ -393,29 +335,20 @@ public class VentanaInforme {
 		mnpopColor.add(rdbtnpopAzul);
 
 		JButton btnTextoIzquierda = new JButton("");
-		btnTextoIzquierda.setToolTipText("Alineación a la izquierda");
 		btnTextoIzquierda.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoTextoIzquierda.gif")));
 		tbBarraHerramientas.addSeparator();
 		tbBarraHerramientas.add(btnTextoIzquierda);
 
 		JButton btnTextoCentrado = new JButton("");
-		btnTextoCentrado.setToolTipText("Alineación al centro");
 		btnTextoCentrado.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoTextoCentrado.gif")));
 		tbBarraHerramientas.add(btnTextoCentrado);
 
 		JButton btnTextoDerecha = new JButton("");
-		btnTextoDerecha.setToolTipText("Alineación a la derecha");
 		btnTextoDerecha.setIcon(new ImageIcon(VentanaInforme.class.getResource("/imagenes/iconoTextoDerecha.gif")));
 		tbBarraHerramientas.add(btnTextoDerecha);
 
 		tpEditor = new JTextPane();
 		frmInforme.getContentPane().add(tpEditor, BorderLayout.CENTER);
-		
-		docEstilo = tpEditor.getStyledDocument();
-		
-		//TODO
-		//StyleConstants.setBackground(atributos, Color.blue); //Color de fondo azul
-		//StyleConstants.setFontSize(atributos, 24); //Tamaño de fuente
 
 		// hacer que las barras de scroll se muestren por defecto
 		JScrollPane scrollPane = new JScrollPane(tpEditor, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -439,7 +372,7 @@ public class VentanaInforme {
 				// mostramos un mensaje segun queden cambios sin guardar o no
 				if (guardado == true) {
 					int confirmar = JOptionPane.showConfirmDialog(frmInforme,
-							"�Seguro que quieres cerrar el editor de informes?", "Confirmar acci�n",
+							"?Seguro que quieres cerrar el editor de informes?", "Confirmar acci?n",
 							JOptionPane.YES_NO_OPTION);
 
 					if (confirmar == JOptionPane.YES_OPTION) {
@@ -448,8 +381,8 @@ public class VentanaInforme {
 					}
 				} else {
 					int confirmar = JOptionPane.showConfirmDialog(frmInforme,
-							"�Seguro que quieres cerrar el editor de informes?\nLos cambios sin guardar se perder�n",
-							"Confirmar acci�n", JOptionPane.YES_NO_OPTION);
+							"?Seguro que quieres cerrar el editor de informes?\nLos cambios sin guardar se perder?n",
+							"Confirmar acci?n", JOptionPane.YES_NO_OPTION);
 
 					if (confirmar == JOptionPane.YES_OPTION) {
 						VentanaPrincipal.ventanaInforme = false;
@@ -482,89 +415,6 @@ public class VentanaInforme {
 	
 	private void nuevoActionPerformed() {
 		tpEditor.setText("");
-	}
-	
-	private void negritaBtnClicked() {
-		SimpleAttributeSet atributos = new SimpleAttributeSet();
-		StyleConstants.setBold(atributos, true);
-		int principio = tpEditor.getSelectionStart();
-		int longitud = tpEditor.getSelectionEnd() - tpEditor.getSelectionStart();
-		int estiloAnteriorPrincipio = -1;
-		boolean estiloAnterior = false;
-		AttributeSet atributosAnteriores = null;
-		for (int i = principio; i < longitud; i++) {
-			atributosAnteriores = docEstilo.getCharacterElement(i).getAttributes();
-			if (atributosAnteriores.getAttributeCount() > 0 && !estiloAnterior) {
-				atributos.addAttributes(atributosAnteriores);
-				estiloAnterior = true;
-				estiloAnteriorPrincipio = i;
-				atributosAnteriores = null;
-			}
-			
-			if (estiloAnterior && (atributosAnteriores == null || i == longitud - 1)) {
-				docEstilo.setCharacterAttributes(estiloAnteriorPrincipio, i - estiloAnteriorPrincipio, atributos, true);
-				principio = i;
-			}
-		}
-		docEstilo.setCharacterAttributes(principio, longitud, atributos, true);
-	}
-	
-	private void cursivaBtnClicked() {
-		SimpleAttributeSet atributos = new SimpleAttributeSet();
-		StyleConstants.setItalic(atributos, true);
-		int principio = tpEditor.getSelectionStart();
-		int longitud = tpEditor.getSelectionEnd() - tpEditor.getSelectionStart();
-		int estiloAnteriorPrincipio = -1;
-		boolean estiloAnterior = false;
-		AttributeSet atributosAnteriores = null;
-		for (int i = principio; i < longitud; i++) {
-			atributosAnteriores = docEstilo.getCharacterElement(i).getAttributes();
-			if (atributosAnteriores.getAttributeCount() > 0 && !estiloAnterior) {
-				atributos.addAttributes(atributosAnteriores);
-				estiloAnterior = true;
-				estiloAnteriorPrincipio = i;
-				atributosAnteriores = null;
-			}
-			
-			if (estiloAnterior && (atributosAnteriores == null || i == longitud - 1)) {
-				docEstilo.setCharacterAttributes(estiloAnteriorPrincipio, i - estiloAnteriorPrincipio, atributos, true);
-				principio = i;
-			}
-		}
-		docEstilo.setCharacterAttributes(principio, longitud, atributos, true);
-	}
-	
-	private void subrayadoBtnClicked() {
-		SimpleAttributeSet atributos = new SimpleAttributeSet();
-		StyleConstants.setUnderline(atributos, true);
-		int principio = tpEditor.getSelectionStart();
-		int longitud = tpEditor.getSelectionEnd() - tpEditor.getSelectionStart();
-		int estiloAnteriorPrincipio = -1;
-		boolean estiloAnterior = false;
-		AttributeSet atributosAnteriores = null;
-		for (int i = principio; i < longitud; i++) {
-			atributosAnteriores = docEstilo.getCharacterElement(i).getAttributes();
-			if (atributosAnteriores.getAttributeCount() > 0 && !estiloAnterior) {
-				atributos.addAttributes(atributosAnteriores);
-				estiloAnterior = true;
-				estiloAnteriorPrincipio = i;
-				atributosAnteriores = null;
-			}
-			
-			if (estiloAnterior && (atributosAnteriores == null || i == longitud - 1)) {
-				docEstilo.setCharacterAttributes(estiloAnteriorPrincipio, i - estiloAnteriorPrincipio, atributos, true);
-				principio = i;
-			}
-		}
-		docEstilo.setCharacterAttributes(principio, longitud, atributos, true);
-	}
-	
-	private void colorBtnClicked() {
-		
-	}
-	
-	private void tamanhoFuenteCambiado() {
-		
 	}
 
 }

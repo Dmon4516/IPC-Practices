@@ -23,7 +23,7 @@ import java.awt.event.WindowEvent;
  * darse de alta esta clase en concreto representa la primera pagina, en la que
  * se introducen los datos generales
  * 
- * @authors Luis Setiï¿½n, Victor Descalzo, David Edmundo Montenegro, Oscar
+ * @authors Luis Seti?n, Victor Descalzo, David Edmundo Montenegro, Oscar
  *          Entrecanales
  * @version Octubre 2024
  */
@@ -115,7 +115,7 @@ public class VentanaRegistroPaso3 {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
-						"ï¿½Seguro que quieres cerrar el formulario? Los datos se perderï¿½n", "Confirmar acciï¿½n",
+						"?Seguro que quieres cerrar el formulario? Los datos se perder?n", "Confirmar acci?n",
 						JOptionPane.YES_NO_OPTION);
 
 				if (confirmar == JOptionPane.YES_OPTION) {
@@ -131,7 +131,7 @@ public class VentanaRegistroPaso3 {
 		// ---------------------------------------------
 
 		// configuramos las propiedades especificas de esta pagina
-		lblTitulo.setText("Paso 3 de 4: Introduce documentaciÃ³n complementaria:");
+		lblTitulo.setText("Paso 3 de 4: Introduce documentación complementaria:");
 
 		// creamos el panel principal del formulario junto a los
 		// elementos y campos correspondientes a esta pagina

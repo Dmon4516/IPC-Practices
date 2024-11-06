@@ -21,7 +21,7 @@ public class VentanaConsultas extends JFrame {
 	}
 
 	private void initialize() {
-		// ConfiguraciÃ³n bÃ¡sica de la ventana
+		// Configuración básica de la ventana
 		setTitle("Consulta de Compraventas");
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
 
@@ -39,7 +39,7 @@ public class VentanaConsultas extends JFrame {
 		tabla.getColumnModel().getColumn(4).setPreferredWidth(120); // Total
 		tabla.getColumnModel().getColumn(5).setPreferredWidth(180); // Proveedor/Cliente
 
-		// Desactivar el redimensionamiento automÃ¡tico para permitir scroll horizontal
+		// Desactivar el redimensionamiento automático para permitir scroll horizontal
 		tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		tabla.setFillsViewportHeight(false);
 		
@@ -57,7 +57,7 @@ public class VentanaConsultas extends JFrame {
 		// Agregar el panel principal a la ventana
 		setContentPane(panelPrincipal);
 
-		// Ajustar el tamaÃ±o de la ventana al contenido
+		// Ajustar el tamaño de la ventana al contenido
 		pack();
 	}
 	
@@ -66,8 +66,8 @@ public class VentanaConsultas extends JFrame {
 
 @SuppressWarnings("serial")
 class ModeloTablaTransacciones extends AbstractTableModel {
-	private String[] columnas = { "Fecha de la transacciÃ³n", "Tipo de operaciÃ³n", "Nombre del producto", "Cantidad",
-			"Total de la operaciÃ³n", "Nombre del proveedor o cliente" };
+	private String[] columnas = { "Fecha de la transacción", "Tipo de operación", "Nombre del producto", "Cantidad",
+			"Total de la operación", "Nombre del proveedor o cliente" };
 
 	private ArrayList<Transaccion> transacciones;
 
@@ -78,17 +78,17 @@ class ModeloTablaTransacciones extends AbstractTableModel {
 
 	private void cargarDatosFicticios() {
 		// Datos de ejemplo
-		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 15), "Compra", "Chanel NÂ°5", 10, 150.00,
+		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 15), "Compra", "Chanel N°5", 10, 150.00,
 				"Perfumes Luxury S.L."));
 
-		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 16), "Venta", "Light Blue D&G", 2, 180.00, "MarÃ­a GonzÃ¡lez"));
+		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 16), "Venta", "Light Blue D&G", 2, 180.00, "María González"));
 
 		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 17), "Compra", "La Vie Est Belle", 15, 120.00,
-				"LancÃ´me Distribuciones"));
+				"Lancôme Distribuciones"));
 
-		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 18), "Venta", "Chanel NÂ°5", 1, 180.00, "Juan PÃ©rez"));
+		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 18), "Venta", "Chanel N°5", 1, 180.00, "Juan Pérez"));
 
-		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 19), "Venta", "La Vie Est Belle", 3, 100.00, "Ana MartÃ­nez"));
+		transacciones.add(new Transaccion(LocalDate.of(2024, 3, 19), "Venta", "La Vie Est Belle", 3, 100.00, "Ana Martínez"));
 	}
 
 	@Override

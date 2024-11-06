@@ -13,7 +13,7 @@ public class Registro {
 	private String banco;
 	private String swift;
 	private String fiscalYLegal;
-	// TODO: Ir aÃ±adiendo atributos (para los datos de la consulta de la ventana
+	// TODO: Ir añadiendo atributos (para los datos de la consulta de la ventana
 	// final)
 
 	public Registro(String nombre, String nif, String direccion, int telefono, String correo, String nombreContacto,

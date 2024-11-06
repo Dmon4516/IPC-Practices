@@ -3,13 +3,17 @@ package practica;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.Font;
@@ -24,7 +28,7 @@ import java.awt.event.WindowEvent;
  * darse de alta esta clase en concreto representa la primera pagina, en la que
  * se introducen los datos generales
  * 
- * @authors Luis Seti锟絥, Victor Descalzo, David Edmundo Montenegro, Oscar
+ * @authors Luis Seti?n, Victor Descalzo, David Edmundo Montenegro, Oscar
  *          Entrecanales
  * @version Octubre 2024
  */
@@ -126,7 +130,7 @@ public class VentanaRegistroPaso4 {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
-						"锟絊eguro que quieres cerrar el formulario? Los datos se perder锟絥", "Confirmar acci锟絥",
+						"?Seguro que quieres cerrar el formulario? Los datos se perder?n", "Confirmar acci?n",
 						JOptionPane.YES_NO_OPTION);
 
 				if (confirmar == JOptionPane.YES_OPTION) {
@@ -199,6 +203,8 @@ public class VentanaRegistroPaso4 {
 	}
 
 	private void btnSiguienteMouseClicked() {
+		// eliminamos las ventanas del formulario, pues hemos finalizado
+		VentanaPrincipal.ventanasRegistro.clear();
 		this.setVisible(false);
 	}
 
@@ -207,15 +213,15 @@ public class VentanaRegistroPaso4 {
 	}
 	
 	public void setDatos(Registro datos) {
-		lblNombre.setText("Nombre o raz贸n social del proveedor: " + datos.getNombre());
-		lblNIF.setText("N煤mero de identificaci贸n fiscal: " + datos.getNif());
-		lblDireccion.setText("Direcci贸n fiscal y comercial: " + datos.getDireccion());
-		lblTelefono.setText("N煤mero de tel茅fono: " + datos.getTelefono());
-		lblCorreo.setText("Correo electr贸nico de contacto: " + datos.getCorreo());
+		lblNombre.setText("Nombre o raz髇 social del proveedor: " + datos.getNombre());
+		lblNIF.setText("N鷐ero de identificaci髇 fiscal: " + datos.getNif());
+		lblDireccion.setText("Direcci髇 fiscal y comercial: " + datos.getDireccion());
+		lblTelefono.setText("N鷐ero de tel閒ono: " + datos.getTelefono());
+		lblCorreo.setText("Correo electr髇ico de contacto: " + datos.getCorreo());
 		lblNombreContacto.setText("Nombre de la persona de contacto: " + datos.getNombreContacto());
 		lblBancaria.setText("Cuenta bancaria (IBAN): " + datos.getIBAN());
 		lblSucursal.setText("Nombre del banco y sucursal: " + datos.getBanco());
-		lblSWIFT.setText("C贸digo SWIFT/BIC: " + datos.getSWIFT());
-		lblFiscalyLegal.setText("Informaci贸n fiscal y legal: " + datos.getFiscalYLegal());
+		lblSWIFT.setText("C骴igo SWIFT/BIC: " + datos.getSWIFT());
+		lblFiscalyLegal.setText("Informaci髇 fiscal y legal: " + datos.getFiscalYLegal());
 	}
 }

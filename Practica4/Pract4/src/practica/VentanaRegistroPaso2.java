@@ -28,7 +28,7 @@ import javax.swing.JRadioButton;
  * darse de alta esta clase en concreto representa la primera pagina, en la que
  * se introducen los datos generales
  * 
- * @authors Luis SetiÔøΩn, Victor Descalzo, David Edmundo Montenegro, Oscar
+ * @authors Luis Seti?n, Victor Descalzo, David Edmundo Montenegro, Oscar
  *          Entrecanales
  * @version Octubre 2024
  */
@@ -131,7 +131,7 @@ public class VentanaRegistroPaso2 {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
-						"ÔøΩSeguro que quieres cerrar el formulario? Los datos se perderÔøΩn", "Confirmar acciÔøΩn",
+						"?Seguro que quieres cerrar el formulario? Los datos se perder?n", "Confirmar acci?n",
 						JOptionPane.YES_NO_OPTION);
 
 				if (confirmar == JOptionPane.YES_OPTION) {
@@ -201,7 +201,7 @@ public class VentanaRegistroPaso2 {
 		pnlFormulario.add(pnlSWIFT);
 		pnlSWIFT.setLayout(new GridLayout(1, 2, 10, 0));
 
-		JLabel lblSWIFT = new JLabel("C√≥digo SWIFT/BIC:");
+		JLabel lblSWIFT = new JLabel("CÛdigo SWIFT/BIC:");
 		lblSWIFT.setBackground(Color.WHITE);
 		lblSWIFT.setFont(new Font("Dialog", Font.BOLD, 12));
 		pnlSWIFT.add(lblSWIFT);
@@ -221,7 +221,7 @@ public class VentanaRegistroPaso2 {
 		pnlFormulario.add(pnlFiscalyLegal);
 		pnlFiscalyLegal.setLayout(new GridLayout(1, 2, 10, 0));
 
-		JLabel lblFiscalyLegal = new JLabel("Informaci√≥n fiscal y legal:");
+		JLabel lblFiscalyLegal = new JLabel("InformaciÛn fiscal y legal:");
 		lblFiscalyLegal.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblFiscalyLegal.setBackground(Color.WHITE);
 		pnlFiscalyLegal.add(lblFiscalyLegal);
@@ -341,7 +341,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo no tiene mayusculas
 		if (!IBAN.matches("(.+?{2})([0-9]{22})")) {
 			txtBancaria.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"IBAN\" solo admite d√≠gitos para los √∫ltimos 22 caracteres";
+			String mensajeError = "El campo \"IBAN\" solo admite dÌgitos para los ˙ltimos 22 caracteres";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -407,7 +407,7 @@ public class VentanaRegistroPaso2 {
 		}
 
 		// error: el campo contiene caracteres especiales
-		if (!banco.matches("^[a-zA-Z0-9√§√∂√º√Ñ√ñ√ú]*$")) {
+		if (!banco.matches("^[a-zA-Z0-9‰ˆ¸ƒ÷‹]*$")) {
 			txtSucursal.setBackground(new Color(255, 220, 220));
 			String mensajeError = "El campo \"Nombre del banco y sucursal\" no debe contener caracteres especiales";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
@@ -455,7 +455,7 @@ public class VentanaRegistroPaso2 {
 		}
 
 		// error: el campo contiene caracteres especiales
-		if (!swift.matches("^[a-zA-Z0-9√§√∂√º√Ñ√ñ√ú]*$")) {
+		if (!swift.matches("^[a-zA-Z0-9‰ˆ¸ƒ÷‹]*$")) {
 			txtSWIFT.setBackground(new Color(255, 220, 220));
 			String mensajeError = "El campo \"codigo SWIFT\" no debe contener caracteres especiales";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
@@ -530,7 +530,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo esta en blanco
 		if (fyl.length() == 0) {
 			txtFiscalyLegal.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Informaci√≥n fiscal y legal\" es obligatorio";
+			String mensajeError = "El campo \"InformaciÛn fiscal y legal\" es obligatorio";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[3] = false;
 			semaforo = false;
@@ -540,7 +540,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo es excesivamente largo
 		if (fyl.length() > MAX_LONGITUD) {
 			txtFiscalyLegal.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Informaci√≥n fiscal y legal\" es demasiado largo";
+			String mensajeError = "El campo \"InformaciÛn fiscal y legal\" es demasiado largo";
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[3] = true;
 			semaforo = false;
@@ -594,10 +594,10 @@ public class VentanaRegistroPaso2 {
 		// mostramos un dialogo de error con informacion relativa al contexto
 		// si alguna de las anteriores comprobaciones no pasaron
 		if (campoErroneo || campoVacio || botonesNoPresionados) {
-			String mensajeErroneo = "Uno o m√°s campos contienen valores no v√°lidos.";
-			String mensajeVacio = "Uno o m√°s campos son obligatorios pero est√°n vac√≠os.";
+			String mensajeErroneo = "Uno o m·s campos contienen valores no v·lidos.";
+			String mensajeVacio = "Uno o m·s campos son obligatorios pero est·n vacÌos.";
 			String mensajeAvisoFin = "Compruebe aquellos resaltados en rojo.";
-			String mensajeBotones = "Es obligatorio la presi√≥n de los dos botones";
+			String mensajeBotones = "Es obligatorio la presiÛn de los dos botones";
 			String mensajeAviso = "";
 
 			if (campoErroneo && campoVacio) {
