@@ -83,7 +83,6 @@ public class VentanaRegistroPaso4 {
 		frmAltaDeProveedor.setResizable(false);
 		frmAltaDeProveedor.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(VentanaRegistroPaso4.class.getResource("/imagenes/icono.png")));
-		frmAltaDeProveedor.setTitle("Alta de proveedor");
 		frmAltaDeProveedor.setBounds(100, 100, 600, 550);
 		frmAltaDeProveedor.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
@@ -104,7 +103,7 @@ public class VentanaRegistroPaso4 {
 		pnlBotonera.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		pnlBotonera.setBorder(new EmptyBorder(12, 12, 12, 12));
 
-		JButton btnAnterior = new JButton("< Anterior");
+		JButton btnAnterior = new JButton("");
 		btnAnterior.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -114,7 +113,7 @@ public class VentanaRegistroPaso4 {
 		btnAnterior.setPreferredSize(new Dimension(100, 30));
 		pnlBotonera.add(btnAnterior);
 
-		JButton btnSiguiente = new JButton("Siguiente >");
+		JButton btnSiguiente = new JButton("");
 		btnSiguiente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -130,7 +129,7 @@ public class VentanaRegistroPaso4 {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
-						"?Seguro que quieres cerrar el formulario? Los datos se perder?n", "Confirmar acci?n",
+						VentanaPrincipal.mensajes.getString("registro4_cierre"), VentanaPrincipal.mensajes.getString("registro4_confirmar"),
 						JOptionPane.YES_NO_OPTION);
 
 				if (confirmar == JOptionPane.YES_OPTION) {
@@ -146,8 +145,8 @@ public class VentanaRegistroPaso4 {
 		// ---------------------------------------------
 
 		// configuramos las propiedades especificas de esta pagina
-		btnSiguiente.setText("Finalizar >");
-		lblTitulo.setText("Paso 4 de 4: Comprueba todos tus datos:");
+		btnSiguiente.setText(VentanaPrincipal.mensajes.getString("registro4_finalizar"));
+		lblTitulo.setText(VentanaPrincipal.mensajes.getString("registro4_titulo"));
 
 		// creamos el panel principal del formulario junto a los
 		// elementos y campos correspondientes a esta pagina
@@ -186,6 +185,9 @@ public class VentanaRegistroPaso4 {
 		
 		lblFiscalyLegal = new JLabel("");
 		pnlFormulario.add(lblFiscalyLegal);
+		
+		frmAltaDeProveedor.setTitle(VentanaPrincipal.mensajes.getString("registro4_ventana"));
+		btnAnterior.setText(VentanaPrincipal.mensajes.getString("registro4_anterior"));
 
 	}
 
@@ -213,15 +215,15 @@ public class VentanaRegistroPaso4 {
 	}
 	
 	public void setDatos(Registro datos) {
-		lblNombre.setText("Nombre o razón social del proveedor: " + datos.getNombre());
-		lblNIF.setText("Número de identificación fiscal: " + datos.getNif());
-		lblDireccion.setText("Dirección fiscal y comercial: " + datos.getDireccion());
-		lblTelefono.setText("Número de teléfono: " + datos.getTelefono());
-		lblCorreo.setText("Correo electrónico de contacto: " + datos.getCorreo());
-		lblNombreContacto.setText("Nombre de la persona de contacto: " + datos.getNombreContacto());
-		lblBancaria.setText("Cuenta bancaria (IBAN): " + datos.getIBAN());
-		lblSucursal.setText("Nombre del banco y sucursal: " + datos.getBanco());
-		lblSWIFT.setText("Código SWIFT/BIC: " + datos.getSWIFT());
-		lblFiscalyLegal.setText("Información fiscal y legal: " + datos.getFiscalYLegal());
+		lblNombre.setText(VentanaPrincipal.mensajes.getString("registro4_nombre") + datos.getNombre());
+		lblNIF.setText(VentanaPrincipal.mensajes.getString("registro4_nif") + datos.getNif());
+		lblDireccion.setText(VentanaPrincipal.mensajes.getString("registro4_direccion") + datos.getDireccion());
+		lblTelefono.setText(VentanaPrincipal.mensajes.getString("registro4_telefono") + datos.getTelefono());
+		lblCorreo.setText(VentanaPrincipal.mensajes.getString("registro4_email") + datos.getCorreo());
+		lblNombreContacto.setText(VentanaPrincipal.mensajes.getString("registro4_contacto") + datos.getNombreContacto());
+		lblBancaria.setText(VentanaPrincipal.mensajes.getString("registro4_IBAN") + datos.getIBAN());
+		lblSucursal.setText(VentanaPrincipal.mensajes.getString("registro4_Banco") + datos.getBanco());
+		lblSWIFT.setText(VentanaPrincipal.mensajes.getString("registro4_SWIFT") + datos.getSWIFT());
+		lblFiscalyLegal.setText(VentanaPrincipal.mensajes.getString("registro4_FYL") + datos.getFiscalYLegal());
 	}
 }
