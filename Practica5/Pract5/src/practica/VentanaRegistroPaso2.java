@@ -84,7 +84,6 @@ public class VentanaRegistroPaso2 {
 		frmAltaDeProveedor.setResizable(false);
 		frmAltaDeProveedor.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(VentanaRegistroPaso2.class.getResource("/imagenes/icono.png")));
-		frmAltaDeProveedor.setTitle("Alta de proveedor");
 		frmAltaDeProveedor.setBounds(100, 100, 600, 550);
 		frmAltaDeProveedor.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
@@ -105,7 +104,7 @@ public class VentanaRegistroPaso2 {
 		pnlBotonera.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		pnlBotonera.setBorder(new EmptyBorder(12, 12, 12, 12));
 
-		JButton btnAnterior = new JButton("< Anterior");
+		JButton btnAnterior = new JButton("");
 		btnAnterior.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -115,7 +114,7 @@ public class VentanaRegistroPaso2 {
 		btnAnterior.setPreferredSize(new Dimension(100, 30));
 		pnlBotonera.add(btnAnterior);
 
-		JButton btnSiguiente = new JButton("Siguiente >");
+		JButton btnSiguiente = new JButton("");
 		btnSiguiente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -131,7 +130,7 @@ public class VentanaRegistroPaso2 {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
-						"?Seguro que quieres cerrar el formulario? Los datos se perder?n", "Confirmar acci?n",
+						VentanaPrincipal.mensajes.getString("registro2_cierre"), VentanaPrincipal.mensajes.getString("registro2_confirmar"),
 						JOptionPane.YES_NO_OPTION);
 
 				if (confirmar == JOptionPane.YES_OPTION) {
@@ -147,7 +146,6 @@ public class VentanaRegistroPaso2 {
 		// ---------------------------------------------
 
 		// configuramos las propiedades especificas de esta pagina
-		lblTitulo.setText("Paso 2 de 4: Introduce datos bancarios:");
 
 		JPanel pnlFormulario = new JPanel();
 		pnlFormulario.setBackground(Color.WHITE);
@@ -161,7 +159,7 @@ public class VentanaRegistroPaso2 {
 		pnlFormulario.add(pnlBancaria);
 		pnlBancaria.setLayout(new GridLayout(1, 2, 10, 0));
 
-		JLabel lblBancaria = new JLabel("Cuenta bancaria (IBAN):");
+		JLabel lblBancaria = new JLabel("");
 		lblBancaria.setBackground(Color.WHITE);
 		lblBancaria.setFont(new Font("Dialog", Font.BOLD, 12));
 		pnlBancaria.add(lblBancaria);
@@ -181,7 +179,7 @@ public class VentanaRegistroPaso2 {
 		pnlFormulario.add(pnlSucursal);
 		pnlSucursal.setLayout(new GridLayout(1, 2, 10, 0));
 
-		JLabel lblSucursal = new JLabel("Nombre del banco y sucursal:");
+		JLabel lblSucursal = new JLabel("");
 		lblSucursal.setBackground(Color.WHITE);
 		lblSucursal.setFont(new Font("Dialog", Font.BOLD, 12));
 		pnlSucursal.add(lblSucursal);
@@ -201,7 +199,7 @@ public class VentanaRegistroPaso2 {
 		pnlFormulario.add(pnlSWIFT);
 		pnlSWIFT.setLayout(new GridLayout(1, 2, 10, 0));
 
-		JLabel lblSWIFT = new JLabel("Código SWIFT/BIC:");
+		JLabel lblSWIFT = new JLabel("");
 		lblSWIFT.setBackground(Color.WHITE);
 		lblSWIFT.setFont(new Font("Dialog", Font.BOLD, 12));
 		pnlSWIFT.add(lblSWIFT);
@@ -221,7 +219,7 @@ public class VentanaRegistroPaso2 {
 		pnlFormulario.add(pnlFiscalyLegal);
 		pnlFiscalyLegal.setLayout(new GridLayout(1, 2, 10, 0));
 
-		JLabel lblFiscalyLegal = new JLabel("Información fiscal y legal:");
+		JLabel lblFiscalyLegal = new JLabel("");
 		lblFiscalyLegal.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblFiscalyLegal.setBackground(Color.WHITE);
 		pnlFiscalyLegal.add(lblFiscalyLegal);
@@ -241,7 +239,7 @@ public class VentanaRegistroPaso2 {
 		pnlFormulario.add(pnlObligacionFiscal);
 		pnlObligacionFiscal.setLayout(new GridLayout(1, 0, 0, 0));
 
-		rdbtnObligacionFiscal = new JRadioButton("Estoy al corriente con mis obligaciones fiscales");
+		rdbtnObligacionFiscal = new JRadioButton("");
 		rdbtnObligacionFiscal.setFont(new Font("Dialog", Font.BOLD, 12));;
 		pnlObligacionFiscal.add(rdbtnObligacionFiscal);
 
@@ -250,9 +248,20 @@ public class VentanaRegistroPaso2 {
 		pnlFormulario.add(pnlAlta);
 		pnlAlta.setLayout(new GridLayout(1, 0, 0, 0));
 
-		rdbtnAlta = new JRadioButton("Estoy de alta en el Registro de Proveedores");
+		rdbtnAlta = new JRadioButton("");
 		rdbtnAlta.setFont(new Font("Dialog", Font.BOLD, 12));
 		pnlAlta.add(rdbtnAlta);
+		
+		frmAltaDeProveedor.setTitle(VentanaPrincipal.mensajes.getString("registro2_ventana"));
+		btnSiguiente.setText(VentanaPrincipal.mensajes.getString("registro2_siguiente"));
+		btnAnterior.setText(VentanaPrincipal.mensajes.getString("registro2_anterior"));
+		lblTitulo.setText(VentanaPrincipal.mensajes.getString("registro2_titulo"));
+		lblBancaria.setText(VentanaPrincipal.mensajes.getString("registro2_IBAN"));
+		lblSucursal.setText(VentanaPrincipal.mensajes.getString("registro2_Banco"));
+		lblSWIFT.setText(VentanaPrincipal.mensajes.getString("registro2_SWIFT"));
+		lblFiscalyLegal.setText(VentanaPrincipal.mensajes.getString("registro2_FYL"));
+		rdbtnObligacionFiscal.setText(VentanaPrincipal.mensajes.getString("registro2_obligfiscal"));
+		rdbtnAlta.setText(VentanaPrincipal.mensajes.getString("registro2_alta"));
 
 	}
 
@@ -297,11 +306,11 @@ public class VentanaRegistroPaso2 {
 		} else {
 			semaforo = true;
 		}
-
+		
 		// error: el campo esta en blanco
 		if (IBAN.length() == 0) {
 			txtBancaria.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"IBAN\" es obligatorio";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_IBAN_error_vacio");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = false;
 			semaforo = false;
@@ -311,7 +320,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo no tiene la longitud correcta
 		if (IBAN.length() != 24 && IBAN.length() > 0) { // Para que no choquen los dos errores
 			txtBancaria.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"IBAN\" debe tener 24 caracteres";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_IBAN_error_caracteres");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -321,7 +330,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo contiene letras minusculas
 		if (IBAN.matches("[a-z]")) {
 			txtBancaria.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"IBAN\" no debe contener letras minusculas";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_IBAN_error_minusculas");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -331,7 +340,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo no tiene mayusculas
 		if (!IBAN.matches("([A-Z]{2})(.+?{22})")) {
 			txtBancaria.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"IBAN\" solo puede tener letras mayusculas en los primeros dos caracteres";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_IBAN_error_primeros");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -341,7 +350,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo no tiene mayusculas
 		if (!IBAN.matches("(.+?{2})([0-9]{22})")) {
 			txtBancaria.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"IBAN\" solo admite dígitos para los últimos 22 caracteres";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_IBAN_error_ultimos");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -351,7 +360,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo tiene guiones
 		if (IBAN.contains("-")) {
 			txtBancaria.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"IBAN\" debe ser introducido sin guion";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_IBAN_error_guion");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -361,7 +370,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo contiene caracteres especiales
 		if (!IBAN.matches("^[a-zA-Z0-9]*$")) {
 			txtBancaria.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"IBAN\" no debe contener caracteres especiales";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_IBAN_error_especiales");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -385,11 +394,16 @@ public class VentanaRegistroPaso2 {
 		} else {
 			semaforo = true;
 		}
+		
+
+
+
+
 
 		// error: el campo esta en blanco
 		if (banco.length() == 0) {
 			txtSucursal.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre del banco y sucursal\" es obligatorio";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_Banco_error_vacio");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = false;
 			semaforo = false;
@@ -399,7 +413,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo no contiene letras
 		if (!banco.matches("^[a-zA-Z0]*$")) {
 			txtSucursal.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre del banco y sucursal\" debe contener letras.";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_Banco_error_letras");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -407,9 +421,9 @@ public class VentanaRegistroPaso2 {
 		}
 
 		// error: el campo contiene caracteres especiales
-		if (!banco.matches("^[a-zA-Z0-9äöüÄÖÜ]*$")) {
+		if (!banco.matches("^[a-zA-Z0-9ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]*$")) {
 			txtSucursal.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre del banco y sucursal\" no debe contener caracteres especiales";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_Banco_error_especiales");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -419,7 +433,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo es excesivamente largo
 		if (banco.length() > MAX_LONGITUD) {
 			txtSucursal.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre del banco y sucursal\" es demasiado largo";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_Banco_error_largo");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -443,11 +457,11 @@ public class VentanaRegistroPaso2 {
 		} else {
 			semaforo = true;
 		}
-
+		
 		// error: el campo esta en blanco
 		if (swift.length() == 0) {
 			txtSWIFT.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"codigo SWIFT\" es obligatorio";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_SWIFT_error_vacio");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[2] = false;
 			semaforo = false;
@@ -455,9 +469,9 @@ public class VentanaRegistroPaso2 {
 		}
 
 		// error: el campo contiene caracteres especiales
-		if (!swift.matches("^[a-zA-Z0-9äöüÄÖÜ]*$")) {
+		if (!swift.matches("^[a-zA-Z0-9ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]*$")) {
 			txtSWIFT.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"codigo SWIFT\" no debe contener caracteres especiales";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_SWIFT_error_especiales");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[2] = true;
 			semaforo = false;
@@ -467,7 +481,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo no debe contener letras minusculas
 		if (swift.matches("[a-z]")) {
 			txtSWIFT.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"codigo SWIFT\" no puede contener letras minusculas";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_SWIFT_error_minusculas");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[2] = true;
 			semaforo = false;
@@ -477,7 +491,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo tiene guiones
 		if (swift.contains("-")) {
 			txtSWIFT.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"codigo SWIFT\" debe ser introducido sin guion";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_SWIFT_error_guion");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[2] = true;
 			semaforo = false;
@@ -487,7 +501,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo tiene mas/menos de 11 caracteres (sin ser vacio)
 		if (swift.length() != 11 && swift.length() > 0) {
 			txtSWIFT.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"codigo SWIFT\" debe tener exactamente 11 caracteres";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_SWIFT_error_caracteres");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[2] = true;
 			semaforo = false;
@@ -497,7 +511,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo no tiene mayusculas
 		if (!swift.matches("([A-Z]{6})(.+?{4})")) {
 			txtSWIFT.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"codigo SWIFT\" solo puede tener letras mayusculas en los primeros seis caracteres";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_SWIFT_error_primeros");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[2] = true;
 			semaforo = false;
@@ -507,7 +521,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo no tiene mayusculas
 		if (!swift.matches("(.+?{6})([A-Z0-9]{4})")) {
 			txtSWIFT.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"codigo SWIFT\" solo pueden tener mayusculas o numeros en los cuatro ultimos caracteres";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_SWIFT_error_ultimos");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[2] = true;
 			semaforo = false;
@@ -526,11 +540,14 @@ public class VentanaRegistroPaso2 {
 	private void txtFiscalyLegalFocusLost() {
 		// txtFiscalyLegal
 		String fyl = txtFiscalyLegal.getText();
+		
 
+
+		
 		// error: el campo esta en blanco
 		if (fyl.length() == 0) {
 			txtFiscalyLegal.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Información fiscal y legal\" es obligatorio";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_FYL_error_vacio");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[3] = false;
 			semaforo = false;
@@ -540,7 +557,7 @@ public class VentanaRegistroPaso2 {
 		// error: el campo es excesivamente largo
 		if (fyl.length() > MAX_LONGITUD) {
 			txtFiscalyLegal.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Información fiscal y legal\" es demasiado largo";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro2_FYL_error_largo");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[3] = true;
 			semaforo = false;
@@ -594,10 +611,10 @@ public class VentanaRegistroPaso2 {
 		// mostramos un dialogo de error con informacion relativa al contexto
 		// si alguna de las anteriores comprobaciones no pasaron
 		if (campoErroneo || campoVacio || botonesNoPresionados) {
-			String mensajeErroneo = "Uno o más campos contienen valores no válidos.";
-			String mensajeVacio = "Uno o más campos son obligatorios pero están vacíos.";
-			String mensajeAvisoFin = "Compruebe aquellos resaltados en rojo.";
-			String mensajeBotones = "Es obligatorio la presión de los dos botones";
+			String mensajeErroneo = VentanaPrincipal.mensajes.getString("registro2_mensaje_erroneo");
+			String mensajeVacio = VentanaPrincipal.mensajes.getString("registro2_mensaje_vacio");
+			String mensajeAvisoFin = VentanaPrincipal.mensajes.getString("registro2_mensaje_fin");
+			String mensajeBotones = VentanaPrincipal.mensajes.getString("registro2_mensaje_botones");
 			String mensajeAviso = "";
 
 			if (campoErroneo && campoVacio) {
