@@ -1,4 +1,4 @@
-﻿package practica;
+package practica;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -68,7 +68,6 @@ public class VentanaRegistroPaso3 {
 		frmAltaDeProveedor.setResizable(false);
 		frmAltaDeProveedor.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(VentanaRegistroPaso3.class.getResource("/imagenes/icono.png")));
-		frmAltaDeProveedor.setTitle("Alta de proveedor");
 		frmAltaDeProveedor.setBounds(100, 100, 600, 550);
 		frmAltaDeProveedor.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
@@ -89,7 +88,7 @@ public class VentanaRegistroPaso3 {
 		pnlBotonera.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		pnlBotonera.setBorder(new EmptyBorder(12, 12, 12, 12));
 
-		JButton btnAnterior = new JButton("< Anterior");
+		JButton btnAnterior = new JButton(VentanaPrincipal.mensajes.getString("registro3_anterior"));
 		btnAnterior.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -99,7 +98,7 @@ public class VentanaRegistroPaso3 {
 		btnAnterior.setPreferredSize(new Dimension(100, 30));
 		pnlBotonera.add(btnAnterior);
 
-		JButton btnSiguiente = new JButton("Siguiente >");
+		JButton btnSiguiente = new JButton(VentanaPrincipal.mensajes.getString("registro3_siguiente"));
 		btnSiguiente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -115,7 +114,7 @@ public class VentanaRegistroPaso3 {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
-						"?Seguro que quieres cerrar el formulario? Los datos se perder?n", "Confirmar acci?n",
+						VentanaPrincipal.mensajes.getString("registro3_cierre"), VentanaPrincipal.mensajes.getString("registro3_confirmar"),
 						JOptionPane.YES_NO_OPTION);
 
 				if (confirmar == JOptionPane.YES_OPTION) {
@@ -131,13 +130,15 @@ public class VentanaRegistroPaso3 {
 		// ---------------------------------------------
 
 		// configuramos las propiedades especificas de esta pagina
-		lblTitulo.setText("Paso 3 de 4: Introduce documentación complementaria:");
+		lblTitulo.setText(VentanaPrincipal.mensajes.getString("registro3_titulo"));
 
 		// creamos el panel principal del formulario junto a los
 		// elementos y campos correspondientes a esta pagina
 		JPanel pnlFormulario = new JPanel();
 		pnlFormulario.setBackground(Color.WHITE);
 		frmAltaDeProveedor.getContentPane().add(pnlFormulario, BorderLayout.CENTER);
+		
+		frmAltaDeProveedor.setTitle(VentanaPrincipal.mensajes.getString("registro3_ventana"));
 
 	}
 

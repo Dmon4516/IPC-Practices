@@ -71,7 +71,7 @@ public class VentanaInforme {
 		frmInforme = new JFrame();
 		frmInforme.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/imagenes/icono.png")));
-		frmInforme.setTitle("Informe administrativo");
+		frmInforme.setTitle(VentanaPrincipal.mensajes.getString("informe_titulo"));
 		frmInforme.setResizable(true);
 		frmInforme.setBounds(100, 100, 760, 560);
 		frmInforme.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -81,10 +81,10 @@ public class VentanaInforme {
 		JMenuBar menuBar = new JMenuBar();
 		frmInforme.setJMenuBar(menuBar);
 
-		JMenu mnArchivo = new JMenu("Archivo");
+		JMenu mnArchivo = new JMenu(VentanaPrincipal.mensajes.getString("informe_archivo"));
 		menuBar.add(mnArchivo);
 
-		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
+		JMenuItem mntmNuevo = new JMenuItem(VentanaPrincipal.mensajes.getString("informe_nuevo"));
 		mntmNuevo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK));
 		mntmNuevo.addActionListener(new ActionListener() {
 
@@ -96,27 +96,27 @@ public class VentanaInforme {
 		});
 		mnArchivo.add(mntmNuevo);
 
-		JMenuItem mntmAbrir = new JMenuItem("Abrir...");
+		JMenuItem mntmAbrir = new JMenuItem(VentanaPrincipal.mensajes.getString("informe_abrir"));
 		mnArchivo.add(mntmAbrir);
 
-		JMenuItem mntmGuardar = new JMenuItem("Guardar");
+		JMenuItem mntmGuardar = new JMenuItem(VentanaPrincipal.mensajes.getString("informe_guardar"));
 		mnArchivo.add(mntmGuardar);
 
-		JMenuItem mntmGuardarComo = new JMenuItem("Guardar como...");
+		JMenuItem mntmGuardarComo = new JMenuItem(VentanaPrincipal.mensajes.getString("informe_guardar_como"));
 		mnArchivo.add(mntmGuardarComo);
 
-		JMenuItem mntmImprimir = new JMenuItem("Imprimir...");
+		JMenuItem mntmImprimir = new JMenuItem(VentanaPrincipal.mensajes.getString("informe_imprimir"));
 		mnArchivo.addSeparator();
 		mnArchivo.add(mntmImprimir);
 
-		JMenuItem mntmSalir = new JMenuItem("Salir");
+		JMenuItem mntmSalir = new JMenuItem(VentanaPrincipal.mensajes.getString("informe_salir"));
 		mnArchivo.addSeparator();
 		mnArchivo.add(mntmSalir);
 
-		JMenu mnEdicion = new JMenu("Edici\u00F3n");
+		JMenu mnEdicion = new JMenu(VentanaPrincipal.mensajes.getString("informe_edicion"));
 		menuBar.add(mnEdicion);
 
-		JMenuItem mntmCortar = new JMenuItem("Cortar");
+		JMenuItem mntmCortar = new JMenuItem(VentanaPrincipal.mensajes.getString("informe_cortar"));
 		mntmCortar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
 		mntmCortar.addActionListener(new ActionListener() {
 
@@ -128,7 +128,7 @@ public class VentanaInforme {
 		});
 		mnEdicion.add(mntmCortar);
 
-		JMenuItem mntmCopiar = new JMenuItem("Copiar");
+		JMenuItem mntmCopiar = new JMenuItem(VentanaPrincipal.mensajes.getString("informe_copiar"));
 		mntmCopiar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
 		mntmCopiar.addActionListener(new ActionListener() {
 
@@ -140,7 +140,7 @@ public class VentanaInforme {
 		});
 		mnEdicion.add(mntmCopiar);
 
-		JMenuItem mntmPegar = new JMenuItem("Pegar");
+		JMenuItem mntmPegar = new JMenuItem(VentanaPrincipal.mensajes.getString("informe_pegar"));
 		mntmPegar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK));
 		mntmPegar.addActionListener(new ActionListener() {
 
@@ -152,29 +152,29 @@ public class VentanaInforme {
 		});
 		mnEdicion.add(mntmPegar);
 
-		JMenuItem mntmBuscar = new JMenuItem("Buscar...");
+		JMenuItem mntmBuscar = new JMenuItem(VentanaPrincipal.mensajes.getString("informe_buscar"));
 		mnEdicion.addSeparator();
 		mnEdicion.add(mntmBuscar);
 
-		JMenuItem mntmReemplazar = new JMenuItem("Reemplazar...");
+		JMenuItem mntmReemplazar = new JMenuItem(VentanaPrincipal.mensajes.getString("informe_reemplazar"));
 		mnEdicion.add(mntmReemplazar);
 
-		JMenu mnFormato = new JMenu("Formato");
+		JMenu mnFormato = new JMenu(VentanaPrincipal.mensajes.getString("informe_formato"));
 		menuBar.add(mnFormato);
 
-		JMenu mnAlineacion = new JMenu("Alineaci\u00F3n...");
+		JMenu mnAlineacion = new JMenu(VentanaPrincipal.mensajes.getString("informe_alineacion"));
 		mnFormato.add(mnAlineacion);
 
-		JRadioButtonMenuItem rdbtnmntmCentrada = new JRadioButtonMenuItem("Centrada");
+		JRadioButtonMenuItem rdbtnmntmCentrada = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_centrada"));
 		mnAlineacion.add(rdbtnmntmCentrada);
 
-		JRadioButtonMenuItem rdbtnmntmIzquierda = new JRadioButtonMenuItem("Izquierda");
+		JRadioButtonMenuItem rdbtnmntmIzquierda = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_izquierda"));
 		mnAlineacion.add(rdbtnmntmIzquierda);
 
-		JRadioButtonMenuItem rdbtnmntmDerecha = new JRadioButtonMenuItem("Derecha");
+		JRadioButtonMenuItem rdbtnmntmDerecha = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_derecha"));
 		mnAlineacion.add(rdbtnmntmDerecha);
 
-		JMenu mnFuente = new JMenu("Fuente...");
+		JMenu mnFuente = new JMenu(VentanaPrincipal.mensajes.getString("informe_fuente"));
 		mnFormato.add(mnFuente);
 
 		JRadioButtonMenuItem rdbtnmntmArial = new JRadioButtonMenuItem("Arial");
@@ -195,7 +195,7 @@ public class VentanaInforme {
 		JRadioButtonMenuItem rdbtnmntmTimesNewRoman = new JRadioButtonMenuItem("Times New Roman");
 		mnFuente.add(rdbtnmntmTimesNewRoman);
 
-		JMenu mnTamano = new JMenu("Tama\u00F1o...");
+		JMenu mnTamano = new JMenu(VentanaPrincipal.mensajes.getString("informe_tamanio"));
 		mnFormato.add(mnTamano);
 
 		JRadioButtonMenuItem rdbtnmntm10 = new JRadioButtonMenuItem("10");
@@ -216,37 +216,37 @@ public class VentanaInforme {
 		JRadioButtonMenuItem rdbtnmntm36 = new JRadioButtonMenuItem("36");
 		mnTamano.add(rdbtnmntm36);
 
-		JMenu mnColor = new JMenu("Color...");
+		JMenu mnColor = new JMenu(VentanaPrincipal.mensajes.getString("informe_color"));
 		mnFormato.add(mnColor);
 
-		JRadioButtonMenuItem rdbtnmntmNegro = new JRadioButtonMenuItem("Negro");
+		JRadioButtonMenuItem rdbtnmntmNegro = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_negro"));
 		mnColor.add(rdbtnmntmNegro);
 
-		JRadioButtonMenuItem rdbtnmntmGris = new JRadioButtonMenuItem("Gris");
+		JRadioButtonMenuItem rdbtnmntmGris = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_gris"));
 		mnColor.add(rdbtnmntmGris);
 
-		JRadioButtonMenuItem rdbtnmntmBlanco = new JRadioButtonMenuItem("Blanco");
+		JRadioButtonMenuItem rdbtnmntmBlanco = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_blanco"));
 		mnColor.add(rdbtnmntmBlanco);
 
-		JRadioButtonMenuItem rdbtnmntmRojo = new JRadioButtonMenuItem("Rojo");
+		JRadioButtonMenuItem rdbtnmntmRojo = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_rojo"));
 		mnColor.add(rdbtnmntmRojo);
 
-		JRadioButtonMenuItem rdbtnmntmVerde = new JRadioButtonMenuItem("Verde");
+		JRadioButtonMenuItem rdbtnmntmVerde = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_verde"));
 		mnColor.add(rdbtnmntmVerde);
 
-		JRadioButtonMenuItem rdbtnmntmAzul = new JRadioButtonMenuItem("Azul");
+		JRadioButtonMenuItem rdbtnmntmAzul = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_azul"));
 		mnColor.add(rdbtnmntmAzul);
 
-		JMenu mnEstilo = new JMenu("Estilo...");
+		JMenu mnEstilo = new JMenu(VentanaPrincipal.mensajes.getString("informe_estilo"));
 		mnFormato.add(mnEstilo);
 
-		JCheckBoxMenuItem chckbxmntmNegrita = new JCheckBoxMenuItem("Negrita");
+		JCheckBoxMenuItem chckbxmntmNegrita = new JCheckBoxMenuItem(VentanaPrincipal.mensajes.getString("informe_negrita"));
 		mnEstilo.add(chckbxmntmNegrita);
 
-		JCheckBoxMenuItem chckbxmntmCursiva = new JCheckBoxMenuItem("Cursiva");
+		JCheckBoxMenuItem chckbxmntmCursiva = new JCheckBoxMenuItem(VentanaPrincipal.mensajes.getString("informe_cursiva"));
 		mnEstilo.add(chckbxmntmCursiva);
 
-		JCheckBoxMenuItem chckbxmntmSubrayado = new JCheckBoxMenuItem("Subrayado");
+		JCheckBoxMenuItem chckbxmntmSubrayado = new JCheckBoxMenuItem(VentanaPrincipal.mensajes.getString("informe_subrayado"));
 		mnEstilo.add(chckbxmntmSubrayado);
 
 		JToolBar tbBarraHerramientas = new JToolBar();
@@ -316,22 +316,22 @@ public class VentanaInforme {
 		tbBarraHerramientas.add(btnColor);
 
 		JPopupMenu mnpopColor = new JPopupMenu();
-		JRadioButtonMenuItem rdbtnpopNegro = new JRadioButtonMenuItem("Negro");
+		JRadioButtonMenuItem rdbtnpopNegro = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_negro"));
 		mnpopColor.add(rdbtnpopNegro);
 
-		JRadioButtonMenuItem rdbtnpopGris = new JRadioButtonMenuItem("Gris");
+		JRadioButtonMenuItem rdbtnpopGris = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_gris"));
 		mnpopColor.add(rdbtnpopGris);
 
-		JRadioButtonMenuItem rdbtnpopBlanco = new JRadioButtonMenuItem("Blanco");
+		JRadioButtonMenuItem rdbtnpopBlanco = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_blanco"));
 		mnpopColor.add(rdbtnpopBlanco);
 
-		JRadioButtonMenuItem rdbtnpopRojo = new JRadioButtonMenuItem("Rojo");
+		JRadioButtonMenuItem rdbtnpopRojo = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_rojo"));
 		mnpopColor.add(rdbtnpopRojo);
 
-		JRadioButtonMenuItem rdbtnpopVerde = new JRadioButtonMenuItem("Verde");
+		JRadioButtonMenuItem rdbtnpopVerde = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_verde"));
 		mnpopColor.add(rdbtnpopVerde);
 
-		JRadioButtonMenuItem rdbtnpopAzul = new JRadioButtonMenuItem("Azul");
+		JRadioButtonMenuItem rdbtnpopAzul = new JRadioButtonMenuItem(VentanaPrincipal.mensajes.getString("informe_azul"));
 		mnpopColor.add(rdbtnpopAzul);
 
 		JButton btnTextoIzquierda = new JButton("");
@@ -372,7 +372,7 @@ public class VentanaInforme {
 				// mostramos un mensaje segun queden cambios sin guardar o no
 				if (guardado == true) {
 					int confirmar = JOptionPane.showConfirmDialog(frmInforme,
-							"?Seguro que quieres cerrar el editor de informes?", "Confirmar acci?n",
+							VentanaPrincipal.mensajes.getString("informe_cierre"), VentanaPrincipal.mensajes.getString("informe_confirmar"),
 							JOptionPane.YES_NO_OPTION);
 
 					if (confirmar == JOptionPane.YES_OPTION) {
@@ -381,8 +381,8 @@ public class VentanaInforme {
 					}
 				} else {
 					int confirmar = JOptionPane.showConfirmDialog(frmInforme,
-							"?Seguro que quieres cerrar el editor de informes?\nLos cambios sin guardar se perder?n",
-							"Confirmar acci?n", JOptionPane.YES_NO_OPTION);
+							VentanaPrincipal.mensajes.getString("informe_recierre"),
+							VentanaPrincipal.mensajes.getString("informe_confirmar"), JOptionPane.YES_NO_OPTION);
 
 					if (confirmar == JOptionPane.YES_OPTION) {
 						VentanaPrincipal.ventanaInforme = false;
