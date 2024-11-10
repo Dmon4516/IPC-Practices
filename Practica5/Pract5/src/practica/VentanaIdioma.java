@@ -1,113 +1,158 @@
 package practica;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import java.awt.BorderLayout;
-
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
 
+
+/**
+ * Interfaz que permite seleccionar el idioma a mostrar en el programa
+ * @authors Luis Setién, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
+ * @version Noviembre 2024
+ */
 public class VentanaIdioma {
-
-	private JFrame frame;
-	private String locale;
-	private JComboBox comboBox;
-
+	
+	private JFrame frmIdioma;
+	private JComboBox cbIdioma;
+	private Locale localizacion = null;
+	private ResourceBundle mensajes = null;
+	private boolean iniciador;
+	
 	/**
-	 * Launch the application.
+	 * metodo principal de la clase
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaIdioma window = new VentanaIdioma();
-					window.frame.setVisible(true);
+					VentanaIdioma window = new VentanaIdioma(true);
+					window.frmIdioma.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
+	
 	/**
-	 * Create the application.
+	 * metodo constructor de la clase
+	 * @param iniciador: true si es el punto de arranque, false si no lo es
 	 */
-	public VentanaIdioma() {
+	public VentanaIdioma(boolean iniciador) {
+		this.iniciador = iniciador;
+		initialize();
+	}
+	
+	/**
+	 * metodo constructor de la clase
+	 * @param iniciador: true si es el punto de arranque, false si no lo es
+	 * @param localizacion: la configuracion de localizacion establecida
+	 * @param mensajes: el almacen de mensajes en el idioma establecido
+	 */
+	public VentanaIdioma(boolean iniciador, Locale localizacion, ResourceBundle mensajes) {
+		this.iniciador = iniciador;
+		this.localizacion = localizacion;
+		this.mensajes = mensajes;
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * metodo que se encarga de inicializar el contenido de la ventana
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-		
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"English", "Espa\u00F1ol"}));
-		comboBox.setBounds(78, 79, 95, 20);
-		panel.add(comboBox);
+		// si no hay un idioma establecido, se utiliza el castellano
+		if (localizacion == null) {
+			localizacion = new Locale.Builder().setLanguage("es").setRegion("ES").build();
+			mensajes = ResourceBundle.getBundle("local/Local", localizacion);
+		}
 		
 		
+		// inicializamos y establecemos los atributos basicos de la ventana
+		frmIdioma = new JFrame();
+		frmIdioma.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaIdioma.class.getResource("/imagenes/icono2.png")));
+		frmIdioma.setTitle(mensajes.getString("idioma_titulo"));
+		frmIdioma.setResizable(false);
+		frmIdioma.setBounds(100, 100, 300, 180);
+		frmIdioma.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		JButton btnOk = new JButton("OK");
-		btnOk.addMouseListener(new MouseAdapter() {
+		
+		// creamos el panel principal, estableciendo margenes y espaciado
+		JPanel pnlIdioma = new JPanel();
+		frmIdioma.getContentPane().add(pnlIdioma, BorderLayout.CENTER);
+		pnlIdioma.setLayout(new GridLayout(3, 3, 10, 10));
+		pnlIdioma.setBorder(new EmptyBorder(20, 60, 30, 60));
+		
+		
+		// creamos las etiquetas y campos desplegables 
+		JLabel lblIdioma = new JLabel(mensajes.getString("idioma_subtitulo"));
+		pnlIdioma.add(lblIdioma);
+		
+		cbIdioma = new JComboBox();
+		cbIdioma.setModel(new DefaultComboBoxModel(new String[] {"English", "Castellano"}));
+		pnlIdioma.add(cbIdioma);
+		
+		
+		// creamos el boton de aceptar junto a su manejador de eventos
+		// para lograr que al pulsarlo se produzca la accion relevante
+		JButton btnAceptar = new JButton(mensajes.getString("idioma_aceptar"));
+		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
-				btnOK();
-				
+				btnAceptarMouseClicked();
 			}
 		});
-		btnOk.setBounds(78, 124, 89, 23);
-		panel.add(btnOk);
-		
-		frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-            	cierraPrograma();
-            }
-        });
+		pnlIdioma.add(btnAceptar);
 	}
-
-	protected void cierraPrograma() {
-		// TODO Auto-generated method stub
-		frame.dispose();
-	}
-
-	protected void btnOK() {
-		//System.out.println(comboBox.getSelectedItem());
+	
+	
+	/**
+	 * metodo que se encarga de la accion realizada al pulsar el boton de aceptar
+	 */
+	protected void btnAceptarMouseClicked() {
 		
-		if (comboBox.getSelectedItem().equals("English")) {
-			locale = "en";
-			VentanaPrincipal.localizacion = new Locale.Builder().setLanguage("en").setRegion("US").build();
-			VentanaPrincipal.mensajes = ResourceBundle.getBundle("local/Local", VentanaPrincipal.localizacion);
+		// establecemos y configuramos el idioma seleccionado
+		if (cbIdioma.getSelectedItem().equals("English")) {
+			localizacion = new Locale.Builder().setLanguage("en").setRegion("US").build();
+			mensajes = ResourceBundle.getBundle("local/Local", localizacion);
 		} else {
-			locale = "es";
-			VentanaPrincipal.localizacion = new Locale.Builder().setLanguage("es").setRegion("ES").build();
-			VentanaPrincipal.mensajes = ResourceBundle.getBundle("local/Local", VentanaPrincipal.localizacion);
+			localizacion = new Locale.Builder().setLanguage("es").setRegion("ES").build();
+			mensajes = ResourceBundle.getBundle("local/Local", localizacion);
 		}
-		System.out.println(locale);
+		
+		// segun el punto de arranque del programa, se crea la ventana principal de cero
+		// o bien se le pasan los datos del idioma actual y se refrescan las cadenas textuales
+		if (iniciador == true) {
+			VentanaPrincipal ventana = new VentanaPrincipal(localizacion, mensajes);
+			ventana.setVisible(true);
+		} else {
+			VentanaPrincipal.localizacion = localizacion;
+			VentanaPrincipal.mensajes = mensajes;
+			VentanaPrincipal.refrescarIdioma();
+		}
+		
+		// se cierra la ventana una vez configurado el idioma
+		this.frmIdioma.dispose();
 	}
-
+	
+	
+	/**
+	 * metodo que permite modificar la visibilidad de esta ventana
+	 * @param visibilidad: true para hacerla visible, false invisible
+	 */
 	public void setVisible(boolean visibilidad) {
-		this.frame.setVisible(visibilidad);
+		this.frmIdioma.setVisible(visibilidad);
 	}
 }

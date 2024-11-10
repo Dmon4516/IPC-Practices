@@ -1,17 +1,13 @@
-﻿package practica;
+package practica;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
 import java.awt.GridLayout;
-
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -26,18 +22,21 @@ import java.util.ResourceBundle;
 /**
  * Interfaz que permite acceder a las distintas secciones del programa
  * @authors Luis Setién, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
- * @version Octubre 2024
+ * @version Noviembre 2024
  */
 public class VentanaPrincipal {
 	
-	private JFrame frmPrincipal;
-	
-	// atributos globales para el alta de proveedor
+	private static JFrame frmPrincipal;
 	public static Registro datosRegistro;
 	public static Map<Integer, Object> ventanasRegistro = new HashMap<>();
 	public static boolean ventanaInforme = false;
 	public static Locale localizacion = null;
 	public static ResourceBundle mensajes = null;
+	public static JButton btnAltaProveedor;
+	public static JButton btnConsultas;
+	public static JButton btnInforme;
+	public static JButton btnSalir;
+	public static JButton btnIdioma;
 	
 	/**
 	 * metodo principal de la clase
@@ -47,7 +46,7 @@ public class VentanaPrincipal {
 			public void run() {
 				try {
 					VentanaPrincipal window = new VentanaPrincipal();
-					window.frmPrincipal.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,20 +62,32 @@ public class VentanaPrincipal {
 	}
 	
 	/**
+	 * metodo constructor de la clase
+	 * @param localizacion: la configuracion de localizacion establecida
+	 * @param mensajes: el almacen de mensajes en el idioma establecido
+	 */
+	public VentanaPrincipal(Locale localizacion, ResourceBundle mensajes) {
+		VentanaPrincipal.localizacion = localizacion;
+		VentanaPrincipal.mensajes = mensajes;
+		initialize();
+	}
+	
+	/**
 	 * metodo que se encarga de inicializar el contenido de la ventana
 	 */
 	private void initialize() {
 		
-		// si no hay idioma, se pone espanol
+		// si no hay un idioma establecido, se utiliza el castellano
 		if (localizacion == null) {
 			localizacion = new Locale.Builder().setLanguage("es").setRegion("ES").build();
 			mensajes = ResourceBundle.getBundle("local/Local", localizacion);
 		}
 		
+		
 		// inicializamos y establecemos los atributos basicos de la ventana
 		frmPrincipal = new JFrame();
 		frmPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/imagenes/icono.png")));
-		frmPrincipal.setTitle("Administración Perfumería");
+		frmPrincipal.setTitle(mensajes.getString("principal_titulo"));
 		frmPrincipal.setResizable(false);
 		frmPrincipal.setBounds(100, 100, 400, 340);
 		frmPrincipal.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -90,7 +101,7 @@ public class VentanaPrincipal {
 		
 		// creamos los botones junto a sus manejadores de eventos
 		// para lograr que al pulsarlos se produzca la accion relevante
-		JButton btnAltaProveedor = new JButton("Alta de proveedor");
+		btnAltaProveedor = new JButton(mensajes.getString("principal_registro"));
 		btnAltaProveedor.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -99,15 +110,7 @@ public class VentanaPrincipal {
 		});
 		gridPanel.add(btnAltaProveedor);
 		
-		JButton btnConsultas = new JButton("Consulta de compraventas");
-		btnConsultas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				btnConsultasMouseClicked();
-			}
-		});
-		
-		JButton btnInforme = new JButton("Informe administrativo");
+		btnInforme = new JButton(mensajes.getString("principal_informe"));
 		btnInforme.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -115,20 +118,20 @@ public class VentanaPrincipal {
 			}
 		});
 		gridPanel.add(btnInforme);
+		
+		btnConsultas = new JButton(mensajes.getString("principal_consulta"));
+		btnConsultas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnConsultasMouseClicked();
+			}
+		});
 		gridPanel.add(btnConsultas);
 		
 		JPanel panel = new JPanel();
 		gridPanel.add(panel);
 		
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				cierraPrograma();
-			}
-		});
-		
-		JButton btnIdioma = new JButton("Cambiar idioma");
+		btnIdioma = new JButton(mensajes.getString("principal_idioma"));
 		btnIdioma.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -136,6 +139,14 @@ public class VentanaPrincipal {
 			}
 		});
 		gridPanel.add(btnIdioma);
+		
+		btnSalir = new JButton(mensajes.getString("principal_salir"));
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				cierraPrograma();
+			}
+		});
 		gridPanel.add(btnSalir);
 		
 		
@@ -150,18 +161,13 @@ public class VentanaPrincipal {
 	}
 	
 	
-	protected void btnIdiomaMouseClicked() {
-		VentanaIdioma ventana = new VentanaIdioma();
-		ventana.setVisible(true);
-	}
-
 	/**
 	 * metodo que se encarga de la accion realizada al pulsar el boton de alta de proveedor
 	 */
 	private void btnAltaProveedorMouseClicked() {
 		// si el usuario ya tiene este formulario abierto, le avisamos
 		if (!ventanasRegistro.isEmpty()) {
-			String mensajeError = "Este formulario ya se encuentra abierto";
+			String mensajeError = mensajes.getString("principal_msg_abierto");
 	        JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 	        return;
 		}
@@ -190,16 +196,48 @@ public class VentanaPrincipal {
 	}
 	
 	/**
-	 * metodo que se encarga de realizar un cierre seguro del programa
+	 * metodo que se encarga de la accion realizada al pulsar el boton de cambiar idioma
 	 */
-	private void cierraPrograma() {
-		
+	private void btnIdiomaMouseClicked() {
 		if ((ventanasRegistro.isEmpty() == false) || ventanaInforme) {
-        	String mensajeError = "Cierre todas las ventanas antes de salir del programa";
+        	String mensajeError = mensajes.getString("principal_msg_idioma");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			return;
         }
-		
+		VentanaIdioma ventana = new VentanaIdioma(false, localizacion, mensajes);
+		ventana.setVisible(true);
+	}
+	
+	/**
+	 * metodo que se encarga de realizar un cierre seguro del programa
+	 */
+	private void cierraPrograma() {
+		if ((ventanasRegistro.isEmpty() == false) || ventanaInforme) {
+        	String mensajeError = mensajes.getString("principal_msg_salir");
+			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+        }
         System.exit(0);
+	}
+	
+	/**
+	 * metodo que permite modificar la visibilidad de esta ventana
+	 * @param visibilidad: true para hacerla visible, false invisible
+	 */
+	public void setVisible(boolean visibilidad) {
+		VentanaPrincipal.frmPrincipal.setVisible(visibilidad);
+	}
+	
+	/**
+	 * metodo que refresca todas las cadenas y etiquetas de texto
+	 * presentes en la interfaz para actualizar el idioma mostrado
+	 */
+	public static void refrescarIdioma() {
+		frmPrincipal.setTitle(mensajes.getString("principal_titulo"));
+		btnAltaProveedor.setText(mensajes.getString("principal_registro"));
+		btnConsultas.setText(mensajes.getString("principal_consulta"));
+		btnInforme.setText(mensajes.getString("principal_informe"));
+		btnSalir.setText(mensajes.getString("principal_salir"));
+		btnIdioma.setText(mensajes.getString("principal_idioma"));
 	}
 }

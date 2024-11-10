@@ -1,4 +1,4 @@
-﻿package practica;
+package practica;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -27,7 +27,7 @@ import java.awt.event.FocusEvent;
  * Interfaz tipo formulario que permite introducir los datos necesarios para darse de alta
  *     esta clase en concreto representa la primera pagina, en la que se introducen los datos generales
  * @authors Luis Setién, Victor Descalzo, David Edmundo Montenegro, Oscar Entrecanales
- * @version Octubre 2024
+ * @version Noviembre 2024
  */
 public class VentanaRegistroPaso1 {
 	
@@ -84,7 +84,7 @@ public class VentanaRegistroPaso1 {
 		frmAltaDeProveedor = new JFrame();
 		frmAltaDeProveedor.setResizable(false);
 		frmAltaDeProveedor.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaRegistroPaso1.class.getResource("/imagenes/icono.png")));
-		frmAltaDeProveedor.setTitle("Alta de proveedor");
+		frmAltaDeProveedor.setTitle(VentanaPrincipal.mensajes.getString("registro1_titulo"));
 		frmAltaDeProveedor.setBounds(100, 100, 600, 550);
 		frmAltaDeProveedor.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
@@ -107,7 +107,7 @@ public class VentanaRegistroPaso1 {
 		pnlBotonera.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		pnlBotonera.setBorder(new EmptyBorder(12, 12, 12, 12));
 		
-		JButton btnAnterior = new JButton("< Anterior");
+		JButton btnAnterior = new JButton(VentanaPrincipal.mensajes.getString("registro1_anterior"));
 		btnAnterior.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -117,7 +117,7 @@ public class VentanaRegistroPaso1 {
 		btnAnterior.setPreferredSize(new Dimension(100, 30));
 		pnlBotonera.add(btnAnterior);
 		
-		JButton btnSiguiente = new JButton("Siguiente >");
+		JButton btnSiguiente = new JButton(VentanaPrincipal.mensajes.getString("registro1_siguiente"));
 		btnSiguiente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -136,8 +136,8 @@ public class VentanaRegistroPaso1 {
             	
             	semaforo = true;
                 int confirmar = JOptionPane.showConfirmDialog(frmAltaDeProveedor,
-                    "¿Seguro que quieres cerrar el formulario? Los datos se perderán",
-                    "Confirmar acción",
+                	VentanaPrincipal.mensajes.getString("registro1_msg_salir"),
+                	VentanaPrincipal.mensajes.getString("registro1_msg_salir_titulo"),
                     JOptionPane.YES_NO_OPTION);
                 
                 if (confirmar == JOptionPane.YES_OPTION) {
@@ -157,7 +157,7 @@ public class VentanaRegistroPaso1 {
 		
 		// configuramos las propiedades especificas de esta pagina
 		btnAnterior.setVisible(false);
-		lblTitulo.setText(VentanaPrincipal.mensajes.getString("registro1_titulo"));
+		lblTitulo.setText(VentanaPrincipal.mensajes.getString("registro1_subtitulo"));
 		
 		
 		// creamos el panel principal del formulario junto a los
@@ -171,7 +171,7 @@ public class VentanaRegistroPaso1 {
 		
 		// creamos las etiquetas junto a los campos de texto correspondientes
 		// con manejadores de eventos para poder avisar oportunamente si el campo introducido no es valido
-		JLabel lblNombre = new JLabel("Nombre o raz\u00F3n social del proveedor:");
+		JLabel lblNombre = new JLabel(VentanaPrincipal.mensajes.getString("registro1_nombre"));
 		pnlFormulario.add(lblNombre);
 		
 		txtNombre = new JTextField();
@@ -184,7 +184,7 @@ public class VentanaRegistroPaso1 {
 		pnlFormulario.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		JLabel lblNIF = new JLabel("N\u00FAmero de identificaci\u00F3n fiscal:");
+		JLabel lblNIF = new JLabel(VentanaPrincipal.mensajes.getString("registro1_nif"));
 		pnlFormulario.add(lblNIF);
 		
 		txtNIF = new JTextField();
@@ -197,7 +197,7 @@ public class VentanaRegistroPaso1 {
 		pnlFormulario.add(txtNIF);
 		txtNIF.setColumns(10);
 		
-		JLabel lblDireccion = new JLabel("Direcci\u00F3n fiscal y comercial:");
+		JLabel lblDireccion = new JLabel(VentanaPrincipal.mensajes.getString("registro1_direccion"));
 		pnlFormulario.add(lblDireccion);
 		
 		txtDireccion = new JTextField();
@@ -210,7 +210,7 @@ public class VentanaRegistroPaso1 {
 		pnlFormulario.add(txtDireccion);
 		txtDireccion.setColumns(10);
 		
-		JLabel lblTelefono = new JLabel("N\u00FAmero de tel\u00E9fono:");
+		JLabel lblTelefono = new JLabel(VentanaPrincipal.mensajes.getString("registro1_telefono"));
 		pnlFormulario.add(lblTelefono);
 		
 		txtTelefono = new JTextField();
@@ -223,7 +223,7 @@ public class VentanaRegistroPaso1 {
 		pnlFormulario.add(txtTelefono);
 		txtTelefono.setColumns(10);
 		
-		JLabel lblCorreo = new JLabel("Correo electr\u00F3nico de contacto:");
+		JLabel lblCorreo = new JLabel(VentanaPrincipal.mensajes.getString("registro1_correo"));
 		pnlFormulario.add(lblCorreo);
 		
 		txtCorreo = new JTextField();
@@ -236,7 +236,7 @@ public class VentanaRegistroPaso1 {
 		pnlFormulario.add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
-		JLabel lblNombreContacto = new JLabel("Nombre de la persona de contacto:");
+		JLabel lblNombreContacto = new JLabel(VentanaPrincipal.mensajes.getString("registro1_nombre_contacto"));
 		pnlFormulario.add(lblNombreContacto);
 		
 		txtNombreContacto = new JTextField();
@@ -305,7 +305,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo esta en blanco
 		if (nombre.length() == 0) {
 			txtNombre.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre o raz\u00F3n social del proveedor\" es obligatorio";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nombre_obligatorio");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = false;
 			semaforo = false;
@@ -315,7 +315,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene numeros
 		if (nombre.matches(".*[0-9].*")) {
 			txtNombre.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre o raz\u00F3n social del proveedor\" no debe contener números";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nombre_numeros");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -325,7 +325,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene caracteres especiales
 		if (nombre.matches(".*[^\\p{L}\\s].*")) {
 			txtNombre.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre o raz\u00F3n social del proveedor\" no debe contener caracteres especiales";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nombre_caracteres");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -335,7 +335,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo es excesivamente largo
 		if (nombre.length() > MAX_LONGITUD) {
 			txtNombre.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre o raz\u00F3n social del proveedor\" es demasiado largo";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nombre_longitud");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[0] = true;
 			semaforo = false;
@@ -369,7 +369,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo esta en blanco
 		if (nif.length() == 0) {
 			txtNIF.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" es obligatorio";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nif_obligatorio");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = false;
 			semaforo = false;
@@ -379,7 +379,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo no tiene la longitud adecuada
 		if (nif.length() != 9) {
 			txtNIF.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" debe tener exactamente longitud 9";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nif_longitud");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -389,7 +389,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene letras minusculas
 		if (nif.matches(".*[a-z].*")) {
 			txtNIF.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" no debe contener letras minúsculas";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nif_minusculas");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -399,7 +399,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo no contiene letra
 		if (!nif.matches(".*[A-Z].*")) {
 			txtNIF.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" debe contener una letra";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nif_letras");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -409,7 +409,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo no contiene numeros
 		if (!nif.matches(".*[0-9].*")) {
 			txtNIF.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" debe contener números";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nif_numeros");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -419,7 +419,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene caracteres especiales
 		if (nif.matches(".*[^A-Z0-9].*")) {
 			txtNIF.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de identificaci\u00F3n fiscal\" no debe contener caracteres especiales";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nif_caracteres");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[1] = true;
 			semaforo = false;
@@ -453,7 +453,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo esta en blanco
 		if (direccion.length() == 0) {
 			txtDireccion.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Direcci\u00F3n fiscal y comercial\" es obligatorio";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_direccion_obligatorio");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[2] = false;
 			semaforo = false;
@@ -463,7 +463,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo es excesivamente largo
 		if (direccion.length() > MAX_LONGITUD) {
 			txtDireccion.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Direcci\u00F3n fiscal y comercial\" es demasiado largo";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_direccion_longitud");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[2] = true;
 			semaforo = false;
@@ -497,7 +497,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo esta en blanco
 		if (telefono.length() == 0) {
 			txtTelefono.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de tel\u00E9fono\" es obligatorio";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_telefono_obligatorio");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[3] = false;
 			semaforo = false;
@@ -507,7 +507,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo no tiene la longitud adecuada
 		if (telefono.length() != 9) {
 			txtTelefono.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de tel\u00E9fono\" debe tener exactamente longitud 9";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_telefono_longitud");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[3] = true;
 			semaforo = false;
@@ -517,7 +517,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene espacios
 		if (telefono.matches(".*\\s.*")) {
 			txtTelefono.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de tel\u00E9fono\" no debe contener espacios";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_telefono_espacios");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[3] = true;
 			semaforo = false;
@@ -527,7 +527,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene letras
 		if (!telefono.matches("^[0-9]+$")) {
 			txtTelefono.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"N\u00FAmero de tel\u00E9fono\" solo debe contener números";
+			String mensajeError =VentanaPrincipal.mensajes.getString("registro1_msg_telefono_letras");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[3] = true;
 			semaforo = false;
@@ -561,7 +561,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo esta en blanco
 		if (correo.length() == 0) {
 			txtCorreo.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Correo electr\u00F3nico de contacto\" es obligatorio";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_correo_obligatorio");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[4] = false;
 			semaforo = false;
@@ -571,7 +571,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene espacios
 		if (correo.matches(".*\\s.*")) {
 			txtCorreo.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Correo electr\u00F3nico de contacto\" no debe contener espacios";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_correo_espacios");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[4] = true;
 			semaforo = false;
@@ -581,7 +581,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo no sigue el formato adecuado
 		if (!correo.matches("^[a-zA-Z0-9]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
 			txtCorreo.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Correo electr\u00F3nico de contacto\" no sigue el formato adecuado\nEjemplo: cliente@example.com";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_correo_formato");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[4] = true;
 			semaforo = false;
@@ -615,7 +615,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo esta en blanco
 		if (nombreContacto.length() == 0) {
 			txtNombreContacto.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre de la persona de contacto\" es obligatorio";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nombre_contacto_obligatorio");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[5] = false;
 			semaforo = false;
@@ -625,7 +625,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene numeros
 		if (nombreContacto.matches(".*[0-9].*")) {
 			txtNombreContacto.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre de la persona de contacto\" no debe contener números";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nombre_contacto_numeros");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[5] = true;
 			semaforo = false;
@@ -635,7 +635,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo contiene caracteres especiales
 		if (nombreContacto.matches(".*[^\\p{L}\\s].*")) {
 			txtNombreContacto.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre de la persona de contacto\" no debe contener caracteres especiales";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nombre_contacto_caracteres");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[5] = true;
 			semaforo = false;
@@ -645,7 +645,7 @@ public class VentanaRegistroPaso1 {
 		// error: el campo es excesivamente largo
 		if (nombreContacto.length() > MAX_LONGITUD) {
 			txtNombreContacto.setBackground(new Color(255, 220, 220));
-			String mensajeError = "El campo \"Nombre de la persona de contacto\" es demasiado largo";
+			String mensajeError = VentanaPrincipal.mensajes.getString("registro1_msg_nombre_contacto_longitud");
 			JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			camposErroneos[5] = true;
 			semaforo = false;
@@ -709,9 +709,9 @@ public class VentanaRegistroPaso1 {
 		// mostramos un dialogo de error con informacion relativa al contexto
 		// si alguna de las anteriores comprobaciones no pasaron
 		if (campoErroneo || campoVacio) {
-			String mensajeErroneo = "Uno o más campos contienen valores no válidos.";
-			String mensajeVacio = "Uno o más campos son obligatorios pero están vacíos.";
-			String mensajeAviso = "Compruebe aquellos resaltados en rojo.";
+			String mensajeErroneo = VentanaPrincipal.mensajes.getString("registro1_msg_campos_erroneos");
+			String mensajeVacio = VentanaPrincipal.mensajes.getString("registro1_msg_campos_vacios");
+			String mensajeAviso = VentanaPrincipal.mensajes.getString("registro1_msg_campos_aviso");
 			
 			if (campoErroneo && campoVacio) {
 				mensajeAviso = mensajeErroneo + "\n" + mensajeVacio + "\n" + mensajeAviso;
