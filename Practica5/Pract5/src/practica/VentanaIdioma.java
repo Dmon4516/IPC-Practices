@@ -101,7 +101,7 @@ public class VentanaIdioma {
 		pnlIdioma.add(lblIdioma);
 		
 		cbIdioma = new JComboBox();
-		cbIdioma.setModel(new DefaultComboBoxModel(new String[] {"English", "Castellano"}));
+		cbIdioma.setModel(new DefaultComboBoxModel(new String[] {"Castellano", "English"}));
 		pnlIdioma.add(cbIdioma);
 		
 		
