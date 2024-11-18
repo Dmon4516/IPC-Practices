@@ -1,0 +1,28 @@
+
+@media (max-width: 576px) {
+	#par-formulario {
+		background-color: red !important;
+	}
+}
+
+@media (min-width: 576px) {
+	#par-formulario {
+		background-color: magenta !important;
+	}
+}
+
+#grupo-formulario-1a {
+		background-color: blue !important;
+	}
+	
+#grupo-formulario-1b {
+	background-color: green !important;
+}
+
+#grupo-formulario-2a {
+		background-color: dodgerblue !important;
+	}
+	
+#grupo-formulario-2b {
+	background-color: lime !important;
+}
