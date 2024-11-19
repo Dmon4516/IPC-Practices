@@ -41,7 +41,7 @@
 
 
 /* layout para moviles */
-@media (max-width: 576px) {
+@media (max-width: 980px) {
     #grupo-formulario-1a {
         padding: 1em 1.2em 1.5em 1.2em;
     }
@@ -56,10 +56,11 @@
 }
 
 /* layout para escritorio */
-@media (min-width: 576px) {
+@media (min-width: 980px) {
+	
     #par-formulario {
         width: 100%!;
-        max-width: 570px;
+        max-width: 95%;
     }
     
     .form-label {
@@ -71,8 +72,11 @@
 
     }
 
-	
-    
+	.form-input {
+		display: inline-block;
+		width: 100%;
+	}
+
     #grupo-formulario-1a {
         padding: 1em 1em 1em 1em;
 		max-width: 48%;
