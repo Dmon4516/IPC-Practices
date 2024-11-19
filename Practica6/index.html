@@ -15,20 +15,26 @@ rel="stylesheet">
         <!--Parte 1 (Información del Comprador)-->
 
         <!--Parte 2 (Información de contacto)-->
-        <div class="form-group"> <!--Pattern pendientes-->
-            <label for="telefono" class="form-label">Teléfono:</label>
-            <input type="text" class="form-control" id="telefono" placeholder="Proporcione un número de teléfono donde se le pueda contactar para consultas sobre el pedido." name="telefono">
+        <div class="form-group">
+            <label for="telefono" class="form-label">Teléfono (*):</label>
+            <input type="text" pattern="[0-9]{9}" class="form-control" id="telefono" placeholder="Número de teléfono de contacto." name="telefono" required>
         </div>
 
         <div class="form-group">
-            <label for="email" class="form-label">Correo electrónico:</label>
-            <input type="email" class="form-control" id="email" placeholder="Ingrese una dirección de correo electrónico válida para recibir confirmaciones y actualizaciones sobre su equipo." name="email">
+            <label for="email" class="form-label">Correo electrónico (*):</label>
+            <input type="email" class="form-control" id="email" placeholder="Dirección de correo electrónico válida." name="email" required>
         </div>
 
-        <div class="form-group"> <!--Hacer con radio-->
-            <label for="calternativo" class="form-label">Correo electrónico:</label>
-            <input type="text" class="form-control" id="calternativo" placeholder="" name="calternativo">
+        <div class="form-group">
+            <label for="talternativo" class="form-label">Teléfono alternativo:</label>
+            <input type="text" pattern="[0-9]{9}" class="form-control" id="talternativo" placeholder="Número de teléfono de contacto." name="telefono">
         </div>
+
+        <div class="form-group">
+            <label for="calternativo" class="form-label">Correo electrónico alternativo:</label>
+            <input type="email" class="form-control" id="calternativo" placeholder="Dirección de correo electrónico válida." name="calternativo">
+        </div>
+        
 
         <!--Parte 3 (Información del Pedido)-->
         
@@ -38,6 +44,19 @@ rel="stylesheet">
         <!--Parte 5 (Metodo de pago)-->
 
         <!--Parte 6 (Confirmacion y aceptacion)-->
+        <p><a href="https://web.unican.es/">Por favor, lea nuestros términos y condiciones antes de completar su pedido.</a></p>
+
+        <div class="form-check">
+            <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="terminos" required> Acepto los términos y condiciones de compra. (*)
+            </label>
+        </div>
+
+        <div class="form-check">
+            <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="promociones"> Deseo recibir información sobre promociones y nuevos productos.
+            </label>
+        </div>
 
         <!--Parte 7 (Comentarios y sugerencias)-->
 
