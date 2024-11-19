@@ -33,6 +33,13 @@
     max-width: 570px;
 }
 
+#grupo-formulario-1a, #grupo-formulario-1b {
+	border-radius: 10px;
+	padding: 1em 1.5em 1.5em 1.5em;
+	margin-bottom: 1.5em;
+}
+
+
 /* layout para moviles */
 @media (max-width: 576px) {
     #grupo-formulario-1a {
@@ -52,7 +59,8 @@
 @media (min-width: 576px) {
     #par-formulario {
         width: 100%!;
-        max-width: 570px;
+        max-width: 90%;
+		margin-left: auto;
     }
     
     .form-label {
@@ -61,14 +69,19 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+
     }
+
+	
     
     #grupo-formulario-1a {
         padding: 1em 1em 1em 1em;
+		max-width: 48%;
     }
 
     #grupo-formulario-1b {
         padding: 1em 1em 1em 1em;
+		max-width: 48%;
     }
     
     #grupo-formulario-2b {
