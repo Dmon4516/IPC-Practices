@@ -59,8 +59,7 @@
 @media (min-width: 576px) {
     #par-formulario {
         width: 100%!;
-        max-width: 90%;
-		margin-left: auto;
+        max-width: 570px;
     }
     
     .form-label {
