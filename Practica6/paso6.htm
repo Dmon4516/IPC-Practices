@@ -56,7 +56,7 @@
 			}
 		
 			#grupo-formulario-1b {
-				padding: 1em 1.2em 1.5em 1.2em;
+				padding: 1em 1.2em 2em 1.2em;
 			}
 			
 			#grupo-formulario-2b {
@@ -80,11 +80,11 @@
 			}
 			
 			#grupo-formulario-1a {
-				padding: 1em 1em 1em 2em;
+				padding: 1em 1em 1em 1em;
 			}
 		
 			#grupo-formulario-1b {
-				padding: 1em 1em 1em 1em;
+				padding: 1em 1em 2em 1em;
 			}
 			
 			#grupo-formulario-2b {
@@ -100,19 +100,28 @@
 		<td class="container">
 			
 			<h1 style="margin-bottom: 24px; margin-top:24px">Formulario de compra:</h1>
-			<h2 style="margin-bottom: 24px">Paso 6 de 8: Confirme terminos y condiciones:</h2>
+			<h2 style="margin-bottom: 24px">Paso 6 de 6: Introduzca datos finales y confirmación:</h2>
 			<hr style="margin-bottom: 32px">
 			
 			<div class="container-md">
-				<form action="paso7.htm">
+				<form action="fin.htm">
 					<div class="row">
 						<div class="col-xl-6" id="grupo-formulario-1a">
 							<div id="par-formulario" class="form-group row">
-                                <p><a href="https://web.unican.es/">Por favor, lea nuestros términos y condiciones antes de completar su pedido.</a></p>
+								<label for="comentarios" class="col-sm-4 col-form-label form-label">Comentarios:</label>
 								<div class="col-sm-8">
+									<textarea class="form-control" id="comentarios" name="comentarios" rows="5" cols="35" placeholder="Si así lo desea, escriba aquí comentarios o sugerencias sobre nuestros productos"></textarea>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-xl-6" id="grupo-formulario-1b">
+							<div id="par-formulario">
+                                <p><a href="https://web.unican.es/">Por favor, lea nuestros términos y condiciones antes de completar su pedido.</a></p>
+								<div class="form-check">
 									<input class="form-check-input" type="checkbox" name="terminos" required> Acepto los términos y condiciones de compra.
                                 </div>
-                                <div class="col-sm-8">
+                                <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="promociones"> Deseo recibir información sobre promociones y nuevos productos.
                                 </div>
                             </div>
@@ -125,7 +134,7 @@
 							<div id="par-formulario" class="form-group row">
 								<label for="empresa" class="col-sm-4 col-form-label form-label"></label>
 								<div class="col-sm-8">
-									<button type="submit" class="btn btn-primary" id="boton-siguiente">Siguiente ></button>
+									<button type="submit" class="btn btn-primary" id="boton-siguiente">Enviar</button>
 								</div>
 							</div>
 						</div>
