@@ -11,87 +11,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 	
 	<!-- hoja de estilo de depuracion empleada para la realizacion de la practica -->
-	<!-- <link href="css/depuracion.css" rel="stylesheet"> -->
+	<link href="css/depuracion.css" rel="stylesheet">
 	
-	<style>
-		#cuerpo {
-			margin-left: auto;
-			margin-right: auto;
-		}
-		
-		#sub-etiqueta {
-			margin-top: auto;
-			margin-bottom: auto;
-		}
-		
-		#boton-siguiente {
-			/*margin-top: 1.5em;*/
-			float: right;
-		}
-		
-		#grupo-formulario-1a {
-			margin-left: auto;
-			margin-right: auto;
-			background-color: #cde8ea;
-			max-width: 570px;
-		}
-		
-		#grupo-formulario-1b {
-			margin-left: auto;
-			margin-right: auto;
-			background-color: #fff5c0;
-			max-width: 570px;
-		}
-		
-		#grupo-formulario-2b {
-			margin-left: auto;
-			margin-right: auto;
-			max-width: 570px;
-		}
-		
-		/* layout para moviles */
-		@media (max-width: 576px) {
-			#grupo-formulario-1a {
-				padding: 1em 1.2em 1.5em 1.2em;
-			}
-		
-			#grupo-formulario-1b {
-				padding: 1em 1.2em 1.5em 1.2em;
-			}
-			
-			#grupo-formulario-2b {
-				padding: 1em 1.2em 1em 1.2em;
-			}
-		}
-		
-		/* layout para escritorio */
-		@media (min-width: 576px) {
-			#par-formulario {
-				width: 100%!;
-				max-width: 570px;
-			}
-			
-			.form-label {
-				display: inline-block;
-				text-align: right;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
-			
-			#grupo-formulario-1a {
-				padding: 1em 1em 1em 1em;
-			}
-		
-			#grupo-formulario-1b {
-				padding: 1em 1em 1em 1em;
-			}
-			
-			#grupo-formulario-2b {
-				padding: 1.5em 1em 1em 1em;
-			}
-		}
-	</style>
+	
 </head>
 
 <body>
@@ -99,14 +21,14 @@
 	<tr>
 		<td class="container">
 			
-			<h1 style="margin-bottom: 24px; margin-top:24px">Formulario de compra:</h1>
-			<h2 style="margin-bottom: 24px">Paso 3 de 6: Introduzca información del pedido:</h2>
-			<hr style="margin-bottom: 32px">
+			<h1>Formulario de compra:</h1>
+			<h3>Paso 3 de 6: Introduzca información del pedido:</h2>
+			<hr>
 			
 			<div class="container-md">
-				<form action="paso3.htm">
+				<form action="paso4.html">
 					<div class="row">
-						<div class="col-xl-6" id="grupo-formulario-1a">
+						<div class="col-xl-12" id="grupo-formulario-1c">
 							<div id="par-formulario" class="form-group row">
 								<label for="fecha" class="col-sm-4 col-form-label form-label">Fecha del pedido:</label>
 								<div class="col-sm-8">
@@ -277,17 +199,18 @@
 		
 							
 					
-					<div class="row">
-						<div class="col-xl-6" id="grupo-formulario-2a"></div>
-						<div class="col-xl-6" id="grupo-formulario-2b">
-							<div id="par-formulario" class="form-group row">
-								<label for="empresa" class="col-sm-4 col-form-label form-label"></label>
-								<div class="col-sm-8">
-									<button type="submit" class="btn btn-primary" id="boton-siguiente">Siguiente ></button>
+						<div class="row">
+							<div class="col-xl-6" id="grupo-formulario-2a"></div>
+							<div class="col-xl-6" id="grupo-formulario-2b">
+								<div id="par-formulario" class="form-group row">
+									<label for="empresa" class="col-sm-4 col-form-label form-label"></label>
+									<div class="column-gap-sm-12" id="botones">
+											<button type="button" class="btn btn-primary" id="boton-anterior" onclick="location.href='paso2.html'" style="margin-right: 10px;">Anterior</button>
+											<button type="submit" class="btn btn-primary" id="boton-siguiente">Siguiente</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 				</form>
 			</div>
 		</td>

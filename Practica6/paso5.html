@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<title>Formulario de compra</title>
+	<link rel="icon" href="image/favicon.png" type="image/png">
+	
+	<!-- ultima version soportada de bootstrap 4.x -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+	
+	<!-- hoja de estilo de depuracion empleada para la realizacion de la practica -->
+	<link href="css/depuracion.css" rel="stylesheet">
+	
+</head>
+
+
+<body>
+<table id="cuerpo" border="0" width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="container">
+			
+			<h1>Formulario de compra</h1>
+			<h2>Paso 5 de 6: Metodo de pago</h2>
+			<hr>
+
+            <div class="container-md">
+                <form action="paso6.html">
+                    <div class="row">
+                        <div class="col-xl-6" id="grupo-formulario-1a">
+                            <div id="par-formulario" class="form-group row">
+								<label for="etiqueta" class="col-sm-4 col-form-label form-label"><h4>Seleccionar metodo de pago</h4></label>
+								<div class="col-sm-8" id="sub-etiqueta">
+									<i>Elija cómo desea realizar el pago por su pedido.</i>
+								</div>
+							</div>
+                            <div id="par-formulario" class="form-group row">
+                                <div class="col-sm-8">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pago" id="tarjetaCredito" value="1" required onclick="mostrarDetallesPago()">
+                                        <label class="form-check-label" for="tarjetaCredito">Tarjeta de crédito/déwbito</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pago" id="transferenciaBancaria" value="2" onclick="mostrarDetallesPago()">
+                                        <label class="form-check-label" for="transferenciaBancaria">Transferencia bancaria</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pago" id="PayPal" value="3" onclick="mostrarDetallesPago()">
+                                        <label class="form-check-label" for="PayPal">PayPal</label>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6" id="grupo-formulario-1b" style="display:none;">
+                        <div id="par-formulario" class="form-group row">
+                            <label for="etiqueta" class="col-md-12 col-form-label form-label"><h4>Detalles de pago</h4></label>
+                        </div>
+                        <div id="detallesTarjeta" style="display:none;">
+                            <div id="par-formulario" class="form-group row">
+                                <label for="numeroTarjeta" class="col-sm-4 col-form-label form-label">Número de tarjeta:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="numeroTarjeta" name="numeroTarjeta" placeholder="Número de tarjeta">
+                                </div>
+                            </div>
+                            <div id="par-formulario" class="form-group row">
+                                <label for="fechaExpiracion" class="col-sm-4 col-form-label form-label">Fecha de expiración:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="fechaExpiracion" name="fechaExpiracion" placeholder="MM/AA">
+                                </div>
+                            </div>
+                            <div id="par-formulario" class="form-group row">
+                                <label for="cvv" class="col-sm-4 col-form-label form-label">CVV:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="cvv" name="cvv" placeholder="CVV">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="detallesTransferencia" style="display:none;">
+                            <div id="par-formulario" class="form-group row">
+                                <label for="nombreBanco" class="col-sm-4 col-form-label form-label">Nombre del banco:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="nombreBanco" name="nombreBanco" placeholder="Nombre del banco">
+                                </div>
+                            </div>
+                            <div id="par-formulario" class="form-group row">
+                                <label for="numeroCuenta" class="col-sm-4 col-form-label form-label">Número de cuenta:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="numeroCuenta" name="numeroCuenta" placeholder="Número de cuenta">
+                                </div>
+                            </div>
+                            <div id="par-formulario" class="form-group row">
+                                <label for="iban" class="col-sm-4 col-form-label form-label">IBAN:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="iban" name="iban" placeholder="IBAN">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="detallesPayPal" style="display:none;">
+                            <div id="par-formulario" class="form-group row">
+                                <label for="emailPayPal" class="col-sm-4 col-form-label form-label">Correo electrónico asociado a PayPal:</label>
+                                <div class="col-sm-8">
+                                    <input type="email" class="form-control" id="emailPayPal" name="emailPayPal" placeholder="Correo electrónico">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6" id="grupo-formulario-2b">
+                        <div id="par-formulario" class="form-group row">
+                            <div class="col-sm-2" id="botones">
+                                <button type="button" class="btn btn-primary" id="boton-anterior" onclick="location.href='paso4.html'" style="margin-right: 10px;">Anterior</button>
+                                <button type="submit" class="btn btn-primary" id="boton-siguiente">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </td>
+</tr>
+</table>
+
+<script>
+function mostrarDetallesPago() {
+    const tarjetaCredito = document.getElementById('tarjetaCredito').checked;
+    const transferenciaBancaria = document.getElementById('transferenciaBancaria').checked;
+    const PayPal = document.getElementById('PayPal').checked;
+
+    document.getElementById('grupo-formulario-1b').style.display = 'block';
+
+    document.getElementById('detallesTarjeta').style.display = tarjetaCredito ? 'block' : 'none';
+    document.getElementById('detallesTransferencia').style.display = transferenciaBancaria ? 'block' : 'none';
+    document.getElementById('detallesPayPal').style.display = PayPal ? 'block' : 'none';
+}
+</script>

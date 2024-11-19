@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<title>Formulario de compra</title>
+	<link rel="icon" href="image/favicon.png" type="image/png">
+	
+	<!-- ultima version soportada de bootstrap 4.x -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+	
+	<!-- hoja de estilo de depuracion empleada para la realizacion de la practica -->
+	<link href="css/depuracion.css" rel="stylesheet">
+	
+</head>
+
+
+<body>
+<table id="cuerpo" border="0" width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="container">
+			
+			<h1>Formulario de compra</h1>
+			<h2>Paso 4 de 6: Metodo de envio</h2>
+			<hr>
+
+            <div class="container-md">
+                <form action="paso5.html">
+                    <div class="row">
+                        <div class="col-xl-6" id="grupo-formulario-1a">
+                            <div id="par-formulario" class="form-group row">
+								<label for="etiqueta" class="col-sm-4 col-form-label form-label"><h4>Método de envio</h4></label>
+								<div class="col-sm-8" id="sub-etiqueta">
+									<i>Seleccione cómo desea que se envíen los productos.</i>
+								</div>
+							</div>
+                            <div id="par-formulario" class="form-group row">
+
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="envio" id="envioEstandar" value="1" required>
+                                            <label class="form-check-label" for="envioEstandar">Envío estándar (7-10 días hábiles)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="envio" id="envioExpress" value="2">
+                                            <label class="form-check-label" for="envioExpress">Envío exprés (2-3 días hábiles)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="envio" id="recogidaTienda" value="3">
+                                            <label class="form-check-label" for="recogidaTienda">Recogida en tienda (sin costo adicional)</label>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-6" id="grupo-formulario-1b">
+							<div id="par-formulario" class="form-group row">
+								<label for="etiqueta" class="col-sm-4 col-form-label form-label"><h4>Dirección de envío</h4></label>
+								<div class="col-sm-8" id="sub-etiqueta">
+									<i>Si desea que se envíen los productos a una dirección distinta, complete esta sección.</i>
+								</div>
+							</div>
+							
+							<div id="par-formulario" class="form-group row">
+								<label for="direccion" class="col-sm-4 col-form-label form-label">Calle y número:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="direccion" name="direccion" placeholder="Indique la dirección con el número">
+								</div>
+							</div>
+							<div id="par-formulario" class="form-group row">
+								<label for="ciudad" class="col-sm-4 col-form-label form-label">Ciudad:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Indique la ciudad">
+								</div>
+							</div>
+							<div id="par-formulario" class="form-group row">
+								<label for="codpostal" class="col-sm-4 col-form-label form-label">Código postal:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="codpostal" name="codpostal" placeholder="Indique el número de código postal">
+								</div>
+							</div>
+							<div id="par-formulario" class="form-group row">
+								<label for="provincia" class="col-sm-4 col-form-label form-label">Provincia o Estado:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="provincia" name="provincia" placeholder="Indique la provincia o estado">
+								</div>
+							</div>
+							<div id="par-formulario" class="form-group row">
+                                <label for="pais" class="col-sm-4 col-form-label form-label">País:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="pais" name="pais">
+                                        <option value="Alemania">Alemania</option>
+                                        <option value="Austria">Austria</option>
+                                        <option value="Bélgica">Bélgica</option>
+                                        <option value="Bulgaria">Bulgaria</option>
+                                        <option value="Chipre">Chipre</option>
+                                        <option value="Croacia">Croacia</option>
+                                        <option value="Dinamarca">Dinamarca</option>
+                                        <option value="España" selected>España</option>
+                                        <option value="Eslovaquia">Eslovaquia</option>
+                                        <option value="Eslovenia">Eslovenia</option>
+                                        <option value="Estonia">Estonia</option>
+                                        <option value="Estados Unidos">Estados Unidos</option>
+                                        <option value="Finlandia">Finlandia</option>
+                                        <option value="Francia">Francia</option>
+                                        <option value="Grecia">Grecia</option>
+                                        <option value="Hungría">Hungría</option>
+                                        <option value="Irlanda">Irlanda</option>
+                                        <option value="Italia">Italia</option>
+                                        <option value="Letonia">Letonia</option>
+                                        <option value="Lituania">Lituania</option>
+                                        <option value="Luxemburgo">Luxemburgo</option>
+                                        <option value="Malta">Malta</option>
+                                        <option value="Países Bajos">Países Bajos</option>
+                                        <option value="Polonia">Polonia</option>
+                                        <option value="Portugal">Portugal</option>
+                                        <option value="Reino Unido">Reino Unido</option>
+                                        <option value="República Checa">República Checa</option>
+                                        <option value="Rumania">Rumania</option>
+                                        <option value="Suecia">Suecia</option>
+                                    </select>
+                                </div>
+							</div>
+						</div>
+                        <div class="col-xl-12" id="grupo-formulario-3">
+                            <div id="par-formulario" class="form-group row">
+                                <label for="comentarios" class="col-sm-4 col-form-label form-label"><h4>Instrucciones especiales para el envío:</h4></label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" id="comentarios" name="comentarios" rows="3" placeholder="Si hay instrucciones específicas para la entrega (Por ejemplo, horario de entrega), por favor indíquelas aquí."></textarea>
+                                </div>
+                            </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xl-6" id="grupo-formulario-2a"></div>
+                        <div class="col-xl-6" id="grupo-formulario-2b">
+                            <div id="par-formulario" class="form-group row">
+                                <label for="empresa" class="col-sm-4 col-form-label form-label"></label>
+                                <div class="column-gap-sm-12" id="botones">
+                                        <button type="button" class="btn btn-primary" id="boton-anterior" onclick="location.href='paso3.html'" style="margin-right: 10px;">Anterior</button>
+                                        <button type="submit" class="btn btn-primary" id="boton-siguiente">Siguiente</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+
+        </td>
+    </tr>
+</table>
