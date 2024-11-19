@@ -30,20 +30,99 @@
                     <div class="row">
                         <div class="col-xl-6" id="grupo-formulario-1a">
                             <div id="par-formulario" class="form-group row">
-                                <label for="envio" class="col-sm-4 col-form-label form-label">Metodo de envio:</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control" id="envio" name="envio" required>
-                                        <option value="1">Envio estandar</option>
-                                        <option value="2">Envio express</option>
-                                        <option value="3">Recogida en tienda</option>
-                                    </select>
-                                </div>
+								<label for="etiqueta" class="col-sm-4 col-form-label form-label"><h4>Metodo de envio</h4></label>
+								<div class="col-sm-8" id="sub-etiqueta">
+									<i>Seleccione como desea que se envien los productos.</i>
+								</div>
+							</div>
+                            <div id="par-formulario" class="form-group row">
+                                    <label for="envio" class="col-sm-4 col-form-label form-label">Metodo de envio:</label>
+                                    <div class="col-sm-8">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="envio" id="envioEstandar" value="1" required>
+                                            <label class="form-check-label" for="envioEstandar">Envio estandar</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="envio" id="envioExpress" value="2">
+                                            <label class="form-check-label" for="envioExpress">Envio express</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="envio" id="recogidaTienda" value="3">
+                                            <label class="form-check-label" for="recogidaTienda">Recogida en tienda</label>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                         
                         <div class="col-xl-6" id="grupo-formulario-1b">
-                            
-                        </div>
+							<div id="par-formulario" class="form-group row">
+								<label for="etiqueta" class="col-sm-4 col-form-label form-label"><h4>Contacto alternativo</h4></label>
+								<div class="col-sm-8" id="sub-etiqueta">
+									<i>Proporcione un número de telefono o correo electrónico en caso de que no se pueda contactar al principal.</i>
+								</div>
+							</div>
+							
+							<div id="par-formulario" class="form-group row">
+								<label for="direccion" class="col-sm-4 col-form-label form-label">Calle y número:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="direccion" name="direccion" placeholder="Indique la dirección con el número">
+								</div>
+							</div>
+							<div id="par-formulario" class="form-group row">
+								<label for="ciudad" class="col-sm-4 col-form-label form-label">Ciudad:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Indique la ciudad">
+								</div>
+							</div>
+							<div id="par-formulario" class="form-group row">
+								<label for="codpostal" class="col-sm-4 col-form-label form-label">Código postal:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="codpostal" name="codpostal" placeholder="Indique el número de código postal">
+								</div>
+							</div>
+							<div id="par-formulario" class="form-group row">
+								<label for="provincia" class="col-sm-4 col-form-label form-label">Provincia o Estado:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="provincia" name="provincia" placeholder="Indique la provincia o estado">
+								</div>
+							</div>
+							<div id="par-formulario" class="form-group row">
+                                <label for="pais" class="col-sm-4 col-form-label form-label">País:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="pais" name="pais">
+                                        <option value="Alemania">Alemania</option>
+                                        <option value="Austria">Austria</option>
+                                        <option value="Bélgica">Bélgica</option>
+                                        <option value="Bulgaria">Bulgaria</option>
+                                        <option value="Chipre">Chipre</option>
+                                        <option value="Croacia">Croacia</option>
+                                        <option value="Dinamarca">Dinamarca</option>
+                                        <option value="España" selected>España</option>
+                                        <option value="Eslovaquia">Eslovaquia</option>
+                                        <option value="Eslovenia">Eslovenia</option>
+                                        <option value="Estonia">Estonia</option>
+                                        <option value="Estados Unidos">Estados Unidos</option>
+                                        <option value="Finlandia">Finlandia</option>
+                                        <option value="Francia">Francia</option>
+                                        <option value="Grecia">Grecia</option>
+                                        <option value="Hungría">Hungría</option>
+                                        <option value="Irlanda">Irlanda</option>
+                                        <option value="Italia">Italia</option>
+                                        <option value="Letonia">Letonia</option>
+                                        <option value="Lituania">Lituania</option>
+                                        <option value="Luxemburgo">Luxemburgo</option>
+                                        <option value="Malta">Malta</option>
+                                        <option value="Países Bajos">Países Bajos</option>
+                                        <option value="Polonia">Polonia</option>
+                                        <option value="Portugal">Portugal</option>
+                                        <option value="Reino Unido">Reino Unido</option>
+                                        <option value="República Checa">República Checa</option>
+                                        <option value="Rumania">Rumania</option>
+                                        <option value="Suecia">Suecia</option>
+                                    </select>
+                                </div>
+							</div>
+						</div>
                     </div>
                     
                     <div class="row">
