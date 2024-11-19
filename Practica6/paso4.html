@@ -22,7 +22,7 @@
 		<td class="container">
 			
 			<h1>Formulario de compra</h1>
-			<h2>Paso 4 de 8: Metodo de envio</h2>
+			<h2>Paso 4 de 6: Metodo de envio</h2>
 			<hr>
 
             <div class="container-md">
@@ -30,21 +30,21 @@
                     <div class="row">
                         <div class="col-xl-6" id="grupo-formulario-1a">
                             <div id="par-formulario" class="form-group row">
-								<label for="etiqueta" class="col-sm-4 col-form-label form-label"><h4>Metodo de envio</h4></label>
+								<label for="etiqueta" class="col-sm-4 col-form-label form-label"><h4>Método de envio</h4></label>
 								<div class="col-sm-8" id="sub-etiqueta">
-									<i>Seleccione como desea que se envien los productos.</i>
+									<i>Seleccione cómo desea que se envíen los productos.</i>
 								</div>
 							</div>
                             <div id="par-formulario" class="form-group row">
-                                    <label for="envio" class="col-sm-4 col-form-label form-label">Metodo de envio:</label>
-                                    <div class="col-sm-8">
+
+                                    <div class="col-sm-10">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="envio" id="envioEstandar" value="1" required>
-                                            <label class="form-check-label" for="envioEstandar">Envio estandar (7-10 dias habiles)</label>
+                                            <label class="form-check-label" for="envioEstandar">Envío estándar (7-10 días hábiles)</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="envio" id="envioExpress" value="2">
-                                            <label class="form-check-label" for="envioExpress">Envio express (2-3 dias habiles)</label>
+                                            <label class="form-check-label" for="envioExpress">Envío exprés (2-3 días hábiles)</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="envio" id="recogidaTienda" value="3">
@@ -56,9 +56,9 @@
                         
                         <div class="col-xl-6" id="grupo-formulario-1b">
 							<div id="par-formulario" class="form-group row">
-								<label for="etiqueta" class="col-sm-4 col-form-label form-label"><h4>Contacto alternativo</h4></label>
+								<label for="etiqueta" class="col-sm-4 col-form-label form-label"><h4>Dirección de envío</h4></label>
 								<div class="col-sm-8" id="sub-etiqueta">
-									<i>Proporcione un número de telefono o correo electrónico en caso de que no se pueda contactar al principal.</i>
+									<i>Si desea que se envíen los productos a una dirección distinta, complete esta sección.</i>
 								</div>
 							</div>
 							
@@ -123,6 +123,13 @@
                                 </div>
 							</div>
 						</div>
+                        <div class="col-xl-12" id="grupo-formulario-3">
+                            <div id="par-formulario" class="form-group row">
+                                <label for="comentarios" class="col-sm-4 col-form-label form-label"><h4>Instrucciones especiales para el envío:</h4></label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" id="comentarios" name="comentarios" rows="3" placeholder="Si hay instrucciones específicas para la entrega (Por ejemplo, horario de entrega), por favor indíquelas aquí."></textarea>
+                                </div>
+                            </div>
                     </div>
                     
                     <div class="row">
@@ -130,8 +137,8 @@
                         <div class="col-xl-6" id="grupo-formulario-2b">
                             <div id="par-formulario" class="form-group row">
                                 <label for="empresa" class="col-sm-4 col-form-label form-label"></label>
-                                <div class="col-sm-5">
-                                        <button type="button" class="btn btn-primary" id="boton-anterior" onclick="location.href='paso3.html'">Anterior</button>
+                                <div class="column-gap-sm-12" id="botones">
+                                        <button type="button" class="btn btn-primary" id="boton-anterior" onclick="location.href='paso3.html'" style="margin-right: 10px;">Anterior</button>
                                         <button type="submit" class="btn btn-primary" id="boton-siguiente">Siguiente</button>
                                 </div>
                             </div>
