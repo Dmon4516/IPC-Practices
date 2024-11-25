@@ -12,8 +12,8 @@ const transactionsData = [
 // DOM Elements
 const table = document.getElementById('tablaCompraventa');
 const tableBody = table.querySelector('tbody');
-const bgColorPicker = document.getElementById('generalColor');
-const textColorPicker = document.getElementById('textoColor');
+const generalColor = document.getElementById('generalColor');
+const textoColor = document.getElementById('textoColor');
 const fontSizeSelector = document.getElementById('fontSizeSelector');
 const columnToggles = document.querySelectorAll('.column-toggle');
 
@@ -35,12 +35,12 @@ function populateTable(data) {
 }
 
 // Style Customization
-bgColorPicker.addEventListener('input', function() {
+generalColor.addEventListener('input', function() {
     document.body.style.backgroundColor = this.value;
     
 });
 
-textColorPicker.addEventListener('input', function() {
+textoColor.addEventListener('input', function() {
     document.body.style.color = this.value;
     const tableText = table.querySelectorAll('td, th');
     tableText.forEach(cell => {
@@ -66,8 +66,8 @@ columnToggles.forEach(toggle => {
 // Initial table population and setup
 document.addEventListener('DOMContentLoaded', () => {
     // Set initial color pickers to match default page style
-    bgColorPicker.value = '#ffffff';
-    textColorPicker.value = '#000000';
+    generalColor.value = '#ffffff';
+    textoColor.value = '#000000';
     
     // Populate initial table
     populateTable(transactionsData);
