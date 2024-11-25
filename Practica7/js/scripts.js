@@ -53,15 +53,46 @@ fontSizeSelector.addEventListener('change', function() {
 });
 
 // Column Toggle Functionality
-columnToggles.forEach(toggle => {
-    toggle.addEventListener('change', function() {
-        const columnClass = this.value;
-        const cells = document.querySelectorAll(`.${columnClass}`);
-        cells.forEach(cell => {
-            cell.style.display = this.checked ? '' : 'none';
-        });
-    });
+// todas las columnas son visibles al principio
+let visibilidadColumnas = [true, true, true, true, true, true];
+
+// se detecta pulsacion sobre las casillas de visibilidad
+$(document).ready(function() {
+	$('#fechaCheckbox').change(function() { modificarColumna(1); });
+	$('#tipoCheckbox').change(function() { modificarColumna(2); });
+	$('#productoCheckbox').change(function() { modificarColumna(3); });
+	$('#cantidadCheckbox').change(function() { modificarColumna(4); });
+	$('#totalCheckbox').change(function() { modificarColumna(5); });
+	$('#contactoCheckbox').change(function() { modificarColumna(6); });
 });
+
+// se oculta o hace visible una columna segun su estado actual
+function modificarColumna(indice) {
+	var tabla = $('#tablaCompraventa');
+	let valor = visibilidadColumnas[indice-1];
+	let selector = `td:nth-child(${indice}), th:nth-child(${indice})`;
+	
+	if (valor == true) {
+		visibilidadColumnas.splice(indice-1, 1, false);
+		tabla.find(selector).hide();
+	} else {
+		visibilidadColumnas.splice(indice-1, 1, true);
+		tabla.find(selector).show();
+	}
+}
+
+// aseguro coherencia de las casillas si se hace F5
+function restablecerCasillas() {
+	$('#fechaCheckbox').prop('checked', true);
+	$('#tipoCheckbox').prop('checked', true);
+	$('#productoCheckbox').prop('checked', true);
+	$('#cantidadCheckbox').prop('checked', true);
+	$('#totalCheckbox').prop('checked', true);
+	$('#contactoCheckbox').prop('checked', true);
+}
+
+window.onload = restablecerCasillas;
+
 
 // Initial table population and setup
 document.addEventListener('DOMContentLoaded', () => {
