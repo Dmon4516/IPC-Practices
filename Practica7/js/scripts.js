@@ -261,7 +261,7 @@ function reordenarColumna(indice) {
     //var celda=filas[0].getElementsByTagName("TD"); devuelve las celdas del header
 
     for (i = 1; i < nFilas; i++) { //Guarda los datos de la columna indicada por el indice para ordenarlos
-        arrayColumna.push(filas[i].getElementsByTagName("TD")[indice]);
+        arrayColumna.push(filas[i].getElementsByTagName("TD")[indice].innerText);
     }
 
     if (columnaOrden[indice]) { //Ordena los datos de la columna en sentido ascendente 
@@ -272,20 +272,23 @@ function reordenarColumna(indice) {
 
     for (i = 1; i < nFilas; i++) { //Guarda las posiciones nuevas de los elementos tras reordenar la tabla
         for (j = i; j < nFilas; j++) {
-            if (filas[j].getElementsByTagName("TD")[indice] == arrayColumna[i-1]) {
-                arrayPosiciones.push(j);
+            if (filas[j].getElementsByTagName("TD")[indice].innerText == arrayColumna[i-1]) {
+                if (!arrayPosiciones.contains(j)) {
+                    arrayPosiciones.push(j);
+                }
             }
         }
     }
 
     var arrayTablas = [[], [], []];
     var arrayFila = [];
-    var posicion = arrayPosiciones[i-1]; //Su indice indica a que posicion se cambia la fila y el valor que devuelve es cual fila cambia
+    var posicion;
     var fila;
 
     for (i = 1; i < nFilas; i++) { //Bucle que elimina toda la tabla
+        posicion = arrayPosiciones[i-1]; //Su indice indica a que posicion se cambia la fila y el valor que devuelve es cual fila cambia
         for (j = 0; j < 6; j++) { //Guarda los valores previos de cada fila indicada por la posicion
-            arrayFila.push(filas[posicion].getElementsByTagName("TD")[j])
+            arrayFila.push(filas[posicion].getElementsByTagName("TD")[j].innerText)
         }
         arrayTablas.push(arrayFila);
         arrayFila = [];
@@ -293,10 +296,11 @@ function reordenarColumna(indice) {
     }
 
     for (i = 1; i < nFilas; i++) { //Bucle que la recrea
+        posicion = arrayPosiciones[i-1];
         fila = table.insertRow(i); //Recrea la fila en su nueva posicion sin valores
         for (j = 0; j < 6; j++) { //Reinserta los valores de las celdas de la fila
             let celda = fila.insertCell(j);
-            celda.innerHTML(arrayTablas[i][j]);
+            celda.innerHTML = arrayTablas[i][j];
         }
     }
 
