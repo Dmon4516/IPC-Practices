@@ -113,6 +113,8 @@ const transactionsData = [
     }
 ];
 
+var ordenamientoColumnas = {};
+
 // DOM Elements
 const table = document.getElementById('tablaCompraventa');
 const tableBody = table.querySelector('tbody');
@@ -200,6 +202,15 @@ var columnaOrden = [true, true, true, true, true, true];
 
 // se detecta pulsacion sobre las casillas de visibilidad
 $(document).ready(function() {
+    
+    $('#personalizacionEstiloHeader').click(function() {
+        $('#personalizacionEstiloCard .card-body').toggle();
+    });
+
+    $('th').each(function(index) {
+        ordenamientoColumnas[index] = 'asc';
+    });
+
 	$('#fechaCheckbox').change(function() { modificarColumna(1); });
 	$('#tipoCheckbox').change(function() { modificarColumna(2); });
 	$('#productoCheckbox').change(function() { modificarColumna(3); });
@@ -252,62 +263,41 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function reordenarColumna(indice) {
-    const filas = table.rows;
-    const nFilas = filas.length; //nFilas = nCeldas por columna + header (3 + 1, es decir, 0 a 3)
-    //nColumnas = nCeldas por fila = 6, es decir 0 a 5
-    var arrayColumna = []; //donde se guardan los valores de la columna indicada por indice
-    var arrayPosiciones = []; //donde se guardan el orden nuevo de los valores
+    var tabla = $('#tablaCompraventa');
+    var filas = tabla.find('tbody tr').get();
 
-    //var celda=filas[0].getElementsByTagName("TD"); devuelve las celdas del header
-
-    for (i = 1; i < nFilas; i++) { //Guarda los datos de la columna indicada por el indice para ordenarlos
-        arrayColumna.push(filas[i].getElementsByTagName("TD")[indice].innerText);
+    // Inicializar el estado de ordenamiento si no existe
+    if (!ordenamientoColumnas[indice]) {
+        ordenamientoColumnas[indice] = 'asc';
     }
 
-    if (columnaOrden[indice]) { //Ordena los datos de la columna en sentido ascendente 
-        arrayColumna.sort();
-    } else { //O en sentido descendente
-        arrayColumna.sort().reverse();
-    }
+    // Alternar el estado de ordenamiento
+    if (ordenamientoColumnas[indice] === 'asc') {
+        filas.sort(function(a, b) {
+            var A = $(a).children('td').eq(indice).text().toUpperCase();
+            var B = $(b).children('td').eq(indice).text().toUpperCase();
+            return A.localeCompare(B);
+        });
+        
+        ordenamientoColumnas[indice] = 'desc';
 
-    for (i = 1; i < nFilas; i++) { //Guarda las posiciones nuevas de los elementos tras reordenar la tabla
-        for (j = i; j < nFilas; j++) {
-            if (filas[j].getElementsByTagName("TD")[indice].innerText == arrayColumna[i-1]) {
-                if (!arrayPosiciones.contains(j)) {
-                    arrayPosiciones.push(j);
-                }
-            }
-        }
-    }
+        $.each(filas, function(index, row) {
+            tabla.children('tbody').append(row);
+        });
+    } else if (ordenamientoColumnas[indice] === 'desc') {
+        filas.sort(function(a, b) {
+            var A = $(a).children('td').eq(indice).text().toUpperCase();
+            var B = $(b).children('td').eq(indice).text().toUpperCase();
+            return B.localeCompare(A);
+        });
 
-    var arrayTablas = [[], [], []];
-    var arrayFila = [];
-    var posicion;
-    var fila;
+        ordenamientoColumnas[indice] = 'original';
 
-    for (i = 1; i < nFilas; i++) { //Bucle que elimina toda la tabla
-        posicion = arrayPosiciones[i-1]; //Su indice indica a que posicion se cambia la fila y el valor que devuelve es cual fila cambia
-        for (j = 0; j < 6; j++) { //Guarda los valores previos de cada fila indicada por la posicion
-            arrayFila.push(filas[posicion].getElementsByTagName("TD")[j].innerText)
-        }
-        arrayTablas.push(arrayFila);
-        arrayFila = [];
-        table.deleteRow(posicion); //Borra fila de la posicion en la que esta
+        $.each(filas, function(index, row) {
+            tabla.children('tbody').append(row);
+        });
+    } else {
+        populateTable(transactionsData);
+        ordenamientoColumnas[indice] = 'asc';
     }
-
-    for (i = 1; i < nFilas; i++) { //Bucle que la recrea
-        posicion = arrayPosiciones[i-1];
-        fila = table.insertRow(i); //Recrea la fila en su nueva posicion sin valores
-        for (j = 0; j < 6; j++) { //Reinserta los valores de las celdas de la fila
-            let celda = fila.insertCell(j);
-            celda.innerHTML = arrayTablas[i][j];
-        }
-    }
-
-    for(i = 0; i < columnaOrden.length; i++) {
-        if (i != indice && !columnaOrden[i]) {
-            columnaOrden[i] = true; //Cambia todos los valores al inicial
-        }
-    }
-    columnaOrden[indice] = !columnaOrden[indice]; //Cambia el booleano de ordenamiento indicado por el indice a su otro valor    
 }
