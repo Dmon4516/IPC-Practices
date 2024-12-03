@@ -1,0 +1,4 @@
+Esta aplicación fue diseñada para Python 3.12.7
+
+El componente wxPython debe ser instalado para un correcto funcionamiento,
+puede instalarse mediante el comando "pip install -U wxPython"
