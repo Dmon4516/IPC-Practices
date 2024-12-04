@@ -21,30 +21,33 @@ class VentanaPrincipal ( wx.Frame ):
         self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_MENU ) )
 
         # establecer icono de la ventana
-        imagen = wx.Bitmap("./imagenes/icono.png", wx.BITMAP_TYPE_PNG)
+        imagen = wx.Bitmap(".\\imagenes\\icono.png", wx.BITMAP_TYPE_PNG)
         icono = wx.Icon()
         icono.CopyFromBitmap(imagen)
         self.SetIcon(icono)
 
         # establecer dimensionado de los elementos
         boxSizer = wx.BoxSizer( wx.VERTICAL )
-        self.SetMinSize( wx.Size( 250,200 ) )
+        self.SetMinSize( wx.Size( 270,200 ) )
 
         # agregar los botones, las acciones que desencadenan y el espaciado vertical entre ellos
-        self.botRegistrar = wx.Button( self, wx.ID_ANY, _(u"Registrar nuevo vehículo"), wx.DefaultPosition, wx.Size(180, 30), 0 )
+        self.botRegistrar = wx.Button( self, wx.ID_ANY, _(u"Registrar nuevo vehículo (F1)"), wx.DefaultPosition, wx.Size(200, 30), 0 )
         boxSizer.Add((0, 24), 0, 0, 0)
         boxSizer.Add( self.botRegistrar, 0, wx.CENTER, 5 )
         self.botRegistrar.Bind(wx.EVT_BUTTON, self.botRegistrarClicked)
 
-        self.botConsultar = wx.Button( self, wx.ID_ANY, _(u"Consultar lista vehículos"), wx.DefaultPosition, wx.Size(180, 30), 0 )
+        self.botConsultar = wx.Button( self, wx.ID_ANY, _(u"Consultar lista vehículos (F2)"), wx.DefaultPosition, wx.Size(200, 30), 0 )
         boxSizer.Add((0, 6), 0, 0, 0)
         boxSizer.Add( self.botConsultar, 0, wx.CENTER, 5 )
         self.botConsultar.Bind(wx.EVT_BUTTON, self.botConsultarClicked)
 
-        self.botSalir = wx.Button( self, wx.ID_ANY, _(u"Salir"), wx.DefaultPosition, wx.Size(180, 30), 0 )
+        self.botSalir = wx.Button( self, wx.ID_ANY, _(u"Salir (F3)"), wx.DefaultPosition, wx.Size(200, 30), 0 )
         boxSizer.Add((0, 18), 0, 0, 0)
         boxSizer.Add( self.botSalir, 0, wx.CENTER, 5 )
         self.botSalir.Bind(wx.EVT_BUTTON, self.botSalirClicked)
+
+        self.SetFocus()
+        self.Bind(wx.EVT_KEY_DOWN, self.keySalirPressed)
 
         # ajustar posicionamiento de la ventana
         self.SetSizer( boxSizer )
@@ -56,29 +59,37 @@ class VentanaPrincipal ( wx.Frame ):
     ## Metodo que se encarga de la accion realizada al pulsar el boton de registrar
     ## comprobamos que dicha ventana no se encuentre ya abierta
     def botRegistrarClicked(self, event):
-        if os.path.exists("./control/P_REGISTRO"):
+        if os.path.exists(".\\control\\P_REGISTRO"):
             wx.MessageBox("Esta ventana ya se encuentra abierta", "Error", wx.OK | wx.ICON_ERROR)
         else:
-            subprocess.Popen(["python", "./registro.py"])
+            subprocess.Popen(["python", ".\\registro.py"])
 
 
     ## Metodo que se encarga de la accion realizada al pulsar el boton de consultar
     ## comprobamos que dicha ventana no se encuentre ya abierta
     def botConsultarClicked(self, event):
-        if os.path.exists("./control/P_CONSULTA"):
+        if os.path.exists(".\\control\\P_CONSULTA"):
             wx.MessageBox("Esta ventana ya se encuentra abierta", "Error", wx.OK | wx.ICON_ERROR)
         else:
-            subprocess.Popen(["python", "./consulta.py"])
+            subprocess.Popen(["python", ".\\consulta.py"])
 
 
     ## Metodo que se encarga de la accion realizada al pulsar el boton de salir
     ## comprobamos que no quede ninguna ventana abierta antes de salir
     def botSalirClicked(self, event):
-        if os.path.exists("./control/P_REGISTRO") or os.path.exists("./control/P_CONSULTA"):
+        if os.path.exists(".\\control\\P_REGISTRO") or os.path.exists(".\\control\\P_CONSULTA"):
             wx.MessageBox("Cierre todas las ventanas antes de salir del programa", "Error", wx.OK | wx.ICON_ERROR)
         else:
             self.Close()
 
+
+    def keySalirPressed(self, event):
+        keycode = event.GetKeyCode()
+        if keycode == wx.WXK_F3:
+            print("F7 key pressed")
+            self.botSalirClicked(self)
+        else:
+            event.Skip()
 
 ## Funcion main que se encarga de invocar la ventana
 ####
