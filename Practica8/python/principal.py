@@ -28,20 +28,20 @@ class VentanaPrincipal ( wx.Frame ):
 
         # establecer dimensionado de los elementos
         boxSizer = wx.BoxSizer( wx.VERTICAL )
-        self.SetMinSize( wx.Size( 270,200 ) )
+        self.SetMinSize( wx.Size( 250,200 ) )
 
         # agregar los botones, las acciones que desencadenan y el espaciado vertical entre ellos
-        self.botRegistrar = wx.Button( self, wx.ID_ANY, _(u"Registrar nuevo vehículo (F1)"), wx.DefaultPosition, wx.Size(200, 30), 0 )
+        self.botRegistrar = wx.Button( self, wx.ID_ANY, _(u"\u0332".join("Re") + "gistrar nuevo vehículo"), wx.DefaultPosition, wx.Size(180, 30), 0 )
         boxSizer.Add((0, 24), 0, 0, 0)
         boxSizer.Add( self.botRegistrar, 0, wx.CENTER, 5 )
         self.botRegistrar.Bind(wx.EVT_BUTTON, self.botRegistrarClicked)
 
-        self.botConsultar = wx.Button( self, wx.ID_ANY, _(u"Consultar lista vehículos (F2)"), wx.DefaultPosition, wx.Size(200, 30), 0 )
+        self.botConsultar = wx.Button( self, wx.ID_ANY, _(u"\u0332".join("Co") + "nsultar lista vehículos"), wx.DefaultPosition, wx.Size(180, 30), 0 )
         boxSizer.Add((0, 6), 0, 0, 0)
         boxSizer.Add( self.botConsultar, 0, wx.CENTER, 5 )
         self.botConsultar.Bind(wx.EVT_BUTTON, self.botConsultarClicked)
 
-        self.botSalir = wx.Button( self, wx.ID_ANY, _(u"Salir (F3)"), wx.DefaultPosition, wx.Size(200, 30), 0 )
+        self.botSalir = wx.Button( self, wx.ID_ANY, _(u"\u0332".join("Sa") + "lir"), wx.DefaultPosition, wx.Size(180, 30), 0 )
         boxSizer.Add((0, 18), 0, 0, 0)
         boxSizer.Add( self.botSalir, 0, wx.CENTER, 5 )
         self.botSalir.Bind(wx.EVT_BUTTON, self.botSalirClicked)
@@ -85,8 +85,9 @@ class VentanaPrincipal ( wx.Frame ):
 
     def keySalirPressed(self, event):
         keycode = event.GetKeyCode()
-        if keycode == wx.WXK_F3:
-            print("F7 key pressed")
+        altDown = event.AltDown()
+        if keycode == ord('S') and altDown:
+            print("ALT + S pulsado")
             self.botSalirClicked(self)
         else:
             event.Skip()
