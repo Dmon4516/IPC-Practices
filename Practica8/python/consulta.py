@@ -73,7 +73,23 @@ class VentanaConsulta ( wx.Frame ):
 
     ## Metodo que se encarga de la accion realizada al pulsar el boton de imprimir
     def toolImprimirClicked(self, event):
-        wx.MessageBox("Sin implementar", " ", wx.OK | wx.ICON_NONE)
+        # Contenido a imprimir
+        texto_a_imprimir = "Lista de vehículos en el taller:\n\n1. Vehículo A\n2. Vehículo B\n3. Vehículo C"
+        
+        # Configuración de impresión
+        print_data = wx.PrintData()
+        print_data.SetPaperId(wx.PAPER_A4)
+        
+        printer = wx.Printer(print_data)
+        printout = SimplePrintout(texto_a_imprimir)
+        
+        if not printer.Print(self, printout, True):
+            wx.MessageBox("Error al intentar imprimir", "Error", wx.OK | wx.ICON_ERROR)
+        else:
+            wx.MessageBox("Documento enviado a la impresora", "Información", wx.OK | wx.ICON_INFORMATION)
+
+        printout.Destroy()
+
 
 
     ## Metodo que se encarga de la accion realizada al pulsar el boton de actualizar
@@ -88,6 +104,26 @@ class VentanaConsulta ( wx.Frame ):
     ## Metodo que se encarga de la accion realizada al pulsar el boton de salir
     def toolSalirClicked(self, event):
         self.Close()
+
+
+class SimplePrintout(wx.Printout):
+    def __init__(self, text):
+        wx.Printout.__init__(self)
+        self.text = text
+
+    def OnPrintPage(self, page):
+        """Dibuja el contenido a imprimir"""
+        dc = self.GetDC()
+        dc.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
+        dc.DrawText(self.text, 10, 10)  
+        return True
+
+    def HasPage(self, page):
+        return page == 1
+
+    def GetPageInfo(self):
+        return (1, 1, 1, 1)  
+
 
 
 ## Funcion main que se encarga de invocar la ventana
