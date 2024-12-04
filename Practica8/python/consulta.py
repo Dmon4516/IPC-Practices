@@ -36,14 +36,14 @@ class VentanaConsulta ( wx.Frame ):
         self.toolBar.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_3DLIGHT ) )
 
         # agregar los elementos a la barra de herramientas junto a las acciones que desencadenan
-        self.toolImprimir = self.toolBar.AddTool( 1, _(u"Imprimir (F4)"), wx.Bitmap( u".\\imagenes\\imprimir.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Imprime en papel la lista completa de vehículos en el taller.", None )
+        self.toolImprimir = self.toolBar.AddTool( 1, _(u"\u0332".join("Im") + "primir"), wx.Bitmap( u".\\imagenes\\imprimir.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Imprime en papel la lista completa de vehículos en el taller.", None )
         self.Bind(wx.EVT_TOOL, self.toolImprimirClicked, id = 1)
 
-        self.toolActualizar = self.toolBar.AddTool( 2, _(u"Actualizar (F5)"), wx.Bitmap( u".\\imagenes\\actualizar.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Actualiza los datos de todos los vehículos a su última revisión.", None )
+        self.toolActualizar = self.toolBar.AddTool( 2, _(u"\u0332".join("Ac") + "tualizar"), wx.Bitmap( u".\\imagenes\\actualizar.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Actualiza los datos de todos los vehículos a su última revisión.", None )
         self.Bind(wx.EVT_TOOL, self.toolActualizarClicked, id = 2)
         self.toolBar.AddSeparator()
 
-        self.toolSalir = self.toolBar.AddTool( 3, _(u"Salir (F6)"), wx.Bitmap( u".\\imagenes\\salir.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Salir de esta ventana.", None )
+        self.toolSalir = self.toolBar.AddTool( 3, _(u"\u0332".join("Sa") + "lir"), wx.Bitmap( u".\\imagenes\\salir.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Salir de esta ventana.", None )
         self.Bind(wx.EVT_TOOL, self.toolSalirClicked, id = 3)
 
         self.toolBar.Realize()
@@ -65,6 +65,7 @@ class VentanaConsulta ( wx.Frame ):
 
         # ajustar posicionamiento de la ventana
         self.SetSizer( boxSizer )
+        self.SetFocus()
         self.Layout()
         self.Centre( wx.BOTH )
         self.Show()

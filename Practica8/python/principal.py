@@ -46,11 +46,14 @@ class VentanaPrincipal ( wx.Frame ):
         boxSizer.Add( self.botSalir, 0, wx.CENTER, 5 )
         self.botSalir.Bind(wx.EVT_BUTTON, self.botSalirClicked)
 
-        self.SetFocus()
+        # establecer atajos de teclado
+        self.Bind(wx.EVT_KEY_DOWN, self.keyRegistrarPressed)
+        self.Bind(wx.EVT_KEY_DOWN, self.keyConsultarPressed)
         self.Bind(wx.EVT_KEY_DOWN, self.keySalirPressed)
 
         # ajustar posicionamiento de la ventana
         self.SetSizer( boxSizer )
+        self.SetFocus()
         self.Layout()
         self.SetPosition((125, 125))
         self.Show()
@@ -83,14 +86,41 @@ class VentanaPrincipal ( wx.Frame ):
             self.Close()
 
 
+    ## Metodo que se encarga de la accion realizada al hacer Alt + S
+    ## el cual corresponde al atajo de teclado para registro
+    def keyRegistrarPressed(self, event):
+        keycode = event.GetKeyCode()
+        altDown = event.AltDown()
+        if keycode == ord('R') and altDown:
+            print("ALT + R detectado")
+            self.botRegistrarClicked(self)
+        else:
+            event.Skip()
+
+
+    ## Metodo que se encarga de la accion realizada al hacer Alt + S
+    ## el cual corresponde al atajo de teclado para consulta
+    def keyConsultarPressed(self, event):
+        keycode = event.GetKeyCode()
+        altDown = event.AltDown()
+        if keycode == ord('C') and altDown:
+            print("ALT + C detectado")
+            self.botConsultarClicked(self)
+        else:
+            event.Skip()
+
+
+    ## Metodo que se encarga de la accion realizada al hacer Alt + S
+    ## el cual corresponde al atajo de teclado para salir
     def keySalirPressed(self, event):
         keycode = event.GetKeyCode()
         altDown = event.AltDown()
         if keycode == ord('S') and altDown:
-            print("ALT + S pulsado")
+            print("ALT + S detectado")
             self.botSalirClicked(self)
         else:
             event.Skip()
+
 
 ## Funcion main que se encarga de invocar la ventana
 ####
