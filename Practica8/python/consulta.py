@@ -1,153 +1,155 @@
 import wx
-import wx.xrc
-import gettext
-import datetime
+import wx.grid
 import os
-_ = gettext.gettext
+import datetime
 
 
-## Ventana para la consulta de la lista de todos los vehiculos del taller
-##
-## Autores: Luis Setién, Victor Descalzo
-## Version: Diciembre 2024
-####
-class VentanaConsulta ( wx.Frame ):
+class VentanaConsulta(wx.Frame):
+    def __init__(self, parent):
+        wx.Frame.__init__(self, parent, id=wx.ID_ANY, title="Consultar lista vehículos", pos=wx.DefaultPosition,
+                          size=wx.Size(800, 600), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
 
-    ## Metodo que se encarga de inicializar el contenido de la ventana
-    def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = "Consultar lista vehículos", pos = wx.DefaultPosition, size = wx.Size( 600,400 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
+        self.SetBackgroundColour(wx.Colour(240, 240, 240))
 
-        self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
-        self.SetBackgroundColour( wx.Colour( 255, 255, 255 ) )
 
-        # establecer icono de la ventana
         imagen = wx.Bitmap(os.path.join("imagenes", "icono.png"), wx.BITMAP_TYPE_PNG)
         icono = wx.Icon()
         icono.CopyFromBitmap(imagen)
         self.SetIcon(icono)
 
-        # establecer dimensionado de los elementos
-        boxSizer = wx.BoxSizer( wx.VERTICAL )
-        self.SetMinSize( wx.Size( 500,300 ) )
 
-        # agregar la barra de herramientas
-        self.toolBar = wx.ToolBar( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TB_FLAT|wx.TB_HORZ_TEXT )
-        self.toolBar.SetMargins( wx.Size( 50,50 ) )
-        self.toolBar.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_3DLIGHT ) )
+        boxSizer = wx.BoxSizer(wx.VERTICAL)
 
-        # agregar los elementos a la barra de herramientas junto a las acciones que desencadenan
-        self.toolImprimir = self.toolBar.AddTool( 1, _(u"\u0332".join("Im") + "primir"), wx.Bitmap( os.path.join("imagenes", "imprimir.png"), wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Imprime en papel la lista completa de vehículos en el taller.", None )
-        self.Bind(wx.EVT_TOOL, self.toolImprimirClicked, id = 1)
+        # Add toolbar
+        self.toolBar = wx.ToolBar(self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TB_FLAT | wx.TB_HORZ_TEXT)
+        self.toolBar.SetBackgroundColour(wx.Colour(200, 200, 200))  # Toolbar background
 
-        self.toolActualizar = self.toolBar.AddTool( 2, _(u"\u0332".join("Ac") + "tualizar"), wx.Bitmap( os.path.join("imagenes", "actualizar.png"), wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Actualiza los datos de todos los vehículos a su última revisión.", None )
-        self.Bind(wx.EVT_TOOL, self.toolActualizarClicked, id = 2)
+        # Toolbar tools and events
+        self.toolImprimir = self.toolBar.AddTool(1, "Imprimir",
+                                                 wx.Bitmap(os.path.join("imagenes", "imprimir.png"), wx.BITMAP_TYPE_ANY),
+                                                 wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString,
+                                                 "Imprime en papel la lista completa de vehículos en el taller.")
+        self.Bind(wx.EVT_TOOL, self.toolImprimirClicked, id=1)
+
+        self.toolActualizar = self.toolBar.AddTool(2, "Actualizar",
+                                                   wx.Bitmap(os.path.join("imagenes", "actualizar.png"),
+                                                             wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL,
+                                                   wx.EmptyString,
+                                                   "Actualiza los datos de todos los vehículos a su última revisión.")
+        self.Bind(wx.EVT_TOOL, self.toolActualizarClicked, id=2)
+
         self.toolBar.AddSeparator()
 
-        self.toolSalir = self.toolBar.AddTool( 3, _(u"\u0332".join("Sa") + "lir"), wx.Bitmap( os.path.join("imagenes", "salir.png"), wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Salir de esta ventana.", None )
-        self.Bind(wx.EVT_TOOL, self.toolSalirClicked, id = 3)
+        self.toolSalir = self.toolBar.AddTool(3, "Salir",
+                                              wx.Bitmap(os.path.join("imagenes", "salir.png"), wx.BITMAP_TYPE_ANY),
+                                              wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Salir de esta ventana.")
+        self.Bind(wx.EVT_TOOL, self.toolSalirClicked, id=3)
 
         self.toolBar.Realize()
-        boxSizer.Add( self.toolBar, 0, wx.EXPAND, 5 )
+        boxSizer.Add(self.toolBar, 0, wx.EXPAND, 5)
 
-        # mostrar la tabla de entradas de los vehiculos
-        #self.m_staticText1 = wx.StaticText( self, wx.ID_ANY, _(u"MyLabel"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        #self.m_staticText1.Wrap( -1 )
-        #boxSizer.Add( self.m_staticText1, 0, wx.ALL, 5 )
+        self.grid = wx.grid.Grid(self)
+        self.grid.CreateGrid(5, 6)
 
-        # obtener la fecha y hora actual en el formato adecuado
+        self.headers = ["Fecha", "Tipo Operación", "Producto", "Cantidad", "Total", "Proveedor/Cliente"]
+        for col, header in enumerate(self.headers):
+            self.grid.SetColLabelValue(col, header)
+            self.grid.SetColSize(col, 120 if col == 0 else 100)
+            self.grid.SetColFormatFloat(col, width=-1, precision=2)
+            self.grid.SetColLabelAlignment(wx.ALIGN_CENTER, wx.ALIGN_CENTER)
+            self.grid.SetColLabelSize(20)
+
+
+        self.data = [
+            (datetime.date(2024, 3, 15), "Compra", "Chanel N5", 10, 150.00, "Perfumes Luxury S.L."),
+            (datetime.date(2024, 3, 16), "Venta", "Light Blue D&G", 2, 180.00, "Maria Gonzalez"),
+            (datetime.date(2024, 3, 17), "Compra", "La Vie Est Belle", 15, 120.00, "Lancôme Distribuciones"),
+            (datetime.date(2024, 3, 18), "Venta", "Chanel N5", 1, 180.00, "Juan Perez"),
+            (datetime.date(2024, 3, 19), "Venta", "La Vie Est Belle", 3, 100.00, "Ana Martinez")
+        ]
+        self.populate_table(self.data)
+
+        # Configure grid properties
+        self.grid.EnableEditing(False)
+        self.grid.AutoSizeColumns(False)
+        self.grid.SetRowLabelSize(0)  # Hide row numbers
+        self.grid.SetDefaultCellAlignment(wx.ALIGN_CENTER, wx.ALIGN_CENTER)
+
+        # Add grid to layout
+        boxSizer.Add(self.grid, 1, wx.EXPAND | wx.ALL, 10)
+
+        # Add status bar
         fecha_hora = datetime.datetime.now()
         fecha_hora_string = fecha_hora.strftime("%d/%m/%Y %H:%M:%S")
-
-        # agregar la barra de estado y mostrar el texto por defecto
-        self.statusBar = self.CreateStatusBar( 1, wx.STB_SIZEGRIP, wx.ID_ANY )
+        self.statusBar = self.CreateStatusBar(1, wx.STB_SIZEGRIP, wx.ID_ANY)
         self.statusBar.SetStatusText(f"Datos actualizados a {fecha_hora_string}")
-        self.statusBar.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_3DLIGHT ) )
+        self.statusBar.SetBackgroundColour(wx.Colour(220, 220, 220))  # Light gray status bar
 
-        # ajustar posicionamiento de la ventana
-        self.SetSizer( boxSizer )
-        self.SetFocus()
+        # Add event for sorting columns
+        self.grid.Bind(wx.grid.EVT_GRID_LABEL_LEFT_CLICK, self.on_sort)
+
+        # Finalize layout
+        self.SetSizer(boxSizer)
         self.Layout()
-        self.Centre( wx.BOTH )
+        self.Centre(wx.BOTH)
         self.Show()
 
+    def populate_table(self, data):
+        self.grid.ClearGrid()
+        if self.grid.GetNumberRows() > 0:
+            self.grid.DeleteRows(0, self.grid.GetNumberRows())
 
-    ## Metodo que se encarga de la accion realizada al pulsar el boton de imprimir
+        self.grid.AppendRows(len(data))
+
+        for row, transaction in enumerate(data):
+            self.grid.SetCellValue(row, 0, str(transaction[0]))  # Fecha
+            self.grid.SetCellValue(row, 1, transaction[1])       # Tipo Operación
+            self.grid.SetCellValue(row, 2, transaction[2])       # Producto
+            self.grid.SetCellValue(row, 3, str(transaction[3]))  # Cantidad
+            self.grid.SetCellValue(row, 4, f"${transaction[4]:.2f}")  # Total
+            self.grid.SetCellValue(row, 5, transaction[5])       # Proveedor/Cliente
+
+    def on_sort(self, event):
+        col = event.GetCol()  
+        if col < 0 or col >= len(self.headers):
+            return
+
+        reverse = getattr(self, "reverse_sort", False)
+        self.data.sort(key=lambda x: x[col], reverse=reverse)
+        self.reverse_sort = not reverse
+
+        self.populate_table(self.data)
+
     def toolImprimirClicked(self, event):
-       
-        # mostrar dialogo de configuracion de pagina
-        data = wx.PageSetupDialogData()
-        dlg = wx.PageSetupDialog(self, data)
-        if dlg.ShowModal() == wx.ID_OK:
-            data = dlg.GetPageSetupData()
+        wx.MessageBox("Función de impresión no implementada.", "Imprimir", wx.OK | wx.ICON_INFORMATION)
 
-        # mostrar dialogo de configuracion de impresora
-        print_data = wx.PrintData()
-        print_data.SetPaperId(data.GetPaperId())
-        print_data.SetOrientation(data.GetEnableOrientation())
-        print_dlg_data = wx.PrintDialogData(print_data)
-        print_dlg = wx.PrintDialog(self, print_dlg_data)
-        if print_dlg.ShowModal() == wx.ID_OK:
-            print_dlg_data = print_dlg.GetPrintDialogData()
-            self.pdata = wx.PrintData(print_dlg_data.GetPrintData())
-            printer = wx.Printer(print_dlg_data)
-            printout = MyPrintout("Lista de vehiculos", "Print Example", margins=(150, 150, 150, 150))
-            useSetupDialog = False
-            printer.Print(self, printout, useSetupDialog)
-            if printer.GetLastError() == wx.PRINTER_ERROR:
-                wx.MessageBox("Error al intentar imprimir", "Error", wx.OK | wx.ICON_ERROR)
-
-            printout.Destroy()
-            print_dlg.Destroy()
-            dlg.Destroy()
-
-
-    ## Metodo que se encarga de la accion realizada al pulsar el boton de actualizar
-    ## se actualizan los valores de la tabla y se refresca la barra de estado
     def toolActualizarClicked(self, event):
         fecha_hora = datetime.datetime.now()
         fecha_hora_string = fecha_hora.strftime("%d/%m/%Y %H:%M:%S")
         self.statusBar.SetStatusText(f"Datos actualizados a {fecha_hora_string}")
         wx.MessageBox("Datos actualizados satisfactoriamente", "Mensaje", wx.OK | wx.ICON_INFORMATION)
 
-
-    ## Metodo que se encarga de la accion realizada al pulsar el boton de salir
     def toolSalirClicked(self, event):
         self.Close()
 
 
-## Clase que se encarga de realizar la tarea de impresion
-class MyPrintout(wx.Printout):
-    def __init__(self, text, title, margins):
-        wx.Printout.__init__(self, title)
-        self.text = text
-        self.margins = margins
-
-    def OnPrintPage(self, page):
-        dc = self.GetDC()
-        # Implement your printing logic here
-        dc.DrawText(self.text, 100, 100)
-        return True
-
-
-
-## Funcion main que se encarga de invocar la ventana
-## señalizamos la apertura y cierre de la misma mediante un fichero
-####
 if __name__ == "__main__":
+    # Signal window open/close with a control file
     try:
-        open(os.path.join("control", "CONSULTA")).close()
+        open(os.path.join("control", "CONSULTA"), "w").close()
     except Exception as e:
-        print(f"error: {e}")
+        print(f"Error: {e}")
     else:
         print("VentanaConsulta abierta")
 
     app = wx.App()
     frame = VentanaConsulta(None)
     app.MainLoop()
-    
+
     try:
         os.remove(os.path.join("control", "CONSULTA"))
     except Exception as e:
-        print(f"error: {e}")
+        print(f"Error: {e}")
     else:
         print("VentanaConsulta cerrada")
