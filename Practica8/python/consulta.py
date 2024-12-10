@@ -51,9 +51,21 @@ class VentanaConsulta ( wx.Frame ):
         self.boxSizer.Add( self.toolBar, 0, wx.EXPAND, 5 )
 
         # agregar la tabla de entradas de los vehiculos
+        # el scroll panel permite que se haga scroll dinamico del contenido, mientras que
+        # el margin sizer permite agregarle un margen a la tabla sin interferir con el scroll
+        # estos elementos quedan anidados unos dentro de otros para obtener el resultado deseado
+        self.scrollPanel = wx.ScrolledWindow(self, -1)
+        self.scrollPanel.SetScrollRate(5, 5)
         self.flexGridSizer = wx.FlexGridSizer(cols=10, vgap=8, hgap=16)
         self.procRellenarTabla()
-        self.boxSizer.Add( self.flexGridSizer, 0, wx.ALL, 16 )
+        self.marginSizer = wx.BoxSizer(wx.VERTICAL)
+        self.marginSizer.Add(self.flexGridSizer, 1, wx.ALL | wx.EXPAND, 16)
+        self.scrollPanel.SetSizer(self.marginSizer)
+        self.scrollPanel.SetAutoLayout(True)
+        self.scrollPanel.Layout()
+        self.scrollPanel.SetVirtualSize(self.marginSizer.ComputeFittingWindowSize(self.scrollPanel))
+        self.scrollPanel.SetScrollbars(5, 5, 160, 120)
+        self.boxSizer.Add(self.scrollPanel, 1, wx.EXPAND)
 
         # obtener la fecha y hora actual en el formato adecuado
         fecha_hora = datetime.datetime.now()
@@ -105,6 +117,9 @@ class VentanaConsulta ( wx.Frame ):
     ## se actualizan los valores de la tabla y se refresca la barra de estado
     def toolActualizarClicked(self, event):
 
+        # indicar en la barra de estado el proceso
+        self.statusBar.SetStatusText(f"Actualizando datos...")
+
         # borrar todas las filas de la tabla y forzar refresco
         for elemento in self.flexGridSizer.GetChildren():
             elemento.GetWindow().Destroy()
@@ -149,7 +164,7 @@ class VentanaConsulta ( wx.Frame ):
         # agregar las entradas en forma tabular
         for i, fila in enumerate(clientes):
             for j, valor in enumerate(fila):
-                celdaTexto = wx.StaticText(self, wx.ID_ANY, valor)
+                celdaTexto = wx.StaticText(self.scrollPanel, wx.ID_ANY, valor)
                 if i == 0:
                     celdaTexto.SetFont(fuenteCabecera)
                 self.flexGridSizer.Add(celdaTexto, 0, wx.ALIGN_LEFT)
