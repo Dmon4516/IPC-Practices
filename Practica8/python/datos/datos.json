@@ -1,6 +1,5 @@
 [
   {
-    "id": "0",
     "marca": "Fiat",
     "modelo": "Panda",
     "matricula": "3923 DKC",
@@ -13,10 +12,9 @@
     "nacimiento": "1999-08-26"
   },
   {
-    "id": "1",
     "marca": "Citroen",
     "modelo": "C4 Cactus",
-    "matricula": "4482JMM",
+    "matricula": "4482 JMM",
     "fecha": "2016-04-11",
     "km": "78530",
     "nombre": "Emilia Grandal Soneira",
@@ -26,10 +24,9 @@
     "nacimiento": "1981-11-14"
   },
   {
-    "id": "2",
     "marca": "Toyota",
     "modelo": "Celica GT-Four ST165",
-    "matricula": "M4322ND",
+    "matricula": "M 4322 ND",
     "fecha": "1992-05-23",
     "km": "44286",
     "nombre": "Carlos Sainz Cenamor",
@@ -39,10 +36,9 @@
     "nacimiento": "1962-04-12"
   },
   {
-    "id": "3",
     "marca": "Toyota",
     "modelo": "Camry LE",
-    "matricula": "8229BSL",
+    "matricula": "8229 BSL",
     "fecha": "2002-07-29",
     "km": "215931",
     "nombre": "Liam Reynolds",
@@ -52,10 +48,9 @@
     "nacimiento": "1973-06-05"
   },
   {
-    "id": "4",
     "marca": "Renault",
     "modelo": "Clio Sport",
-    "matricula": "4492GPC",
+    "matricula": "4492 GPC",
     "fecha": "2009-10-02",
     "km": "494156",
     "nombre": "Matthieu Garnier",
