@@ -34,7 +34,7 @@ class VentanaConsulta ( wx.Frame ):
 
         # agregar la barra de herramientas
         self.toolBar = wx.ToolBar( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TB_FLAT|wx.TB_HORZ_TEXT )
-        self.toolBar.SetMargins( wx.Size( 50,50 ) )
+        self.toolBar.SetMargins( wx.Size( 10,10 ) )
         self.toolBar.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_3DLIGHT ) )
 
         # agregar los elementos a la barra de herramientas junto a las acciones que desencadenan
