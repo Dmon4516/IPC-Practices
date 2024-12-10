@@ -22,7 +22,7 @@ class VentanaConsulta ( wx.Frame ):
         self.SetBackgroundColour( wx.Colour( 255, 255, 255 ) )
 
         # establecer icono de la ventana
-        imagen = wx.Bitmap(".\\imagenes\\icono.png", wx.BITMAP_TYPE_PNG)
+        imagen = wx.Bitmap(os.path.join("imagenes", "icono.png"), wx.BITMAP_TYPE_PNG)
         icono = wx.Icon()
         icono.CopyFromBitmap(imagen)
         self.SetIcon(icono)
@@ -37,14 +37,14 @@ class VentanaConsulta ( wx.Frame ):
         self.toolBar.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_3DLIGHT ) )
 
         # agregar los elementos a la barra de herramientas junto a las acciones que desencadenan
-        self.toolImprimir = self.toolBar.AddTool( 1, _(u"\u0332".join("Im") + "primir"), wx.Bitmap( u".\\imagenes\\imprimir.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Imprime en papel la lista completa de vehículos en el taller.", None )
+        self.toolImprimir = self.toolBar.AddTool( 1, _(u"\u0332".join("Im") + "primir"), wx.Bitmap(os.path.join("imagenes", "imprimir.png"), wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Imprime en papel la lista completa de vehículos en el taller.", None )
         self.Bind(wx.EVT_TOOL, self.toolImprimirClicked, id = 1)
 
-        self.toolActualizar = self.toolBar.AddTool( 2, _(u"\u0332".join("Ac") + "tualizar"), wx.Bitmap( u".\\imagenes\\actualizar.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Actualiza los datos de todos los vehículos a su última revisión.", None )
+        self.toolActualizar = self.toolBar.AddTool( 2, _(u"\u0332".join("Ac") + "tualizar"), wx.Bitmap(os.path.join("imagenes", "actualizar.png"), wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Actualiza los datos de todos los vehículos a su última revisión.", None )
         self.Bind(wx.EVT_TOOL, self.toolActualizarClicked, id = 2)
         self.toolBar.AddSeparator()
 
-        self.toolSalir = self.toolBar.AddTool( 3, _(u"\u0332".join("Sa") + "lir"), wx.Bitmap( u".\\imagenes\\salir.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Salir de esta ventana.", None )
+        self.toolSalir = self.toolBar.AddTool( 3, _(u"\u0332".join("Sa") + "lir"), wx.Bitmap(os.path.join("imagenes", "salir.png"), wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, "Salir de esta ventana.", None )
         self.Bind(wx.EVT_TOOL, self.toolSalirClicked, id = 3)
 
         self.toolBar.Realize()
@@ -151,7 +151,7 @@ class VentanaConsulta ( wx.Frame ):
         clientes.append(cabecera)
 
         # cargar los datos desde el fichero json
-        with open('.\\datos\\datos.json', 'r') as file:
+        with open(os.path.join("datos", "datos.json"), 'r') as file:
             datos = json.load(file)
 
         # iterar por las entradas del json y almacenarlas en una array
@@ -190,7 +190,7 @@ class MyPrintout(wx.Printout):
 ####
 if __name__ == "__main__":
     try:
-        open(".\\control\\P_CONSULTA", "w").close()
+        open(os.path.join("control", "P_CONSULTA"), "w").close()
     except Exception as e:
         print(f"error: {e}")
     else:
@@ -201,7 +201,7 @@ if __name__ == "__main__":
     app.MainLoop()
     
     try:
-        os.remove(".\\control\\P_CONSULTA")
+        os.remove(os.path.join("control", "P_CONSULTA"))
     except Exception as e:
         print(f"error: {e}")
     else:
