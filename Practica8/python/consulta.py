@@ -20,6 +20,7 @@ class VentanaConsulta ( wx.Frame ):
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 255, 255, 255 ) )
+        self.clientesUltimo = []
 
         # establecer icono de la ventana
         imagen = wx.Bitmap(os.path.join("imagenes", "icono.png"), wx.BITMAP_TYPE_PNG)
@@ -88,33 +89,24 @@ class VentanaConsulta ( wx.Frame ):
     def toolImprimirClicked(self, event):
 
         # mostrar dialogo de configuracion de pagina
-        data = wx.PageSetupDialogData()
-        dlg = wx.PageSetupDialog(self, data)
-        if dlg.ShowModal() == wx.ID_OK:
-            data = dlg.GetPageSetupData()
+        printData = wx.PrintData()
+        pageData = wx.PageSetupDialogData()
+        pageDataDialog = wx.PageSetupDialog(self, pageData)
+        if pageDataDialog.ShowModal() == wx.ID_OK:
+            pageData = pageDataDialog.GetPageSetupData()
 
         # mostrar dialogo de configuracion de impresora y invocar la impresion
-        print_data = wx.PrintData()
-        print_data.SetPaperId(data.GetPaperId())
-        print_data.SetOrientation(data.GetEnableOrientation())
-        print_dlg_data = wx.PrintDialogData(print_data)
-        print_dlg = wx.PrintDialog(self, print_dlg_data)
-        if print_dlg.ShowModal() == wx.ID_OK:
-            print_dlg_data = print_dlg.GetPrintDialogData()
-            self.pdata = wx.PrintData(print_dlg_data.GetPrintData())
-            printer = wx.Printer(print_dlg_data)
-            printout = MyPrintout("Lista de vehiculos", "Lista de vehiculos", margins=(150, 150, 150, 150))
-            useSetupDialog = False
-            printer.Print(self, printout, useSetupDialog)
-            if printer.GetLastError() == wx.PRINTER_ERROR:
-                wx.MessageBox("Error al intentar imprimir", "Error", wx.OK | wx.ICON_ERROR)
-            printout.Destroy()
-            print_dlg.Destroy()
-            dlg.Destroy()
+        printData = wx.PrintData(pageData.GetPrintData())
+        printDataDialog = wx.PrintDialogData().SetPrintData(printData)
+        printer = wx.Printer(printDataDialog)
+        printout = MyPrintout(self.clientesUltimo, "Lista de vehiculos")
+        printproc = printer.Print(self, printout, True)
+        if not printproc:
+            wx.MessageBox("Error al intentar imprimir", "Error", wx.OK | wx.ICON_ERROR)
+        printout.Destroy()
 
 
     ## Metodo que se encarga de la accion realizada al pulsar el boton de actualizar
-    ## se actualizan los valores de la tabla y se refresca la barra de estado
     def toolActualizarClicked(self, event):
 
         # indicar en la barra de estado el proceso
@@ -161,6 +153,8 @@ class VentanaConsulta ( wx.Frame ):
                 cliente.append(f"{valor}")
             clientes.append(cliente)
 
+        self.clientesUltimo = clientes
+
         # agregar las entradas en forma tabular
         for i, fila in enumerate(clientes):
             for j, valor in enumerate(fila):
@@ -170,18 +164,26 @@ class VentanaConsulta ( wx.Frame ):
                 self.flexGridSizer.Add(celdaTexto, 0, wx.ALIGN_LEFT)
 
 
-## Clase que se encarga de facilitar la tarea de impresion
+## Clase que se encarga de organizar la tarea de impresion
+## posicionando en el papel las lineas de la tabla de la forma correcta
 ####
 class MyPrintout(wx.Printout):
-    def __init__(self, text, title, margins):
+    def __init__(self, text, title):
         wx.Printout.__init__(self, title)
         self.text = text
-        self.margins = margins
 
     def OnPrintPage(self, page):
         dc = self.GetDC()
-        # Implement your printing logic here
-        dc.DrawText(self.text, 100, 100)
+        posY = 150
+        posCol = [600, 1200, 600, 800, 600, 1200, 500, 500, 1000, 500]
+        for row in self.text:
+            posX = 150
+            numCol = 0
+            for line in row:
+                dc.DrawText(line, posX, posY)
+                posX = posX + posCol[numCol]
+                numCol = numCol + 1
+            posY = posY + 200
         return True
 
 
