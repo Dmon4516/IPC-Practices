@@ -14,9 +14,6 @@ import json
 ####
 
 acabado = 0
-# Archivo intermedio y archivo final
-temp_file = 'temp_datos.json'
-final_file = 'datos_combinados.json'
 
 class VentanaRegistroPaso2 ( wx.Frame ):
 
