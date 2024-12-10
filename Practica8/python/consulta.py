@@ -16,7 +16,7 @@ class VentanaConsulta ( wx.Frame ):
 
     ## Metodo que se encarga de inicializar el contenido de la ventana
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = "Consultar lista vehículos", pos = wx.DefaultPosition, size = wx.Size( 1110,400 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = "Consultar lista vehículos", pos = wx.DefaultPosition, size = wx.Size( 1100,440 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 255, 255, 255 ) )
@@ -30,7 +30,7 @@ class VentanaConsulta ( wx.Frame ):
 
         # establecer dimensionado de los elementos
         self.boxSizer = wx.BoxSizer( wx.VERTICAL )
-        self.SetMinSize( wx.Size( 500,300 ) )
+        self.SetMinSize( wx.Size( 500,200 ) )
 
         # agregar la barra de herramientas
         self.toolBar = wx.ToolBar( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TB_FLAT|wx.TB_HORZ_TEXT )
@@ -194,7 +194,6 @@ class VentanaConsulta ( wx.Frame ):
             for campo, valor in entrada.items():
                 cliente.append(f"{valor}")
             clientes.append(cliente)
-
         self.clientesUltimo = clientes
 
         # agregar las entradas en forma tabular
