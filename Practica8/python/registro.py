@@ -10,7 +10,7 @@ import json
 
 ## Ventana para el registro de coches en la base de datos (Paso 1)
 ##
-## Autores: Oscar Entrecanales
+## Autores: Oscar Entrecanales y David Montenegro
 ## Version: Diciembre 2024
 ####
 
