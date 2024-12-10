@@ -153,11 +153,11 @@ class VentanaRegistroPaso2 ( wx.Frame ):
 
             # Guardar datos combinados
             datos_paso2 = {
-                "nombre": self.txtNombre.GetValue(),
+                "nombre": self.txtNomYAp.GetValue(),
                 "nif": self.txtNIF.GetValue(),
                 "telefono": self.txtTelefono.GetValue(),
                 "email": self.txtEmail.GetValue(),
-                "nacimiento": self.txtNacimiento.GetValue()
+                "nacimiento": self.txtFechaNac.GetValue()
             }
             nuevo_registro = {**datos_paso1, **datos_paso2}
 
