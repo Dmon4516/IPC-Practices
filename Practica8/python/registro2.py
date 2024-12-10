@@ -4,6 +4,7 @@ import gettext
 import os
 import subprocess
 _ = gettext.gettext
+import sys
 
 ## Ventana para el registro de coches en la base de datos (Paso 2)
 ##
@@ -21,7 +22,7 @@ class VentanaRegistroPaso2 ( wx.Frame ):
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_MENU ) )
 
-        imagen = wx.Bitmap(".\\imagenes\\icono.png", wx.BITMAP_TYPE_PNG)
+        imagen = wx.Bitmap(os.path.join("imagenes", "icono.png"), wx.BITMAP_TYPE_PNG)
         icono = wx.Icon()
         icono.CopyFromBitmap(imagen)
         self.SetIcon(icono)
@@ -156,7 +157,7 @@ class VentanaRegistroPaso2 ( wx.Frame ):
 ####
 if __name__ == "__main__" :
     try:
-        open(".\\control\\P_REGISTRO2", "w").close()
+        open(os.path.join("control", "P_REGISTRO2"), "w").close()
     except Exception as e:
         print(f"error: {e}")
     else:
@@ -168,7 +169,7 @@ if __name__ == "__main__" :
     
     try:
         if acabado == 1:
-            os.remove(".\\control\\P_REGISTRO2")
+            os.remove(os.path.join("control", "P_REGISTRO2"))
         acabado = 0
     except Exception as e:
         print(f"error: {e}")

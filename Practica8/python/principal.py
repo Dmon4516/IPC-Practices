@@ -4,6 +4,7 @@ import gettext
 import subprocess
 import os
 _ = gettext.gettext
+import sys
 
 
 ## Ventana principal que permite acceder a las demas secciones del programa
@@ -21,7 +22,7 @@ class VentanaPrincipal ( wx.Frame ):
         self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_MENU ) )
 
         # establecer icono de la ventana
-        imagen = wx.Bitmap(".\\imagenes\\icono.png", wx.BITMAP_TYPE_PNG)
+        imagen = wx.Bitmap(os.path.join("imagenes", "icono.png"), wx.BITMAP_TYPE_PNG)
         icono = wx.Icon()
         icono.CopyFromBitmap(imagen)
         self.SetIcon(icono)
@@ -62,29 +63,28 @@ class VentanaPrincipal ( wx.Frame ):
     ## Metodo que se encarga de la accion realizada al pulsar el boton de registrar
     ## comprobamos que dicha ventana no se encuentre ya abierta
     def botRegistrarClicked(self, event):
-        if os.path.exists(".\\control\\P_REGISTRO"):
+        if os.path.exists(os.path.join("control", "P_REGISTRO")):
             wx.MessageBox("Esta ventana ya se encuentra abierta", "Error", wx.OK | wx.ICON_ERROR)
         else:
-            subprocess.Popen(["python", ".\\registro.py"])
+            subprocess.Popen([sys.executable, os.path.join(".", "registro.py")])
 
 
     ## Metodo que se encarga de la accion realizada al pulsar el boton de consultar
     ## comprobamos que dicha ventana no se encuentre ya abierta
     def botConsultarClicked(self, event):
-        if os.path.exists(".\\control\\P_CONSULTA"):
+        if os.path.exists(os.path.join("control", "P_CONSULTA")):
             wx.MessageBox("Esta ventana ya se encuentra abierta", "Error", wx.OK | wx.ICON_ERROR)
         else:
-            subprocess.Popen(["python", ".\\consulta.py"])
+            subprocess.Popen([sys.executable, os.path.join("./", "consulta.py")])
 
 
     ## Metodo que se encarga de la accion realizada al pulsar el boton de salir
     ## comprobamos que no quede ninguna ventana abierta antes de salir
     def botSalirClicked(self, event):
-        if os.path.exists(".\\control\\P_REGISTRO") or os.path.exists(".\\control\\P_CONSULTA"):
+        if os.path.exists(os.path.join("control", "P_REGISTRO")) or os.path.exists(os.path.join("control", "P_CONSULTA")):
             wx.MessageBox("Cierre todas las ventanas antes de salir del programa", "Error", wx.OK | wx.ICON_ERROR)
         else:
             self.Close()
-
 
     ## Metodo que se encarga de la accion realizada al hacer Alt + S
     ## el cual corresponde al atajo de teclado para registro

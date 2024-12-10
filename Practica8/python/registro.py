@@ -5,7 +5,7 @@ import os
 import subprocess
 import re
 _ = gettext.gettext
-
+import sys 
 ## Ventana para el registro de coches en la base de datos (Paso 1)
 ##
 ## Autores: Oscar Entrecanales
@@ -20,7 +20,7 @@ class VentanaRegistroPaso1 ( wx.Frame ):
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_MENU ) )
 
-        imagen = wx.Bitmap(".\\imagenes\\icono.png", wx.BITMAP_TYPE_PNG)
+        imagen = wx.Bitmap(os.path.join("imagenes", "icono.png"), wx.BITMAP_TYPE_PNG)
         icono = wx.Icon()
         icono.CopyFromBitmap(imagen)
         self.SetIcon(icono)
@@ -142,10 +142,10 @@ class VentanaRegistroPaso1 ( wx.Frame ):
         if self.txtMarca.IsEmpty() or self.txtModelo.IsEmpty() or self.txtMatricula.IsEmpty() or self.txtFechaMat.IsEmpty() or self.txtKM.IsEmpty():
             wx.MessageBox("Rellene todos los campos antes de seguir", "Error", wx.OK | wx.ICON_ERROR)
         else:
-            proc = subprocess.Popen(["python", ".\\registro2.py"])
+            proc = subprocess.Popen([sys.executable, os.path.join(".", "registro2.py")])
             self.Hide()
             proc.wait()
-            if os.path.exists(".\\control\\P_REGISTRO2"):
+            if os.path.exists(os.path.join("control", "P_REGISTRO2")):
                 self.Show()
             else:
                 self.Close()
@@ -157,7 +157,7 @@ class VentanaRegistroPaso1 ( wx.Frame ):
 ####
 if __name__ == "__main__":
     try:
-        open(".\\control\\P_REGISTRO", "w").close()
+        open(os.path.join("control", "P_REGISTRO"), "w").close()
     except Exception as e:
         print(f"error: {e}")
     else:
@@ -168,7 +168,7 @@ if __name__ == "__main__":
     app.MainLoop()
     
     try:
-        os.remove(".\\control\\P_REGISTRO")
+        os.remove(os.path.join("control", "P_REGISTRO"))
     except Exception as e:
         print(f"error: {e}")
     else:
