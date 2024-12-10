@@ -77,11 +77,16 @@ class VentanaConsulta ( wx.Frame ):
         self.statusBar.SetStatusText(f"Datos actualizados a {fecha_hora_string}")
         self.statusBar.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_3DLIGHT ) )
 
+        # establecer atajos de teclado
+        self.Bind(wx.EVT_KEY_DOWN, self.keyImprimirPressed)
+        self.Bind(wx.EVT_KEY_DOWN, self.keyActualizarPressed)
+        self.Bind(wx.EVT_KEY_DOWN, self.keySalirPressed)
+
         # ajustar posicionamiento de la ventana
         self.SetSizer( self.boxSizer )
         self.SetFocus()
         self.Layout()
-        self.Centre( wx.BOTH )
+        self.SetPosition((200, 200))
         self.Show()
 
 
@@ -104,6 +109,7 @@ class VentanaConsulta ( wx.Frame ):
         if not printproc:
             wx.MessageBox("Error al intentar imprimir", "Error", wx.OK | wx.ICON_ERROR)
         printout.Destroy()
+        self.SetFocus()
 
 
     ## Metodo que se encarga de la accion realizada al pulsar el boton de actualizar
@@ -126,11 +132,47 @@ class VentanaConsulta ( wx.Frame ):
         fecha_hora_string = fecha_hora.strftime("%d/%m/%Y %H:%M:%S")
         self.statusBar.SetStatusText(f"Datos actualizados a {fecha_hora_string}")
         wx.MessageBox("Datos actualizados satisfactoriamente", "Mensaje", wx.OK | wx.ICON_INFORMATION)
+        self.SetFocus()
 
 
     ## Metodo que se encarga de la accion realizada al pulsar el boton de salir
     def toolSalirClicked(self, event):
         self.Close()
+
+
+    ## Metodo que se encarga de la accion realizada al hacer Alt + I
+    ## el cual corresponde al atajo de teclado para imprimir
+    def keyImprimirPressed(self, event):
+        keycode = event.GetKeyCode()
+        altDown = event.AltDown()
+        if keycode == ord('I') and altDown:
+            print("ALT + I detectado")
+            self.toolImprimirClicked(self)
+        else:
+            event.Skip()
+
+    ## Metodo que se encarga de la accion realizada al hacer Alt + A
+    ## el cual corresponde al atajo de teclado para actualizar
+    def keyActualizarPressed(self, event):
+        keycode = event.GetKeyCode()
+        altDown = event.AltDown()
+        if keycode == ord('A') and altDown:
+            print("ALT + A detectado")
+            self.toolActualizarClicked(self)
+        else:
+            event.Skip()
+
+
+    ## Metodo que se encarga de la accion realizada al hacer Alt + S
+    ## el cual corresponde al atajo de teclado para salir
+    def keySalirPressed(self, event):
+        keycode = event.GetKeyCode()
+        altDown = event.AltDown()
+        if keycode == ord('S') and altDown:
+            print("ALT + S detectado")
+            self.toolSalirClicked(self)
+        else:
+            event.Skip()
 
 
     ## Metodo que se encarga de rellenar las filas de la tabla mediante un fichero json
