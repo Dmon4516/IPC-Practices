@@ -6,11 +6,15 @@ import subprocess
 import re
 _ = gettext.gettext
 import sys 
+import json
+
 ## Ventana para el registro de coches en la base de datos (Paso 1)
 ##
 ## Autores: Oscar Entrecanales
 ## Version: Diciembre 2024
 ####
+
+
 
 class VentanaRegistroPaso1 ( wx.Frame ):
 
@@ -142,6 +146,16 @@ class VentanaRegistroPaso1 ( wx.Frame ):
         if self.txtMarca.IsEmpty() or self.txtModelo.IsEmpty() or self.txtMatricula.IsEmpty() or self.txtFechaMat.IsEmpty() or self.txtKM.IsEmpty():
             wx.MessageBox("Rellene todos los campos antes de seguir", "Error", wx.OK | wx.ICON_ERROR)
         else:
+            datos = {
+                "marca": self.txtMarca.GetValue(),
+                "modelo": self.txtModelo.GetValue(),
+                "matricula": self.txtMatricula.GetValue(),
+                "fecha": self.txtFechaMat.GetValue(),
+                "km": self.txtKM.GetValue()
+            }
+            with open(os.path.join("datos", "temp_datos.json", 'w')) as file:
+                json.dump(datos, file)
+            
             proc = subprocess.Popen([sys.executable, os.path.join(".", "registro2.py")])
             self.Hide()
             proc.wait()

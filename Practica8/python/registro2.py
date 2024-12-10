@@ -5,6 +5,7 @@ import os
 import subprocess
 _ = gettext.gettext
 import sys
+import json
 
 ## Ventana para el registro de coches en la base de datos (Paso 2)
 ##
@@ -13,6 +14,9 @@ import sys
 ####
 
 acabado = 0
+# Archivo intermedio y archivo final
+temp_file = 'temp_datos.json'
+final_file = 'datos_combinados.json'
 
 class VentanaRegistroPaso2 ( wx.Frame ):
 
@@ -146,6 +150,33 @@ class VentanaRegistroPaso2 ( wx.Frame ):
             ## Si pusieramos un paso posterior:
             ## subprocess.Popen(["python", ".\\registro2.py"]) 
             ## self.Hide()
+            # Leer datos del paso 1
+            with open(os.path.join("datos", "temp_datos.json"), 'r') as file:
+                datos_paso1 = json.load(file)
+
+            # Guardar datos combinados
+            datos_paso2 = {
+                "nombre": self.txtNombre.GetValue(),
+                "nif": self.txtNIF.GetValue(),
+                "telefono": self.txtTelefono.GetValue(),
+                "email": self.txtEmail.GetValue(),
+                "nacimiento": self.txtNacimiento.GetValue()
+            }
+            nuevo_registro = {**datos_paso1, **datos_paso2}
+
+            # Leer datos existentes
+            if os.path.exists(os.path.join("datos", "datos.json")):
+                with open(os.path.join("datos", "datos.json"), 'r') as file:
+                    datos_existentes = json.load(file)
+            else:
+                datos_existentes = []
+
+            # Añadir nuevo registro y guardar
+            datos_existentes.append(nuevo_registro)
+            with open(os.path.join("datos", "datos.json"), 'w') as file:
+                json.dump(datos_existentes, file, indent=4)
+
+            wx.MessageBox("Datos guardados correctamente", "Éxito", wx.OK | wx.ICON_INFORMATION)
 
             ## Si acaba aqui:
             global acabado
@@ -170,6 +201,7 @@ if __name__ == "__main__" :
     try:
         if acabado == 1:
             os.remove(os.path.join("control", "P_REGISTRO2"))
+            os.remove(os.path.join("datos", "temp_datos.json"))
         acabado = 0
     except Exception as e:
         print(f"error: {e}")
