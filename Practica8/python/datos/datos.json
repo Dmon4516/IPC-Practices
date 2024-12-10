@@ -1,0 +1,67 @@
+[
+  {
+    "id": "0",
+    "marca": "Fiat",
+    "modelo": "Panda",
+    "matricula": "3923 DKC",
+    "fecha": "2005-12-07",
+    "km": "133673",
+    "nombre": "Sergio Martinez Lorente",
+    "nif": "79230012W",
+    "telefono": "988582537",
+    "email": "sergioml99@hotmail.com",
+    "nacimiento": "1999-08-26"
+  },
+  {
+    "id": "1",
+    "marca": "Citroen",
+    "modelo": "C4 Cactus",
+    "matricula": "4482JMM",
+    "fecha": "2016-04-11",
+    "km": "78530",
+    "nombre": "Emilia Grandal Soneira",
+    "nif": "58138404Q",
+    "telefono": "982518275",
+    "email": "emeliagrandal@live.com",
+    "nacimiento": "1981-11-14"
+  },
+  {
+    "id": "2",
+    "marca": "Toyota",
+    "modelo": "Celica GT-Four ST165",
+    "matricula": "M4322ND",
+    "fecha": "1992-05-23",
+    "km": "44286",
+    "nombre": "Carlos Sainz Cenamor",
+    "nif": "02324154G",
+    "telefono": "981658337",
+    "email": "carlossainzsr@hotmail.com",
+    "nacimiento": "1962-04-12"
+  },
+  {
+    "id": "3",
+    "marca": "Toyota",
+    "modelo": "Camry LE",
+    "matricula": "8229BSL",
+    "fecha": "2002-07-29",
+    "km": "215931",
+    "nombre": "Liam Reynolds",
+    "nif": "44586410J",
+    "telefono": "982701994",
+    "email": "liamreyns73@aol.com",
+    "nacimiento": "1973-06-05"
+  },
+  {
+    "id": "4",
+    "marca": "Renault",
+    "modelo": "Clio Sport",
+    "matricula": "4492GPC",
+    "fecha": "2009-10-02",
+    "km": "494156",
+    "nombre": "Matthieu Garnier",
+    "nif": "40480354D",
+    "telefono": "986664435",
+    "email": "garnierdb9@free.fr",
+    "nacimiento": "1972-12-10"
+  }
+]

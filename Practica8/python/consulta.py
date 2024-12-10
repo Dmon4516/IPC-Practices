@@ -73,23 +73,32 @@ class VentanaConsulta ( wx.Frame ):
 
     ## Metodo que se encarga de la accion realizada al pulsar el boton de imprimir
     def toolImprimirClicked(self, event):
-        # Contenido a imprimir
-        texto_a_imprimir = "Lista de vehículos en el taller:\n\n1. Vehículo A\n2. Vehículo B\n3. Vehículo C"
-        
-        # Configuración de impresión
+       
+        # mostrar dialogo de configuracion de pagina
+        data = wx.PageSetupDialogData()
+        dlg = wx.PageSetupDialog(self, data)
+        if dlg.ShowModal() == wx.ID_OK:
+            data = dlg.GetPageSetupData()
+
+        # mostrar dialogo de configuracion de impresora
         print_data = wx.PrintData()
-        print_data.SetPaperId(wx.PAPER_A4)
-        
-        printer = wx.Printer(print_data)
-        printout = SimplePrintout(texto_a_imprimir)
-        
-        if not printer.Print(self, printout, True):
-            wx.MessageBox("Error al intentar imprimir", "Error", wx.OK | wx.ICON_ERROR)
-        else:
-            wx.MessageBox("Documento enviado a la impresora", "Información", wx.OK | wx.ICON_INFORMATION)
+        print_data.SetPaperId(data.GetPaperId())
+        print_data.SetOrientation(data.GetEnableOrientation())
+        print_dlg_data = wx.PrintDialogData(print_data)
+        print_dlg = wx.PrintDialog(self, print_dlg_data)
+        if print_dlg.ShowModal() == wx.ID_OK:
+            print_dlg_data = print_dlg.GetPrintDialogData()
+            self.pdata = wx.PrintData(print_dlg_data.GetPrintData())
+            printer = wx.Printer(print_dlg_data)
+            printout = MyPrintout("Lista de vehiculos", "Print Example", margins=(150, 150, 150, 150))
+            useSetupDialog = False
+            printer.Print(self, printout, useSetupDialog)
+            if printer.GetLastError() == wx.PRINTER_ERROR:
+                wx.MessageBox("Error al intentar imprimir", "Error", wx.OK | wx.ICON_ERROR)
 
-        printout.Destroy()
-
+            printout.Destroy()
+            print_dlg.Destroy()
+            dlg.Destroy()
 
 
     ## Metodo que se encarga de la accion realizada al pulsar el boton de actualizar
@@ -106,23 +115,18 @@ class VentanaConsulta ( wx.Frame ):
         self.Close()
 
 
-class SimplePrintout(wx.Printout):
-    def __init__(self, text):
-        wx.Printout.__init__(self)
+## Clase que se encarga de realizar la tarea de impresion
+class MyPrintout(wx.Printout):
+    def __init__(self, text, title, margins):
+        wx.Printout.__init__(self, title)
         self.text = text
+        self.margins = margins
 
     def OnPrintPage(self, page):
-        """Dibuja el contenido a imprimir"""
         dc = self.GetDC()
-        dc.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
-        dc.DrawText(self.text, 10, 10)  
+        # Implement your printing logic here
+        dc.DrawText(self.text, 100, 100)
         return True
-
-    def HasPage(self, page):
-        return page == 1
-
-    def GetPageInfo(self):
-        return (1, 1, 1, 1)  
 
 
 
